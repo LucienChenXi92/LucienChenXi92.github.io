@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Lucien&#39;s Blog
+          前端资源加载如何优化 - 12点建议 - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/03/27/前端资源加载如何优化 - 12点建议/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,8 +69,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/StockSnap_U9DTGPVKRI.jpg') 
-            /*config*/
+            background-image: url('/img/StockSnap_PBTF1NEBCG.jpg')
+            /*post*/
         
     }
     
@@ -83,8 +83,18 @@
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h2>DON&#39;T QUIT, KEEP MOVING!</h2>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                            
+                        </div>
+                        <h2>前端资源加载如何优化 - 12点建议</h2>
+                        <h3></h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-03-27
+                        </span>
                     </div>
                 
 
@@ -187,333 +197,169 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h2><ol>
+<li>开启Gzip压缩资源。</li>
+<li>服务端对静态资源添加缓存。</li>
+<li>对于React， Vue等框架项目，尽量拆解编译后的CSS和JS文件，利用懒加载，减少所需加载的资源内容。</li>
+<li>项目中不需要的依赖要及时清除掉，只在开发时需要的依赖资源请放在devDependencies下面。</li>
+<li>调整资源加载顺序，大的资源尽量优先加载。</li>
+</ol>
+<h2 id="动态资源"><a href="#动态资源" class="headerlink" title="动态资源"></a>动态资源</h2><ol>
+<li>后端Spring-boot或Express项目同样可以开启Gzip，压缩response内容空间。</li>
+<li>简化API response内容，不需要的字段尽量不要返回，可以考虑使用GraphQL。</li>
+<li>合理使用Ajax，先将页面展示出来，再展示数据，避免空白等待时间过长。</li>
+<li>避免一个请求去加载过多内容，可以合理拆分请求。</li>
+<li>预处理数据，尽量避免加载过多原始数据到前端处理，造成网络传输的浪费。</li>
+<li>数据量巨大时，为了获得最好的首屏加载效果，尽量使用分批加载。可考虑加分页，分时间范围检索等功能。</li>
+<li>由于浏览器对同一域名下的TCP连接数量有限制，如果请求数量过多，可以考虑多申请几个域名轮询发送请求。</li>
+</ol>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/02/21/Resiliency/" data-toggle="tooltip" data-placement="top" title="Resiliency">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
             
-                <!-- Main Content -->
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
-
-<div class="post-preview">
-
-    <a href="/2020/03/27/前端资源加载如何优化 - 12点建议/">
-        <h2 class="post-title">
-            前端资源加载如何优化 - 12点建议
-        </h2>
-        <h3 class="post-subtitle">
-            !
-        </h3>
-        <div class="post-content-preview">
-            静态资源
-开启Gzip压缩资源。
-服务端对静态资源添加缓存。
-对于React， Vue等框架项目，尽量拆解编译后的CSS和JS文件，利用懒加载，减少所需加载的资源内容。
-项目中不需要的依赖要及时清除掉，只在开发时需要的依赖资源请放在devDependencies下面。
-调整资源加载顺序，大的资源尽量优先加载。
-
-动态资源
-后端Spring-boot或Express项目同样可以开启Gzip，压......
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#静态资源"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">静态资源</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#动态资源"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">动态资源</span></a></li></ol>
+        
         </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2020-03-27
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-        </div>
+      </aside>
     
 
-</div>
-<hr>
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-<div class="post-preview">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                        
+                    </div>
+                </section>
+                
 
-    <a href="/2020/02/21/Resiliency/">
-        <h2 class="post-title">
-            Resiliency
-        </h2>
-        <h3 class="post-subtitle">
-            !
-        </h3>
-        <div class="post-content-preview">
-            概念
-可用性可用性 = 系统可用时间 / 总时间高可用 = 高可靠 + 高稳定 + 高弹性
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
 
-可靠性  平均无故障时间指标。白话：靠谱，但是有可能一不靠谱就宕机几天，区别于高可用。
-
-稳定性  系统在持续操作时间内出错的概率。比如一天几次系统崩溃。区别于高弹性，有可能是Bug多。
-
-高弹性  反脆弱，抗打击能力。类似人的免疫能力。
-
-
-...
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2020-02-21
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/01/17/2019年终总结/">
-        <h2 class="post-title">
-            2019年终总结
-        </h2>
-        <h3 class="post-subtitle">
-            !
-        </h3>
-        <div class="post-content-preview">
-            2019年这一年，啊。。。(长叹一声气)，感觉这一年好漫长，长到感觉自己老了好多岁。
-2019年第一件比较大的任务应该算是年会主持吧，第一次双语主持年会，好紧张嘞，一句”Welcome to Expedia 2019 annual party!”反反复复的叨咕，练了几个星期，最后可以做到靠肌肉记忆喊出来。最终效果还是棒棒哒，第一句出来之后整个会场的气氛一下子就爆炸了，后面所有的流程也就顺了很......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2020-01-17
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-              <a href="/tags/#成长" title="成长">成长</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/12/29/总结一下5年来的成长心得/">
-        <h2 class="post-title">
-            总结一下5年来的成长心得
-        </h2>
-        <h3 class="post-subtitle">
-            !
-        </h3>
-        <div class="post-content-preview">
-            
-首先，以下所有观点都基于个人成长经验总结而来，仅表达个人观点～
-
-态度决定一切我毕业于一个非985的大学，大学时主修又并非计算机相关专业，但是却入行互联网开发5年了…
-记得上一份工作面试时，面试的领导问我，你以后打算走管理的路线还是技术。我那时觉得我们这种半路出家的和尚，和人家根红苗正、科班出身的大牛们拼技术自然是拼不过的，遂回答说走管理，老板还会意的点点头。时间慢慢流过，工作也快5年了，......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2019-12-29
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-              <a href="/tags/#成长" title="成长">成长</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/12/27/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <h3 class="post-subtitle">
-            万物伊始!
-        </h3>
-        <div class="post-content-preview">
-            为什么”才”想起来写Blog?自我反思了一下这些年的成长，感觉平时大部分的时间都花在工作中的设计和实现上了，很少进行梳理和总结。查阅过的资料，网上学过的课程视频也只是”看过”和”学过”，别人说是什么样子就是什么样子，缺少实践和验证，同时也未建立起自己的知识体系。现在网上各种学习资料层出不穷，各种技术也是日益更迭，人的大脑空间终究是有极限的，一边学一边忘，最终也没剩下什么。
-思来想去，不妨写写......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2019-12-27
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
-
-
-                <!-- 如果开启评论功能 -->
+                    
+                </ul>
                 
             </div>
-
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
-
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-            <a href="/tags/#Blog" title="Blog" rel="5">Blog</a>
-            
-        
-            
-            <a href="/tags/#成长" title="成长" rel="2">成长</a>
-            
-        
+        </div>
     </div>
-</section>
+</article>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
 
-        
-            <img id = "avatar_pic" src="/img/lucien.jpg" />
-        
 
-        
-            <p>Lucien Chen(陈熹)</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/03/27/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%20-%2012%E7%82%B9%E5%BB%BA%E8%AE%AE/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/03/27/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%20-%2012%E7%82%B9%E5%BB%BA%E8%AE%AE/";
 
-            
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
 
-            
 
-            
-                <li>
-                    <a target="_blank"  href="https://github.com/LucienChenXi92">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-                <li>
-                    <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>RECENT POSTS</h3>
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2020/03/27/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%20-%2012%E7%82%B9%E5%BB%BA%E8%AE%AE/">前端资源加载如何优化 - 12点建议</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/21/Resiliency/">Resiliency</a>
-        </li>
-      
-        <li>
-          <a href="/2020/01/17/2019%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2019年终总结</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/29/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B5%E5%B9%B4%E6%9D%A5%E7%9A%84%E6%88%90%E9%95%BF%E5%BF%83%E5%BE%97/">总结一下5年来的成长心得</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/27/hello-world/">Hello World</a>
-        </li>
-      
-    </ul>
-  </div>
 
-        <hr>
-    
-        
-    <h5>ARCHIVES</h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
-    </div>
 
-        <hr>
-    
-        <!-- Categories -->
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
