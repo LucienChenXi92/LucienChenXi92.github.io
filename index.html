@@ -212,7 +212,7 @@
             前端资源加载如何优化 - 12点建议
         </h2>
         <h3 class="post-subtitle">
-            !
+            
         </h3>
         <div class="post-content-preview">
             静态资源
@@ -243,12 +243,47 @@
 
 <div class="post-preview">
 
+    <a href="/2020/03/20/JVM 内存结构/">
+        <h2 class="post-title">
+            JVM 内存结构
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            栈(Stacks)
+一个线程对应一个栈，线程销毁，栈空间释放。
+线程每调用一个方法，则有一个栈帧(Stack Frame)入栈，栈帧用于存储局部变量表，操作表，动态连接，方法出口等信息。方法执行完成，则栈帧出栈。
+一个栈被塞1亿个帧，空间不够时会报StackOverflow 错误。
+栈过多，超过栈总空间则报OOM。
+
+本地方法区栈(Native method stacks)
+本地方法区栈与J......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-03-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Blog" title="Blog">Blog</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/02/21/Resiliency/">
         <h2 class="post-title">
             Resiliency
         </h2>
         <h3 class="post-subtitle">
-            !
+            
         </h3>
         <div class="post-content-preview">
             概念
@@ -286,7 +321,7 @@
             2019年终总结
         </h2>
         <h3 class="post-subtitle">
-            !
+            
         </h3>
         <div class="post-content-preview">
             2019年这一年，啊。。。(长叹一声气)，感觉这一年好漫长，长到感觉自己老了好多岁。
@@ -317,7 +352,7 @@
             总结一下5年来的成长心得
         </h2>
         <h3 class="post-subtitle">
-            !
+            
         </h3>
         <div class="post-content-preview">
             
@@ -351,7 +386,7 @@
             Hello World
         </h2>
         <h3 class="post-subtitle">
-            万物伊始!
+            万物伊始
         </h3>
         <div class="post-content-preview">
             为什么”才”想起来写Blog?自我反思了一下这些年的成长，感觉平时大部分的时间都花在工作中的设计和实现上了，很少进行梳理和总结。查阅过的资料，网上学过的课程视频也只是”看过”和”学过”，别人说是什么样子就是什么样子，缺少实践和验证，同时也未建立起自己的知识体系。现在网上各种学习资料层出不穷，各种技术也是日益更迭，人的大脑空间终究是有极限的，一边学一边忘，最终也没剩下什么。
@@ -405,7 +440,7 @@
     <div class="tags">
         
             
-            <a href="/tags/#Blog" title="Blog" rel="5">Blog</a>
+            <a href="/tags/#Blog" title="Blog" rel="6">Blog</a>
             
         
             
@@ -477,6 +512,10 @@
         </li>
       
         <li>
+          <a href="/2020/03/20/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/">JVM 内存结构</a>
+        </li>
+      
+        <li>
           <a href="/2020/02/21/Resiliency/">Resiliency</a>
         </li>
       
@@ -488,10 +527,6 @@
           <a href="/2019/12/29/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B5%E5%B9%B4%E6%9D%A5%E7%9A%84%E6%88%90%E9%95%BF%E5%BF%83%E5%BE%97/">总结一下5年来的成长心得</a>
         </li>
       
-        <li>
-          <a href="/2019/12/27/hello-world/">Hello World</a>
-        </li>
-      
     </ul>
   </div>
 
@@ -500,7 +535,7 @@
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
         <hr>
