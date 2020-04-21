@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          JVM 内存结构 - Lucien&#39;s Blog
+          JVM GC - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/2020/03/20/JVM 内存结构/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/03/22/JVM GC/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,7 +69,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/JVM_Structure.jpg')
+            background-image: url('/img/JVM_GC.jpg')
             /*post*/
         
     }
@@ -91,11 +91,11 @@
                               <a class="tag" href="/tags/#Java" title="Java">Java</a>
                             
                         </div>
-                        <h2>JVM 内存结构</h2>
+                        <h2>JVM GC</h2>
                         <h3></h3>
                         <span class="meta">
                             Posted by Lucien Chen on
-                            2020-03-20
+                            2020-03-22
                         </span>
                     </div>
                 
@@ -212,42 +212,125 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="栈-Stacks"><a href="#栈-Stacks" class="headerlink" title="栈(Stacks)"></a>栈(Stacks)</h3><ul>
-<li>一个线程对应一个栈，线程销毁，栈空间释放。</li>
-<li>线程每调用一个方法，则有一个栈帧(Stack Frame)入栈，栈帧用于存储局部变量表，操作表，动态连接，方法出口等信息。方法执行完成，则栈帧出栈。</li>
-<li>一个栈被塞1亿个帧，空间不够时会报StackOverflow 错误。</li>
-<li>栈过多，超过栈总空间则报OOM。</li>
-</ul>
-<h3 id="本地方法栈-Native-method-stacks"><a href="#本地方法栈-Native-method-stacks" class="headerlink" title="本地方法栈(Native method stacks)"></a>本地方法栈(Native method stacks)</h3><ul>
-<li>本地方法栈与JVM栈所发挥的作用非常相似，只不过调用的静态方法，静态方法为C语言实现的。</li>
-<li>本地方法栈同样会有SOF和OOM两种错误</li>
-</ul>
-<h3 id="程序计数器-Program-Counter-Register"><a href="#程序计数器-Program-Counter-Register" class="headerlink" title="程序计数器(Program Counter Register)"></a>程序计数器(Program Counter Register)</h3><ul>
-<li>线程私有，用于记录线程运行的位置。</li>
-</ul>
-<h3 id="堆-Heap"><a href="#堆-Heap" class="headerlink" title="堆(Heap)"></a>堆(Heap)</h3><ul>
-<li>虚拟机内存中最大的一块，线程共享区域，用来存放对象实例。</li>
-<li>分为新生代(young generation)和老年代(old generation)，其比例为1:2</li>
-<li>新生代，占总空间1/3，内包含：<ul>
-<li>伊甸区(Eden), 占80%空间</li>
-<li>生还者0区(From Survivor)，占10%空间</li>
-<li>生还者1区(To Survivor)，占10%空间</li>
+                <h3 id="Heap内存分区"><a href="#Heap内存分区" class="headerlink" title="Heap内存分区"></a>Heap内存分区</h3><ul>
+<li>新生代 1/3<ul>
+<li>伊甸区(Eden) 内存占比8/10</li>
+<li>生还者0区(Survivor 0) 内存占比1/10</li>
+<li>生还者1区(Survivor 1) 内存占比1/10</li>
 </ul>
 </li>
-<li>老年代，占总空间的2/3</li>
-<li>永久代：JDK 1.8后hotspot取消了永久代的概念。</li>
+<li>老年代 2/3</li>
+<li>永久代: JDK 1.7之前hotspot有永久代的概念，用以实现方法区的功能，在Java 1.8后移除了永久代的概念。方法区被移至元空间(Metaspace)</li>
 </ul>
-<h3 id="方法区-Method-area"><a href="#方法区-Method-area" class="headerlink" title="方法区(Method area)"></a>方法区(Method area)</h3><ul>
-<li>线程共享的内存区域，用于存储已经被虚拟机加载的类信息，常量，静态变量，即时编译后的代码数据。</li>
-<li>方法区包含运行时常量池(Runtime Constant Pool)。</li>
-<li>在1.7版本之前，hotspot利用永久代来实现方法区，Java 1.8后被移至元空间。</li>
+<h3 id="GC-回收标记算法"><a href="#GC-回收标记算法" class="headerlink" title="GC 回收标记算法"></a>GC 回收标记算法</h3><ul>
+<li>引用计数器<ul>
+<li>每个对象都有一个计数器，没被引用一次便+1，失去引用便-1，当引用次数为0时并持续一段时间后，可以被回收。但是此算法无法解决两个对象相互引用的情况。</li>
 </ul>
-<h3 id="元空间-Metaspace"><a href="#元空间-Metaspace" class="headerlink" title="元空间(Metaspace)"></a>元空间(Metaspace)</h3><ul>
-<li>JDK 1.8后出现，为系统内存，用来代替永久代来存储方法区内容，默认情况下，Metaspace空间只受本地内存空间限制。</li>
+</li>
+<li>可达性分析法<ul>
+<li>从Root node 开始不断寻找引用对象，构成一条或多条引用链。如果有对象不在引用链中，则此对象可以被回收。此方法可以解决相互引用的情况。</li>
 </ul>
-<h3 id="直接内存-Direct-Memory"><a href="#直接内存-Direct-Memory" class="headerlink" title="直接内存(Direct Memory)"></a>直接内存(Direct Memory)</h3><ul>
-<li>这一部分不属于JVM，但是经常会被调用，这部分空间大小可以通过JVM参数进行调整。</li>
+</li>
 </ul>
+<h3 id="GC-算法"><a href="#GC-算法" class="headerlink" title="GC 算法"></a>GC 算法</h3><ol>
+<li>标记-清除(MC)<ul>
+<li>根据可达性分析，找到无引用的对象进行标记，标记完成后进行删除</li>
+<li>优点: 对内存空间无要求，效率相对标记-整理较高</li>
+<li>不足: 清除后会产生内存空间碎片，内存可利率变低，从而加速GC的频率</li>
+</ul>
+</li>
+<li>拷贝-清除(CC)<ul>
+<li>将整块内存分成两等分，每次只使用其中的一块。GC时，根据可达性分析，将需要保留的对象复制到另一块盘上，然后将原内存盘清空。</li>
+<li>优点: 当需保留的对象很少时效率很高，GC后内存平整，无空间碎片。</li>
+<li>不足: 每次只使用所有内存的一半，内存使用率低</li>
+</ul>
+</li>
+<li>标记-整理(MCC)<ul>
+<li>其过程和标记-清除算法类似，只不过在标记后没有直接进行清理，而是将所有对象进行排序，将需要保留的对象排到内存的一端，然后再将需要清除的对象一次性清理掉。</li>
+<li>优点: 空间利用率高，无空间碎片产生</li>
+<li>不足: 效率相对标记-清除的效率效率低</li>
+</ul>
+</li>
+</ol>
+<h3 id="分代收集策略"><a href="#分代收集策略" class="headerlink" title="分代收集策略"></a>分代收集策略</h3><p>对Heap内存进行区域划分，充分利用各种算法的优点进行分代收集，把Java Heap分为新生代和老年代，根据不同代的特点选用不同的GC算法。</p>
+<ul>
+<li>新生代<ul>
+<li>采用灵活比例的复制算法，每当伊甸区内存满了即会触发Minor GC(Young GC)，基于IBM的调查结果，新生代中98%的对象都会被首次GC清除掉，因此剩余的对象会被刷入Survivor 0区，下次GC时，会将Survivor 0区和Eden区的剩余对象一同刷入Survivor 1区。GC多次仍然无法清除掉的对象最终被刷入老年代。</li>
+</ul>
+</li>
+<li>老年代<ul>
+<li>由于老年代中的对象存活率高，没有额外的空间进行分配，必须使用标记-清除或标记整理算法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><ol>
+<li>串行：垃圾回收器(Serial Garbage Collector)<ul>
+<li>串行垃圾回收器是最古老的，在GC时它会冻结所有程序线程，使用单个垃圾回收线程进行垃圾回收。此垃圾回收器是为单线程环境设计的。</li>
+<li>GC时会产生较长的的Stop The World(服务暂停)</li>
+<li>使用方法：-XX:+UseSerialGC 串联收集</li>
+</ul>
+</li>
+<li>串行：ParNew收集器<ul>
+<li>ParNew收集器其实就是Serial收集器的多线程版本。新生代并行，老年代串行。新生代复制算法，老年代标记压缩</li>
+<li>使用方法：-XX:+UseParNewGC ParNew收集器</li>
+</ul>
+</li>
+<li>并行： Parallel收集器<ul>
+<li>Parallel Scavenge收集器类似ParNew收集器，Parallel收集器关注系统的吞吐量。可以通过参数来打开自适应调节策略，虚拟机根据当前系统的运行状况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或最大的吞吐量；也可以通过参数控制GC的时间不大于多少毫秒或是多大比例；新生代复制算法，老年代标记-整理</li>
+</ul>
+</li>
+<li>并行： Parallel Old收集器<ul>
+<li>Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和“标记整理算法”。JDK 1.6才开始提供使用 </li>
+</ul>
+</li>
+<li>并发标记扫描 CMS收集器<ul>
+<li>CMS(Concurrent Mark Sweep)收集器是一种获取最短回收停顿时间为目标的收集器。目前很大一部分的Java应用都集中在互联网网站或B/S系统的服务上，这类应用尤其重视服务的相应速度，希望系统停顿的时间最短，以给用户带来较好的体验。</li>
+<li>CMS是基于标记-清除算法实现的，它的运作过程相对前面集中收集器来说更为复杂一些，整个过程分为4个过程<ul>
+<li>初始标记<ul>
+<li>Stop The World</li>
+<li>标记GC Roots能够直接关联到的对象，速度很快</li>
+</ul>
+</li>
+<li>并发标记<ul>
+<li>执行时间较长，工作线程不停顿</li>
+<li>基于初始标记的结果，多线程GC Roots Tracing，在这个过程中由于工作线程还在不断产生新的需要收集的对象，因此还需要下一步重新标记</li>
+</ul>
+</li>
+<li>重新标记<ul>
+<li>Stop The World</li>
+<li>修正并发期间因用户程序继续运作导致的标记变化，这个阶段的挺短时间会比初始标记长一些，但是比并发标记的时间短。</li>
+</ul>
+</li>
+<li>并发清除<ul>
+<li>执行时间较长，工作线程不停顿</li>
+<li>多线程清除已标记的对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优点: 并发收集，低停顿</li>
+<li>缺点: 产生大量空间碎片、并发阶段会降低吞吐量</li>
+</ul>
+</li>
+<li>G1收集器(此部分还需深入学习)<ul>
+<li>最新的成果之一，Hotspot开发团队赋予它的使命是未来可以替换掉JDK1.5中的CMS</li>
+<li>G1 特点：<ol>
+<li>空间整合，采用标记整理算法，不会产生内存空间碎片。</li>
+<li>可预测停顿，降低停顿时间是G1和CMS的共同关注点，但G1和CMS的共同关注点，但G1除了追求低停顿外，还能建立可预测的时间模型，能让使用者明确指定一个长度为N毫秒的时间片段内，消耗在GC上的时间不超过N毫秒。</li>
+<li>G1 不再将新生代和老年代进行物理隔离，而是一视同仁的划分成等大的若干个Region</li>
+</ol>
+</li>
+<li>收集步骤<ul>
+<li>初始标记 + Minor GC (Stop The World)</li>
+<li>Root Region Scanning</li>
+<li>并发标记</li>
+<li>重新标记(Stop The World)</li>
+<li>拷贝-清理(Stop The World)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 
                 
 
@@ -256,12 +339,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/03/22/JVM GC/" data-toggle="tooltip" data-placement="top" title="JVM GC">&larr; Previous Post</a>
+                            <a href="/2020/03/27/前端资源加载如何优化 - 12点建议/" data-toggle="tooltip" data-placement="top" title="前端资源加载如何优化 - 12点建议">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/02/21/Resiliency/" data-toggle="tooltip" data-placement="top" title="Resiliency">Next Post &rarr;</a>
+                            <a href="/2020/03/20/JVM 内存结构/" data-toggle="tooltip" data-placement="top" title="JVM 内存结构">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -291,7 +374,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#栈-Stacks"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">栈(Stacks)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#本地方法栈-Native-method-stacks"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">本地方法栈(Native method stacks)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#程序计数器-Program-Counter-Register"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">程序计数器(Program Counter Register)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#堆-Heap"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">堆(Heap)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方法区-Method-area"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">方法区(Method area)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#元空间-Metaspace"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">元空间(Metaspace)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#直接内存-Direct-Memory"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">直接内存(Direct Memory)</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Heap内存分区"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Heap内存分区</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GC-回收标记算法"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">GC 回收标记算法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GC-算法"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">GC 算法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分代收集策略"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">分代收集策略</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#垃圾收集器"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">垃圾收集器</span></a></li></ol>
         
         </div>
       </aside>
@@ -340,8 +423,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://www.lucienchen.xyz/2020/03/20/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/";
-    var disqus_url = "http://www.lucienchen.xyz/2020/03/20/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/03/22/JVM%20GC/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/03/22/JVM%20GC/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

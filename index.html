@@ -233,7 +233,48 @@
         </p>
         <div class="tags">
             
-              <a href="/tags/#Blog" title="Blog">Blog</a>
+              <a href="/tags/#前端" title="前端">前端</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/22/JVM GC/">
+        <h2 class="post-title">
+            JVM GC
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Heap内存分区
+新生代 1/3
+伊甸区(Eden) 内存占比8/10
+生还者0区(Survivor 0) 内存占比1/10
+生还者1区(Survivor 1) 内存占比1/10
+
+
+老年代 2/3
+永久代: JDK 1.7之前hotspot有永久代的概念，用以实现方法区的功能，在Java 1.8后移除了永久代的概念。方法区被移至元空间(Metaspace)
+
+GC 回收标记算法
+引用计数器......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-03-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#后端" title="后端">后端</a>
+            
+              <a href="/tags/#Java" title="Java">Java</a>
             
         </div>
     
@@ -257,8 +298,8 @@
 一个栈被塞1亿个帧，空间不够时会报StackOverflow 错误。
 栈过多，超过栈总空间则报OOM。
 
-本地方法区栈(Native method stacks)
-本地方法区栈与J......
+本地方法栈(Native method stacks)
+本地方法栈与JVM......
         </div>
     </a>
     
@@ -268,7 +309,9 @@
         </p>
         <div class="tags">
             
-              <a href="/tags/#Blog" title="Blog">Blog</a>
+              <a href="/tags/#后端" title="后端">后端</a>
+            
+              <a href="/tags/#Java" title="Java">Java</a>
             
         </div>
     
@@ -307,6 +350,72 @@
         <div class="tags">
             
               <a href="/tags/#Blog" title="Blog">Blog</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/19/设计模式 - 代理模式/">
+        <h2 class="post-title">
+            设计模式-代理设计模式
+        </h2>
+        <h3 class="post-subtitle">
+            Proxy
+        </h3>
+        <div class="post-content-preview">
+            什么是代理模式？代理模式给某一个对象提供一个代理对象，并由代理对象控制对原对象的引用。通俗的来讲代理模式就是我们生活中常见的中介。
+
+为什么要用代理模式？
+解偶作用：有时可以利用代理模式，将客户端同委托类进行解偶，这样当委托类进行替换或是升级时，客户端无需修改代码。
+功能增强：比如添加日志，记录方法执行时间等机械重复的操作可以利用代理模式，将功能增强的代码在代理类中实现，这样就可以大大节省代......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-02-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#设计模式" title="设计模式">设计模式</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/17/设计模式 - 工厂模式/">
+        <h2 class="post-title">
+            设计模式-工厂设计模式
+        </h2>
+        <h3 class="post-subtitle">
+            Factory
+        </h3>
+        <div class="post-content-preview">
+            工厂设计模式的优点
+工厂设计模式提供了接口而不是实现的代码方法。
+工厂模式从客户端代码中删除实际实现类的实例化。工厂模式使我们的代码更健壮，耦合更少，易于扩展。例如，我们可以轻松更改PC类实现，因为客户端程序不知道这一点。
+工厂模式通过继承提供实现和客户端类之间的抽象。
+
+
+12345678910111213141516171819202122232425262728293031323334......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-02-17
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#设计模式" title="设计模式">设计模式</a>
             
         </div>
     
@@ -440,11 +549,25 @@
     <div class="tags">
         
             
-            <a href="/tags/#Blog" title="Blog" rel="6">Blog</a>
+            <a href="/tags/#后端" title="后端" rel="2">后端</a>
+            
+        
+            
+            <a href="/tags/#Java" title="Java" rel="2">Java</a>
+            
+        
+            
+            <a href="/tags/#Blog" title="Blog" rel="4">Blog</a>
             
         
             
             <a href="/tags/#成长" title="成长" rel="2">成长</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#设计模式" title="设计模式" rel="2">设计模式</a>
             
         
     </div>
@@ -512,6 +635,10 @@
         </li>
       
         <li>
+          <a href="/2020/03/22/JVM%20GC/">JVM GC</a>
+        </li>
+      
+        <li>
           <a href="/2020/03/20/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/">JVM 内存结构</a>
         </li>
       
@@ -520,11 +647,7 @@
         </li>
       
         <li>
-          <a href="/2020/01/17/2019%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2019年终总结</a>
-        </li>
-      
-        <li>
-          <a href="/2019/12/29/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B5%E5%B9%B4%E6%9D%A5%E7%9A%84%E6%88%90%E9%95%BF%E5%BF%83%E5%BE%97/">总结一下5年来的成长心得</a>
+          <a href="/2020/02/19/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">设计模式-代理设计模式</a>
         </li>
       
     </ul>
@@ -535,7 +658,7 @@
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
         <hr>
