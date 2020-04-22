@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          设计模式-工厂设计模式 - Lucien&#39;s Blog
+          JVM 内存模型 - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/2020/02/17/设计模式 - 工厂模式/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/03/19/JVM 内存模型/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -86,14 +86,16 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                              <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                            
+                              <a class="tag" href="/tags/#Java" title="Java">Java</a>
                             
                         </div>
-                        <h2>设计模式-工厂设计模式</h2>
-                        <h3>Factory</h3>
+                        <h2>JVM 内存模型</h2>
+                        <h3></h3>
                         <span class="meta">
                             Posted by Lucien Chen on
-                            2020-02-17
+                            2020-03-19
                         </span>
                     </div>
                 
@@ -210,15 +212,30 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="什么是工厂模式？"><a href="#什么是工厂模式？" class="headerlink" title="什么是工厂模式？"></a>什么是工厂模式？</h3><p>工厂模式是Java 中最常见的设计模式之一，属于创建型模式。它提供了一种创建对象的最佳方式。<br>在工厂模式中，我们常见对象不会对客户端暴露创建逻辑，并且是通过同一个接口来指向新创建的对象。</p>
-<h3 id="工厂设计模式的优点"><a href="#工厂设计模式的优点" class="headerlink" title="工厂设计模式的优点"></a>工厂设计模式的优点</h3><ul>
-<li>工厂设计模式提供了接口而不是实现的代码方法。</li>
-<li>工厂模式从客户端代码中删除实际实现类的实例化。工厂模式使我们的代码更健壮，耦合更少，易于扩展。例如，我们可以轻松更改PC类实现，因为客户端程序不知道这一点。</li>
-<li>工厂模式通过继承提供实现和客户端类之间的抽象。</li>
+                <blockquote>
+<p>最近在知乎上看到两篇关于Java内存模型的文章，讲的非常透彻，而且纠正了很多以前的理解误区，分享以下：</p>
+</blockquote>
+<p>第一篇： <a href="https://www.jianshu.com/p/bf158fbb2432" target="_blank" rel="noopener">《什么是Java内存模型》 – 占小狼 </a><br>第二篇： <a href="https://www.jianshu.com/p/76959115d486" target="_blank" rel="noopener">《深入理解JVM-内存模型（jmm）和GC》 – Garwer </a></p>
+<h2 id="什么是内存模型"><a href="#什么是内存模型" class="headerlink" title="什么是内存模型"></a>什么是内存模型</h2><p>Java内存模型（Java Memory Model ,JMM）就是一种符合内存模型规范的，屏蔽了各种硬件和操作系统的访问差异的，保证了Java程序在各种平台下对内存的访问都能保证效果一致的机制及规范。</p>
+<h2 id="内存屏障-Memory-Barrier"><a href="#内存屏障-Memory-Barrier" class="headerlink" title="内存屏障(Memory Barrier)"></a>内存屏障(Memory Barrier)</h2><p>CPU中，每个CPU又有多级缓存，一般分为L1,L2,L3，因为这些缓存的出现，提高了数据访问性能，避免每次都向内存索取，但是弊端也很明显，不能实时的和内存发生信息交换，分在不同CPU执行的不同线程对同一个变量的缓存值不同。硬件层的内存屏障分为两种：Load Barrier 和 Store Barrier即读屏障和写屏障。【内存屏障是硬件层的】</p>
+<h3 id="为什么需要内存屏障"><a href="#为什么需要内存屏障" class="headerlink" title="为什么需要内存屏障"></a>为什么需要内存屏障</h3><p>由于现代操作系统都是多处理器操作系统，每个处理器都会有自己的缓存，处理器工作时会先将数据从直接内存加载到CPU的工作内存中进行运算，然后再刷回直接内存中更新数据，<br>然而当多个CPU同时操作同一块内存区域时，由于工作内存没有及时刷回直接内存而造成多个CPU之间数据不一致的问题，此时，我们就需要硬件层提供内存屏障帮我们解决这个问题。</p>
+<p>内存屏障是通过一系列指令集来刷新CPU缓存的数据到内存中，保证这个写操作能够被其它CPU可见，或者将CPU缓存的数据设置为无效状态，保证其它CPU的写操作对本CPU可见。通常这些内存屏障的行为由底层实现，对于上层语言的程序员来说是透明的（不需要太关心具体的内存屏障如何实现）。</p>
+<h3 id="内存屏障的作用"><a href="#内存屏障的作用" class="headerlink" title="内存屏障的作用"></a>内存屏障的作用</h3><p>上面说到内存屏障可以实现CPU之前的数据可见行之外，还有一个重要的职责，可以禁止指令的<strong>重排序</strong>。</p>
+<h2 id="指令的重排序"><a href="#指令的重排序" class="headerlink" title="指令的重排序"></a>指令的重排序</h2><p>在执行程序时为了提高性能，编译器和处理器常常会对指令做重排序。重排序分三种类型：</p>
+<ul>
+<li><p>编译器优化的重排序<br>编译器在不改变单线程程序语义的前提下（代码中不包含synchronized关键字），可以重新安排语句的执行顺序。</p>
+</li>
+<li><p>指令级并行的重排序<br>现代处理器采用了指令级并行技术（Instruction-Level Parallelism， ILP）来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序。</p>
+</li>
+<li><p>内存系统的重排序<br>由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是在乱序执行。  </p>
+</li>
 </ul>
-<p><img src="/img/factory.png" alt="/img/factory.png"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 客户端（主方法）不再需要关注具体有多少子类，及子类的具体实现，只面向Factory提自己的需求。</span></span><br><span class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"你想吃什么？Bread or Milk?"</span>);</span><br><span class="line">        <span class="keyword">while</span> (sc.hasNext()) &#123;</span><br><span class="line">            IFood food1 = Factory.getInstance(sc.next());</span><br><span class="line">            <span class="keyword">if</span> (food1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                food1.eat();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IFood <span class="title">getInstance</span><span class="params">(String className)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (Milk.class.getName().equals(className)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Milk();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (Bread.class.getName().equals(className)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Bread();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IFood</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bread</span> <span class="keyword">implements</span> <span class="title">IFood</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"吃面包"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Milk</span> <span class="keyword">implements</span> <span class="title">IFood</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"喝牛奶"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>从java源代码到最终实际执行的指令序列，会分别经历下面三种重排序：<br>源代码 =&gt; 编译器优化重排序 =&gt; 指令集并行重排序 =&gt; 内存系统重排序 =&gt; 最终执行的指令序列</p>
+<p>因此我们要记住，多线程执行代码的时，代码的运行顺序和写的顺序未必是一致的！</p>
+<h2 id="synchronized-final-volatile"><a href="#synchronized-final-volatile" class="headerlink" title="synchronized, final, volatile"></a>synchronized, final, volatile</h2><p>synchronized有多种语义，其中最容易理解的是互斥，对于一个monitor对象，只能够被一个线程持有，意味着一旦有线程进入了同步代码块，那么其它线程就不能进入直到第一个进入的线程退出代码块（这因为都能理解）。<br>但是更多的时候，使用synchronized并非单单互斥功能，Synchronization保证了线程在同步块之前或者期间写入动作，对于后续进入该代码块的线程是可见的（又是可见性，不过这里需要注意是对同一个monitor对象而言）。在一个线程退出同步块时，线程释放monitor对象，它的作用是把CPU缓存数据（本地缓存数据）刷新到主内存中，从而实现该线程的行为可以被其它线程看到。在其它线程进入到该代码块时，需要获得monitor对象，它在作用是使CPU缓存失效，从而使变量从主内存中重新加载，然后就可以看到之前线程对该变量的修改。</p>
+<p>如果一个类包含final字段，且在构造函数中初始化，那么正确的构造一个对象后，final字段被设置后对于其它线程是可见的。也就是说final字段一定会将初始化完成后的值展示给其他线程。</p>
+<p>volatile字段主要用于线程之间进行通信，volatile字段的每次读行为都能看到其它线程最后一次对该字段的写行为，通过它就可以避免拿到缓存中陈旧数据。它们必须保证在被写入之后，会被刷新到主内存中，这样就可以立即对其它线程可以见。类似的，在读取volatile字段之前，缓存必须是无效的，以保证每次拿到的都是主内存的值，都是最新的值。volatile的内存语义和sychronize获取和释放monitor的实现目的是差不多的。<br><code>请注意volatile无法保证多线程的绝对安全，请配合synchronized使用！</code></p>
+<h2 id="Java-运行时数据"><a href="#Java-运行时数据" class="headerlink" title="Java 运行时数据"></a>Java 运行时数据</h2><p>下面这个图画的很精髓啦，<br><img src="/img/jmm.png" alt="/img/jmm.png"></p>
 
                 
 
@@ -227,12 +244,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/02/19/设计模式 - 代理模式/" data-toggle="tooltip" data-placement="top" title="设计模式-代理设计模式">&larr; Previous Post</a>
+                            <a href="/2020/03/20/JVM 内存结构/" data-toggle="tooltip" data-placement="top" title="JVM 内存结构">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/01/17/2019年终总结/" data-toggle="tooltip" data-placement="top" title="2019年终总结">Next Post &rarr;</a>
+                            <a href="/2020/02/21/Resiliency/" data-toggle="tooltip" data-placement="top" title="Resiliency">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -262,7 +279,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是工厂模式？"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是工厂模式？</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#工厂设计模式的优点"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">工厂设计模式的优点</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#什么是内存模型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是内存模型</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#内存屏障-Memory-Barrier"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">内存屏障(Memory Barrier)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么需要内存屏障"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">为什么需要内存屏障</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#内存屏障的作用"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">内存屏障的作用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#指令的重排序"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">指令的重排序</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#synchronized-final-volatile"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">synchronized, final, volatile</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Java-运行时数据"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Java 运行时数据</span></a></li></ol>
         
         </div>
       </aside>
@@ -282,7 +299,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
                     </div>
                 </section>
@@ -309,8 +328,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://www.lucienchen.xyz/2020/02/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/";
-    var disqus_url = "http://www.lucienchen.xyz/2020/02/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/03/19/JVM%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/03/19/JVM%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

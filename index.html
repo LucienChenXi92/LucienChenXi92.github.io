@@ -207,6 +207,38 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/05/Java - 多线程开发/">
+        <h2 class="post-title">
+            Java - 多线程开发
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+最近在刷阿里云上面的Java培训课程，发现MLDN的李兴华老师讲的非常深刻，摘取了一些多线程的内容，深入学习一下。
+
+线程和进程在Java语言里面最大的特点就是支持多线程开发（也是位数不多支持多线程开发的语言），所以在整个Java开发学习里面多线程开发非常重要。
+进程在传统的DOS系统的时代，其本身有一个特征：如果你的电脑出现了病毒，那么所有的程序都将无法执行，因为传统的DOS系统采用的是......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-04-05
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Java" title="Java">Java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/27/前端资源加载如何优化 - 12点建议/">
         <h2 class="post-title">
             前端资源加载如何优化 - 12点建议
@@ -215,15 +247,14 @@
             
         </h3>
         <div class="post-content-preview">
-            静态资源
+            
+最近一直在忙着做产品页面性能优化，调查了一些页面加载过程，大部分页面的瓶颈都在资源加载这里，我整理了以下12条资源加载的优化方案：
+
+静态资源
 开启Gzip压缩资源。
 服务端对静态资源添加缓存。
 对于React， Vue等框架项目，尽量拆解编译后的CSS和JS文件，利用懒加载，减少所需加载的资源内容。
-项目中不需要的依赖要及时清除掉，只在开发时需要的依赖资源请放在devDependencies下面。
-调整资源加载顺序，大的资源尽量优先加载。
-
-动态资源
-后端Spring-boot或Express项目同样可以开启Gzip，压......
+项目中不需要的依赖要及时清除掉，只在开发时需要的依赖资源请放在devDependenci......
         </div>
     </a>
     
@@ -321,6 +352,40 @@ GC 回收标记算法
 
 <div class="post-preview">
 
+    <a href="/2020/03/19/JVM 内存模型/">
+        <h2 class="post-title">
+            JVM 内存模型
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+最近在知乎上看到两篇关于Java内存模型的文章，讲的非常透彻，而且纠正了很多以前的理解误区，分享以下：
+
+第一篇： 《什么是Java内存模型》 – 占小狼 第二篇： 《深入理解JVM-内存模型（jmm）和GC》 – Garwer 
+什么是内存模型Java内存模型（Java Memory Model ,JMM）就是一种符合内存模型规范的，屏蔽了各种硬件和操作系统的访问差异的，保证了Java程......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-03-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#后端" title="后端">后端</a>
+            
+              <a href="/tags/#Java" title="Java">Java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/02/21/Resiliency/">
         <h2 class="post-title">
             Resiliency
@@ -350,6 +415,35 @@ GC 回收标记算法
         <div class="tags">
             
               <a href="/tags/#Blog" title="Blog">Blog</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/20/设计模式 - 单例模式/">
+        <h2 class="post-title">
+            设计模式-单例设计模式
+        </h2>
+        <h3 class="post-subtitle">
+            Singleton
+        </h3>
+        <div class="post-content-preview">
+            什么是单例模式？单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。
+1234567891011121314151617181920212......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-02-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#设计模式" title="设计模式">设计模式</a>
             
         </div>
     
@@ -399,13 +493,10 @@ GC 回收标记算法
             Factory
         </h3>
         <div class="post-content-preview">
-            工厂设计模式的优点
+            什么是工厂模式？工厂模式是Java 中最常见的设计模式之一，属于创建型模式。它提供了一种创建对象的最佳方式。在工厂模式中，我们常见对象不会对客户端暴露创建逻辑，并且是通过同一个接口来指向新创建的对象。
+工厂设计模式的优点
 工厂设计模式提供了接口而不是实现的代码方法。
-工厂模式从客户端代码中删除实际实现类的实例化。工厂模式使我们的代码更健壮，耦合更少，易于扩展。例如，我们可以轻松更改PC类实现，因为客户端程序不知道这一点。
-工厂模式通过继承提供实现和客户端类之间的抽象。
-
-
-12345678910111213141516171819202122232425262728293031323334......
+工厂模式从客户端代码中删除实际实现类的实例化。工厂模式使我们的代码更健壮，耦合更少，易于扩展。例如，我们可以轻松更改PC类实现......
         </div>
     </a>
     
@@ -454,75 +545,16 @@ GC 回收标记算法
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/12/29/总结一下5年来的成长心得/">
-        <h2 class="post-title">
-            总结一下5年来的成长心得
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-首先，以下所有观点都基于个人成长经验总结而来，仅表达个人观点～
-
-态度决定一切我毕业于一个非985的大学，大学时主修又并非计算机相关专业，但是却入行互联网开发5年了…
-记得上一份工作面试时，面试的领导问我，你以后打算走管理的路线还是技术。我那时觉得我们这种半路出家的和尚，和人家根红苗正、科班出身的大牛们拼技术自然是拼不过的，遂回答说走管理，老板还会意的点点头。时间慢慢流过，工作也快5年了，......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2019-12-29
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-              <a href="/tags/#成长" title="成长">成长</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/12/27/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <h3 class="post-subtitle">
-            万物伊始
-        </h3>
-        <div class="post-content-preview">
-            为什么”才”想起来写Blog?自我反思了一下这些年的成长，感觉平时大部分的时间都花在工作中的设计和实现上了，很少进行梳理和总结。查阅过的资料，网上学过的课程视频也只是”看过”和”学过”，别人说是什么样子就是什么样子，缺少实践和验证，同时也未建立起自己的知识体系。现在网上各种学习资料层出不穷，各种技术也是日益更迭，人的大脑空间终究是有极限的，一边学一边忘，最终也没剩下什么。
-思来想去，不妨写写......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2019-12-27
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
 
 <ul class="pager">
     
+    
+        <li class="next">
+            <a href="/archives/2/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -549,11 +581,11 @@ GC 回收标记算法
     <div class="tags">
         
             
-            <a href="/tags/#后端" title="后端" rel="2">后端</a>
+            <a href="/tags/#后端" title="后端" rel="3">后端</a>
             
         
             
-            <a href="/tags/#Java" title="Java" rel="2">Java</a>
+            <a href="/tags/#Java" title="Java" rel="4">Java</a>
             
         
             
@@ -567,7 +599,7 @@ GC 回收标记算法
             
         
             
-            <a href="/tags/#设计模式" title="设计模式" rel="2">设计模式</a>
+            <a href="/tags/#设计模式" title="设计模式" rel="3">设计模式</a>
             
         
     </div>
@@ -631,6 +663,10 @@ GC 回收标记算法
     <ul>
       
         <li>
+          <a href="/2020/04/05/Java%20-%20%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91/">Java - 多线程开发</a>
+        </li>
+      
+        <li>
           <a href="/2020/03/27/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%20-%2012%E7%82%B9%E5%BB%BA%E8%AE%AE/">前端资源加载如何优化 - 12点建议</a>
         </li>
       
@@ -643,11 +679,7 @@ GC 回收标记算法
         </li>
       
         <li>
-          <a href="/2020/02/21/Resiliency/">Resiliency</a>
-        </li>
-      
-        <li>
-          <a href="/2020/02/19/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">设计模式-代理设计模式</a>
+          <a href="/2020/03/19/JVM%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">JVM 内存模型</a>
         </li>
       
     </ul>
@@ -658,7 +690,7 @@ GC 回收标记算法
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
     </div>
 
         <hr>

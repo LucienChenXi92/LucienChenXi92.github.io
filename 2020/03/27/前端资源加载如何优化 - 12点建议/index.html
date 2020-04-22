@@ -210,14 +210,17 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h2><ol>
+                <blockquote>
+<p>最近一直在忙着做产品页面性能优化，调查了一些页面加载过程，大部分页面的瓶颈都在资源加载这里，我整理了以下12条资源加载的优化方案：</p>
+</blockquote>
+<h3 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h3><ol>
 <li>开启Gzip压缩资源。</li>
 <li>服务端对静态资源添加缓存。</li>
 <li>对于React， Vue等框架项目，尽量拆解编译后的CSS和JS文件，利用懒加载，减少所需加载的资源内容。</li>
 <li>项目中不需要的依赖要及时清除掉，只在开发时需要的依赖资源请放在devDependencies下面。</li>
 <li>调整资源加载顺序，大的资源尽量优先加载。</li>
 </ol>
-<h2 id="动态资源"><a href="#动态资源" class="headerlink" title="动态资源"></a>动态资源</h2><ol>
+<h3 id="动态资源"><a href="#动态资源" class="headerlink" title="动态资源"></a>动态资源</h3><ol>
 <li>后端Spring-boot或Express项目同样可以开启Gzip，压缩response内容空间。</li>
 <li>简化API response内容，不需要的字段尽量不要返回，可以考虑使用GraphQL。</li>
 <li>合理使用Ajax，先将页面展示出来，再展示数据，避免空白等待时间过长。</li>
@@ -232,6 +235,10 @@
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/04/05/Java - 多线程开发/" data-toggle="tooltip" data-placement="top" title="Java - 多线程开发">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -265,7 +272,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#静态资源"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">静态资源</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#动态资源"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">动态资源</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#静态资源"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">静态资源</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#动态资源"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">动态资源</span></a></li></ol>
         
         </div>
       </aside>
