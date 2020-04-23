@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          About - Lucien&#39;s Blog
+          设计模式-模版设计模式 - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/about/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/02/05/设计模式 - 模版模式/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,8 +69,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/header_img/Iron-Man-3.jpg')
-            /*page*/
+            background-image: url('')
+            /*post*/
         
     }
     
@@ -83,8 +83,18 @@
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h2>Wish for the Best, Prepare for the Worst</h2>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                            
+                        </div>
+                        <h2>设计模式-模版设计模式</h2>
+                        <h3>Pattern</h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-02-05
+                        </span>
                     </div>
                 
 
@@ -187,288 +197,170 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <blockquote>
-</blockquote>
-<h3 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h3><p>Lucien Chen - 陈熹<br>2015年毕业于沈阳工业大学，现服务于文思海辉欧美事业部，任Java高级开发工程师。</p>
-<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><h4 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h4><table>
-<thead>
-<tr>
-<th>技术</th>
-<th>掌握程度</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Java</td>
-<td>精通</td>
-</tr>
-<tr>
-<td>Spring-boot</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>SpringMVC</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>Elasticsearch</td>
-<td>精通</td>
-</tr>
-<tr>
-<td>Redis</td>
-<td>精通</td>
-</tr>
-<tr>
-<td>Kafka</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>MongoDB</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>Spark-streaming</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>Mysql</td>
-<td>熟练</td>
-</tr>
-</tbody></table>
-<h4 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h4><table>
-<thead>
-<tr>
-<th>技术</th>
-<th>掌握程度</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Javascript &amp; CSS &amp; Html</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>Bootstrap</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>React 全家桶</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>Redux</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>Material-UI</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>Echart</td>
-<td>熟练</td>
-</tr>
-<tr>
-<td>Highchart</td>
-<td>熟练</td>
-</tr>
-</tbody></table>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-                <!-- 如果开启评论功能 -->
+                <h3 id="什么是模版模式？"><a href="#什么是模版模式？" class="headerlink" title="什么是模版模式？"></a>什么是模版模式？</h3><p>在模板模式（Template Pattern）中，一个抽象类公开定义了执行它的方法的方式/模板。它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。这种类型的设计模式属于行为型模式。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>封装不变部分，扩展可变部分。 </li>
+<li>提取公共代码，便于维护。 </li>
+<li>行为由父类控制，子类实现。</li>
+</ol>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>每一个不同的实现都需要一个子类来实现，导致类的个数增加，使得系统更加庞大。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol>
+<li>有多个子类共有的方法，且逻辑相同。 </li>
+<li>重要的、复杂的方法，可以考虑作为模板方法。</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>为防止恶意操作，一般模板方法都加上 final 关键词。</p>
+<p>如下为模版模式的一个示例，React当中的所有生命周期方法其实就是应用模版模式，组件要继承React.Component。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"组件已完成挂载。"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"组件渲染。"</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>"Hello World"<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                 
-                    <hr>
 
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/2020/02/17/设计模式 - 工厂模式/" data-toggle="tooltip" data-placement="top" title="设计模式-工厂设计模式">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/01/17/2019年终总结/" data-toggle="tooltip" data-placement="top" title="2019年终总结">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-                    
-                    <!-- disqus 评论框 start -->
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
                     <div class="comment">
                         <div id="disqus_thread" class="disqus-thread"></div>
                     </div>
-                    <!-- disqus 评论框 end -->
-                    
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是模版模式？"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是模版模式？</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#优点"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">优点</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#缺点"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">缺点</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用场景"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">使用场景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#注意事项"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">注意事项</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
 
-                    
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-                    
-                    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = "your-disqus-ID";
-                        var disqus_identifier = "http://www.lucienchen.xyz/about/index.html";
-                        var disqus_url = "http://www.lucienchen.xyz/about/index.html";
-
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
                         
-                    </script>
-                    <!-- disqus 公共JS代码 end -->
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
                     
+                </ul>
                 
             </div>
-
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
-
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-            <a href="/tags/#后端" title="后端" rel="3">后端</a>
-            
-        
-            
-            <a href="/tags/#Java" title="Java" rel="4">Java</a>
-            
-        
-            
-            <a href="/tags/#Blog" title="Blog" rel="4">Blog</a>
-            
-        
-            
-            <a href="/tags/#成长" title="成长" rel="2">成长</a>
-            
-        
-            
-            <a href="/tags/#前端" title="前端" rel="2">前端</a>
-            
-        
-            
-            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
-            
-        
-            
-        
+        </div>
     </div>
-</section>
+</article>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
 
-        
-            <img id = "avatar_pic" src="/img/lucien.jpg" />
-        
 
-        
-            <p>Lucien Chen(陈熹)</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/02/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E6%A8%A1%E7%89%88%E6%A8%A1%E5%BC%8F/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/02/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E6%A8%A1%E7%89%88%E6%A8%A1%E5%BC%8F/";
 
-            
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
 
-            
 
-            
-                <li>
-                    <a target="_blank"  href="https://github.com/LucienChenXi92">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-                <li>
-                    <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>RECENT POSTS</h3>
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2020/04/08/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3Javascript%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A6%82%E5%BF%B5/">浅谈Javascript中对象以及原型链</a>
-        </li>
-      
-        <li>
-          <a href="/2020/04/05/Java%20-%20%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91/">Java - 多线程开发</a>
-        </li>
-      
-        <li>
-          <a href="/2020/03/27/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%20-%2012%E7%82%B9%E5%BB%BA%E8%AE%AE/">前端资源加载如何优化 - 12点建议</a>
-        </li>
-      
-        <li>
-          <a href="/2020/03/22/JVM%20GC/">JVM GC</a>
-        </li>
-      
-        <li>
-          <a href="/2020/03/20/JVM%20%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/">JVM 内存结构</a>
-        </li>
-      
-    </ul>
-  </div>
 
-        <hr>
-    
-        
-    <h5>ARCHIVES</h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li></ul>
-    </div>
 
-        <hr>
-    
-        <!-- Categories -->
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
