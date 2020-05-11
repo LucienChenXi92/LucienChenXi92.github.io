@@ -207,27 +207,34 @@
 
 <div class="post-preview">
 
-    <a href="/2020/05/09/设计模式 - 建造者模式/">
+    <a href="/2020/05/11/Javascript中公共属性及方法的两种声明方式对比/">
         <h2 class="post-title">
-            设计模式-建造者设计模式
+            Javascript中公共属性及方法的两种声明方式对比
         </h2>
         <h3 class="post-subtitle">
-            Builder
+            解析特权函数和属性是怎么回事
         </h3>
         <div class="post-content-preview">
-            什么是建造者模式？建造者模式（Builder Pattern）使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
-一个 Builder 类会一步一步构造最终的对象。该 Builder 类是独立于其他对象的。
-为什么要用建造者模式？在程序中我们往往需要构建一些比较复杂的对象，其通常由各个部分的子对象用一定的算法构成；由于需求的变化......
+            
+之前写过一篇日志《浅谈Javascript中对象以及原型链》，在这篇日志中有介绍过如何声明对象公有的属性和方法，今天我们来深入聊一下Prototype声明和在构造器中声明的两种方式的异同。
+
+在解释这两种声明方法之前，我们需要回忆一下Javascript 通过new指令创建对象的过程：
+
+
+创建一个空对象，作为将要返回的对象实例。
+将这个空对象的原型，指向构造函数的prototype属性。......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Lucien Chen on
-            2020-05-09
+            2020-05-11
         </p>
         <div class="tags">
             
-              <a href="/tags/#设计模式" title="设计模式">设计模式</a>
+              <a href="/tags/#前端" title="前端">前端</a>
+            
+              <a href="/tags/#Javascript" title="Javascript">Javascript</a>
             
         </div>
     
@@ -482,6 +489,36 @@ GC 回收标记算法
 
 <div class="post-preview">
 
+    <a href="/2020/02/25/设计模式 - 建造者模式/">
+        <h2 class="post-title">
+            设计模式-建造者设计模式
+        </h2>
+        <h3 class="post-subtitle">
+            Builder
+        </h3>
+        <div class="post-content-preview">
+            什么是建造者模式？建造者模式（Builder Pattern）使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+一个 Builder 类会一步一步构造最终的对象。该 Builder 类是独立于其他对象的。
+为什么要用建造者模式？在程序中我们往往需要构建一些比较复杂的对象，其通常由各个部分的子对象用一定的算法构成；由于需求的变化......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-02-25
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#设计模式" title="设计模式">设计模式</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/02/20/设计模式 - 单例模式/">
         <h2 class="post-title">
             设计模式-单例设计模式
@@ -498,38 +535,6 @@ GC 回收标记算法
         <p class="post-meta" style="margin: 10px 0;">
             Posted by Lucien Chen on
             2020-02-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#设计模式" title="设计模式">设计模式</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/02/19/设计模式 - 代理模式/">
-        <h2 class="post-title">
-            设计模式-代理设计模式
-        </h2>
-        <h3 class="post-subtitle">
-            Proxy
-        </h3>
-        <div class="post-content-preview">
-            什么是代理模式？代理模式给某一个对象提供一个代理对象，并由代理对象控制对原对象的引用。通俗的来讲代理模式就是我们生活中常见的中介。
-
-为什么要用代理模式？
-解偶作用：有时可以利用代理模式，将客户端同委托类进行解偶，这样当委托类进行替换或是升级时，客户端无需修改代码。
-功能增强：比如添加日志，记录方法执行时间等机械重复的操作可以利用代理模式，将功能增强的代码在代理类中实现，这样就可以大大节省代......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2020-02-19
         </p>
         <div class="tags">
             
@@ -577,14 +582,6 @@ GC 回收标记算法
     <div class="tags">
         
             
-            <a href="/tags/#Blog" title="Blog" rel="3">Blog</a>
-            
-        
-            
-            <a href="/tags/#成长" title="成长" rel="2">成长</a>
-            
-        
-            
             <a href="/tags/#后端" title="后端" rel="4">后端</a>
             
         
@@ -593,9 +590,19 @@ GC 回收标记算法
             
         
             
-            <a href="/tags/#前端" title="前端" rel="2">前端</a>
+            <a href="/tags/#Blog" title="Blog" rel="3">Blog</a>
             
         
+            
+            <a href="/tags/#成长" title="成长" rel="2">成长</a>
+            
+        
+            
+            <a href="/tags/#前端" title="前端" rel="3">前端</a>
+            
+        
+            
+            <a href="/tags/#Javascript" title="Javascript" rel="2">Javascript</a>
             
         
             
@@ -665,7 +672,7 @@ GC 回收标记算法
     <ul>
       
         <li>
-          <a href="/2020/05/09/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">设计模式-建造者设计模式</a>
+          <a href="/2020/05/11/Javascript%E4%B8%AD%E5%85%AC%E5%85%B1%E5%B1%9E%E6%80%A7%E5%8F%8A%E6%96%B9%E6%B3%95%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94/">Javascript中公共属性及方法的两种声明方式对比</a>
         </li>
       
         <li>
@@ -692,7 +699,7 @@ GC 回收标记算法
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
