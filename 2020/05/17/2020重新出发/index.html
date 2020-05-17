@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Java 内存模型 - Lucien&#39;s Blog
+          2020重新出发 - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/2020/03/19/Java 内存模型/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/05/17/2020重新出发/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,7 +69,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/StockSnap_O59DSLQQFF.jpg')
+            background-image: url('/img/default.png')
             /*post*/
         
     }
@@ -86,16 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#后端" title="后端">后端</a>
-                            
-                              <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                              <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
                             
                         </div>
-                        <h2>Java 内存模型</h2>
-                        <h3></h3>
+                        <h2>2020重新出发</h2>
+                        <h3>个人随笔</h3>
                         <span class="meta">
                             Posted by Lucien Chen on
-                            2020-03-19
+                            2020-05-17
                         </span>
                     </div>
                 
@@ -212,40 +210,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <blockquote>
-<p>最近在知乎上看到两篇关于Java内存模型的文章，讲的非常透彻，而且纠正了很多以前的理解误区，分享以下：</p>
-</blockquote>
-<p>第一篇： <a href="https://www.jianshu.com/p/bf158fbb2432" target="_blank" rel="noopener">《什么是Java内存模型》 – 占小狼 </a><br>第二篇： <a href="https://www.jianshu.com/p/76959115d486" target="_blank" rel="noopener">《深入理解JVM-内存模型（jmm）和GC》 – Garwer </a></p>
-<h3 id="什么是内存模型"><a href="#什么是内存模型" class="headerlink" title="什么是内存模型"></a>什么是内存模型</h3><p>为了保证共享内存的正确性（可见性、有序性、原子性），内存模型定义了共享内存系统中多线程程序读写操作行为的规范。通过这些规则来规范对内存的读写操作，从而保证指令执行的正确性。它与处理器有关、与缓存有关、与并发有关、与编译器也有关。他解决了CPU多级缓存、处理器优化、指令重排等导致的内存访问问题，保证了并发场景下的一致性、原子性和有序性。  </p>
-<p>内存模型解决并发问题主要采用两种方式：<code>限制处理器优化</code> 和使用 <code>内存屏障</code>.</p>
-<h3 id="原子性，可见行，有序性"><a href="#原子性，可见行，有序性" class="headerlink" title="原子性，可见行，有序性"></a>原子性，可见行，有序性</h3><p>原子性，可见行和有序性是保证共享内存数据正确性的前提：  </p>
-<ul>
-<li>原子性是指在一个操作中就是cpu不可以在中途暂停然后再调度，既不被中断操作，要不执行完成，要不就不执行。</li>
-<li>可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。</li>
-<li>有序性即程序执行的顺序按照代码的先后顺序执行。</li>
-</ul>
-<h3 id="什么是Java内存模型"><a href="#什么是Java内存模型" class="headerlink" title="什么是Java内存模型"></a>什么是Java内存模型</h3><p>Java内存模型（Java Memory Model ,JMM）就是一种符合内存模型规范的，屏蔽了各种硬件和操作系统的访问差异的，保证了Java程序在各种平台下对内存的访问都能保证效果一致的机制及规范。  </p>
-<p>Java内存模型规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存，线程的工作内存中保存了该线程中是用到的变量的主内存副本拷贝，线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存。不同的线程之间也无法直接访问对方工作内存中的变量，线程间变量的传递均需要自己的工作内存和主存之间进行数据同步进行。  </p>
-<p>而JMM就作用于工作内存和主存之间数据同步过程。他规定了如何做数据同步以及什么时候做数据同步。  </p>
-<h3 id="JMM对原子性，可见行，有序性的实现"><a href="#JMM对原子性，可见行，有序性的实现" class="headerlink" title="JMM对原子性，可见行，有序性的实现"></a>JMM对原子性，可见行，有序性的实现</h3><h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>在Java中，为了保证原子性，提供了两个高级的字节码指令monitorenter和monitorexit。在synchronized的实现原理文章中，介绍过，这两个字节码，在Java中对应的关键字就是synchronized。</p>
-<p>因此，在Java中可以使用synchronized来保证方法和代码块内的操作是原子性的。</p>
-<h4 id="可见行"><a href="#可见行" class="headerlink" title="可见行"></a>可见行</h4><p>Java内存模型是通过在变量修改后将新值同步回主内存，在变量读取前从主内存刷新变量值的这种依赖主内存作为传递媒介的方式来实现的。</p>
-<p>Java中的volatile关键字提供了一个功能，那就是被其修饰的变量在被修改后可以立即同步到主内存，被其修饰的变量在每次是用之前都从主内存刷新。因此，可以使用volatile来保证多线程操作时变量的可见性。</p>
-<p>除了volatile，Java中的synchronized和final两个关键字也可以实现可见性。只不过实现方式不同，这里不再展开了。</p>
-<h4 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h4><p>在Java中，可以使用synchronized和volatile来保证多线程之间操作的有序性。实现方式有所区别：</p>
-<p>volatile关键字会禁止指令重排。synchronized关键字保证同一时刻只允许一条线程操作。</p>
-<p>好了，这里简单的介绍完了Java并发编程中解决原子性、可见性以及有序性可以使用的关键字。读者可能发现了，好像synchronized关键字是万能的，他可以同时满足以上三种特性，这其实也是很多人滥用synchronized的原因。</p>
-<p>但是synchronized是比较影响性能的，虽然编译器提供了很多锁优化技术，但是也不建议过度使用。</p>
-<h3 id="指令的重排序"><a href="#指令的重排序" class="headerlink" title="指令的重排序"></a>指令的重排序</h3><p>在执行程序时为了提高性能，编译器和处理器常常会对指令做重排序。重排序分三种类型：</p>
-<ul>
-<li><p>编译器优化的重排序<br>编译器在不改变单线程程序语义的前提下（代码中不包含synchronized关键字），可以重新安排语句的执行顺序。</p>
-</li>
-<li><p>指令级并行的重排序<br>现代处理器采用了指令级并行技术（Instruction-Level Parallelism， ILP）来将多条指令重叠执行。如果不存在数据依赖性，处理器可以改变语句对应机器指令的执行顺序。</p>
-</li>
-<li><p>内存系统的重排序<br>由于处理器使用缓存和读/写缓冲区，这使得加载和存储操作看上去可能是在乱序执行。  </p>
-</li>
-</ul>
-<p>从java源代码到最终实际执行的指令序列，会分别经历下面三种重排序：<br>源代码 =&gt; 编译器优化重排序 =&gt; 指令集并行重排序 =&gt; 内存系统重排序 =&gt; 最终执行的指令序列</p>
+                <h2 id="黑天鹅"><a href="#黑天鹅" class="headerlink" title="黑天鹅"></a>黑天鹅</h2><p>2020绝对算得上是我人生中最不寻常得年份了。新冠疫情对全世界冲击巨大，影响持久。从最初的武汉封城，美国股市熔断，原油价格跌成负数，再到现在的全球460万人感染，而且势头还没有停下来的意思。老东家Expedia去年Q3的股价近140美元，今年Q1跌到只剩个零头。国内大量企业倒闭，其中娱乐，餐饮，旅游行业被冲击最为严重，目测电影院恢复营业怕是要等7月份了，想想一年中有两个季度交白卷，也真是够难的。所以，我相信这次疫情的影响绝对会远超出我们的认知，对未来几年的市场格局，各行业发展前景有深远的影响。</p>
+<h2 id="塞翁失马，焉知非福"><a href="#塞翁失马，焉知非福" class="headerlink" title="塞翁失马，焉知非福"></a>塞翁失马，焉知非福</h2><p>对我个人影响还好吧，毕竟我也只是茫茫人海中最普通的一朵浪花，没什么资产好损失的。唯一值得说的就是换工作了。疫情之下旅游行业受到的影响最大，Expedia在深圳的开发中心，Vender基本都被Release掉了，而且如果疫情得不到有效控制，深圳的裁员情况可能会更糟。我是在4/20号得知自己也在Release的名单中的，刚开始自己很震惊，但很快又能理解了。我相信目前的形式已经远远超出Tony，Jamie，甚至Spring的能力范围。世事本无常，如果没办法改变，那就要积极面对，危机危机，有“危”就会有“机”嘛。4/29号得到消息，自己拿到了OCBC和平安科技的Offer，考虑了整整一个5.1假期，最终选择了OCBC。觉得从毕业到现在的一路成长，好不容易积累了点英语，还有前端的技能，几个月要是不用就废掉了。5月13号得以入职，这还要感谢Momo和Xinxin帮忙推荐简历，push签合流程才能这么顺利。</p>
+<h2 id="新环境感受"><a href="#新环境感受" class="headerlink" title="新环境感受"></a>新环境感受</h2><p>刚刚上了三天班，对新的环境还在慢慢适应。银行对信息安全要求非常严格，离开工位必须要锁屏。不可以使用自己的电脑，不能上外网，项目代码必须申请权限才能看到，Jira和Confluence page也是一样。IDE和一些工具也会受到限制，截图居然需要全屏截下来，然后用小画家抠图。总结起来几点感受吧：</p>
+<ol>
+<li><strong>信息孤岛</strong>。就像探索地下城一样，除了自己当前屏幕是可见的，地图上其他地方全是黑暗的，需要一点点的摸索。偶尔还会碰上被锁上的房间。分不清东南西北，而且貌似过往的一些common sense也不太适用。总之，除了一点点从新积累，也没有太好的办法。</li>
+<li><strong>生产力倒退</strong>。安全高于一切，因此很多方面不得不做出妥协，就像前面说的，不能上外网，连截屏工具都没有，一下子回到了刀耕火种的时代。但我希望在这样的环境中，自己反倒能更加专注，沉下心来，既然没有轮子，干脆想想咱们能不能自己造轮子，想想是不是也很兴奋？</li>
+<li><strong>“正式”的环境</strong>。在没入职之前，Xinxin就有提醒我要穿的正式一些，果然，第一天就了解到银行要求周一到周四需要穿长袖衬衫和皮鞋，周五可以穿带领T-shirt和运动鞋，永远告别了过去T-shirt，大裤衩的生活。说真的，过去从来没想过自己会有一天过上这样“白领”的生活，但可能这也是人生必不可少的一个阶段吧，提升一下自己穿衣的品味，不是坏事。</li>
+<li><strong>自驱力更加重要</strong>。目前受疫情影响，办公室里很多项目的需求还没有下来，所以办公室里开发压力不大，差不多晚上每天7点人就都走光了。周末也是双休，所以平时自由支配的时间变得更多起来。也许等疫情过去了，大家会更忙碌一点，但相比以前在“Expedia”的生活，完全可以用“安逸”两个字来形容。所以，新的环境下自驱力变得更加重要，8小时工作，8小时学习，8小时生活。让自己的生活忙绿起来，好好利用时间。平时工作时上不了外网，下班时间就可以深入研究研究技术，上班时间再把技术转化为生产力。</li>
+</ol>
+<h2 id="下一个5年"><a href="#下一个5年" class="headerlink" title="下一个5年"></a>下一个5年</h2><p><strong>个人成长方面</strong>。回想我毕业后的第一个5年，感觉自己像个跑步机上的小老鼠，一直都在拼命的跑呀跑呀。工作上需要什么技能，自己就去学习，快速应用到工作中。一切学习都是以收益为驱动的，绝大部分知识，你只需要花费20%的精力去学习，你就可以应付工作中80%的需求。一直没有沉下心去深入研究过什么，回过头来也不曾积累下什么。我希望在未来的5年自己能有所改变，过去自己什么都没有，学到什么都是赚到，现在应该好好思考一下，自己想要成为一个什么样的人，选择好自己的路。在Expedia的这两年我虽然成长很多很多，但我还是明白，在外企中自己现在的英文水平已经是向上发展的阻碍，希望下个五年一定要能突破这个瓶颈。<br><strong>家庭方面</strong>。首先自己也到了该结婚生子的年龄，要承担更多的责任，希望能给家庭带来更好的物质生活，多多赚钱！与深圳这座城市战斗了5年了，早已经习惯了披星戴月的生活，希望再过个三年，在这座城市中能有一座不大但温馨的房子，留一盏等待自己下班回家的灯。至于孩子问题，感觉自己还是个孩子，自然也没准备好去成为另一个小家伙的父亲，希望自己心智上能更成熟吧。最后还要感谢陪伴自己5年了的刘小鱼同志，回想前阵子一起通关的战争机器结尾的一句话，“If you want to go fast, go alone. If you want to go far, go together”，我相信我们还有很远的路要走嘞。</p>
 
                 
 
@@ -253,13 +227,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/03/20/JVM 内存结构/" data-toggle="tooltip" data-placement="top" title="JVM 内存结构">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/02/25/设计模式 - 建造者模式/" data-toggle="tooltip" data-placement="top" title="设计模式-建造者设计模式">Next Post &rarr;</a>
+                            <a href="/2020/05/11/Javascript中公共属性及方法的两种声明方式对比/" data-toggle="tooltip" data-placement="top" title="Javascript中公共属性及方法的两种声明方式对比">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -289,7 +259,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是内存模型"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是内存模型</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#原子性，可见行，有序性"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">原子性，可见行，有序性</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是Java内存模型"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">什么是Java内存模型</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#JMM对原子性，可见行，有序性的实现"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">JMM对原子性，可见行，有序性的实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#原子性"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">原子性</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#可见行"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">可见行</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#有序性"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">有序性</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#指令的重排序"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">指令的重排序</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#黑天鹅"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">黑天鹅</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#塞翁失马，焉知非福"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">塞翁失马，焉知非福</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#新环境感受"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">新环境感受</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#下一个5年"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">下一个5年</span></a></li></ol>
         
         </div>
       </aside>
@@ -309,9 +279,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#后端" title="后端">后端</a>
-                        
-                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                          <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
                         
                     </div>
                 </section>
@@ -338,8 +306,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "www-lucienchen-xyz";
-    var disqus_identifier = "http://www.lucienchen.xyz/2020/03/19/Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/";
-    var disqus_url = "http://www.lucienchen.xyz/2020/03/19/Java%20%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/05/17/2020%E9%87%8D%E6%96%B0%E5%87%BA%E5%8F%91/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/05/17/2020%E9%87%8D%E6%96%B0%E5%87%BA%E5%8F%91/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
