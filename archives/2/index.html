@@ -137,14 +137,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -204,6 +204,43 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2020/03/20/JVM 内存结构/">
+        <h2 class="post-title">
+            JVM 内存结构
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            栈(Stacks)
+一个线程对应一个栈，线程销毁，栈空间释放。
+线程每调用一个方法，则有一个栈帧(Stack Frame)入栈，栈帧用于存储局部变量表，操作表，动态连接，方法出口等信息。方法执行完成，则栈帧出栈。
+一个栈被塞1亿个帧，空间不够时会报StackOverflow 错误。
+栈过多，超过栈总空间则报OOM。
+
+本地方法栈(Native method stacks)
+本地方法栈与JVM......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-03-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#后端" title="后端">后端</a>
+            
+              <a href="/tags/#Java" title="Java">Java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -496,35 +533,6 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/12/07/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <h3 class="post-subtitle">
-            万物伊始
-        </h3>
-        <div class="post-content-preview">
-            为什么”才”想起来写Blog?自我反思了一下这些年的成长，感觉平时大部分的时间都花在工作中的设计和实现上了，很少进行梳理和总结。查阅过的资料，网上学过的课程视频也只是”看过”和”学过”，别人说是什么样子就是什么样子，缺少实践和验证，同时也未建立起自己的知识体系。现在网上各种学习资料层出不穷，各种技术也是日益更迭，人的大脑空间终究是有极限的，一边学一边忘，最终也没剩下什么。
-思来想去，不妨写写......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2019-12-07
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -535,6 +543,10 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
             <a href="/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/archives/3/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -569,15 +581,19 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
             
         
             
-            <a href="/tags/#Blog" title="Blog" rel="4">Blog</a>
-            
-        
-            
             <a href="/tags/#前端" title="前端" rel="5">前端</a>
             
         
             
+        
+            
+            <a href="/tags/#Blog" title="Blog" rel="5">Blog</a>
+            
+        
+            
             <a href="/tags/#Javascript" title="Javascript" rel="2">Javascript</a>
+            
+        
             
         
             
@@ -588,8 +604,6 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
         
             
             <a href="/tags/#设计模式" title="设计模式" rel="5">设计模式</a>
-            
-        
             
         
     </div>
@@ -653,6 +667,10 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
     <ul>
       
         <li>
+          <a href="/2020/06/25/%E8%81%8A%E4%B8%80%E8%81%8ADevOps/">聊一聊DevOps</a>
+        </li>
+      
+        <li>
           <a href="/2020/05/24/ES6%E8%AF%AD%E6%B3%95/">ES6语法</a>
         </li>
       
@@ -668,10 +686,6 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
           <a href="/2020/05/11/Javascript%E4%B8%AD%E5%85%AC%E5%85%B1%E5%B1%9E%E6%80%A7%E5%8F%8A%E6%96%B9%E6%B3%95%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94/">Javascript中公共属性及方法的两种声明方式对比</a>
         </li>
       
-        <li>
-          <a href="/2020/05/08/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B5%E5%B9%B4%E6%9D%A5%E7%9A%84%E6%88%90%E9%95%BF%E5%BF%83%E5%BE%97/">总结一下5年来的成长心得</a>
-        </li>
-      
     </ul>
   </div>
 
@@ -680,7 +694,7 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
