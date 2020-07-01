@@ -149,14 +149,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -216,7 +216,7 @@
 <h3 id="敏捷已成为主流开发模式"><a href="#敏捷已成为主流开发模式" class="headerlink" title="敏捷已成为主流开发模式"></a>敏捷已成为主流开发模式</h3><p>随着现代互联网市场的变化越来越快，这对传统的互联网开发模式提出了极大的挑战，越来越多公司从瀑布式开发转向了敏捷式开发。举个简单的例子，如果我们想要做一个短视频平台。按照过去瀑布式开发需要先花个月去设计产品，明确需求，最后产出一本本厚厚的需求文档交给开发团队去开发。按照这个节奏，可能我们的产品还没上线，市场早已被竞争对手瓜分完了。即便能够顺利上线，由于产品获得用户反馈的周期过长，无法及时地进行调整，终将会被市场所抛弃。所以现在互联网开发的套路都是以最快速度让产品先上线，获得一部分受众，根据用户的反馈不断优化功能，产品变得更好自然能赢得更好的口碑，吸引更多的用户。所以成功的产品往往是同用户一起成长起来。<br>说了这么多，其实是要大家明白敏捷已成为主流的开发模式。表面上看是要拥抱变化并能够对产品进行快速调整，而背后其实是对公司内部产品，开发，测试，运维各部门的沟通协作提出更高的要求。</p>
 <h3 id="什么是DevOps"><a href="#什么是DevOps" class="headerlink" title="什么是DevOps"></a>什么是DevOps</h3><p>DevOps在维基百科上的解释是Develop(开发)和Operations(运营)这两个单词的组合，是一种重视开发人员和IT运维人员之间沟通合作的文化，运动或惯例。透过自动化软件交付和架构变更的流程，来使得构建，测试，发布软件更加敏捷，频繁和可靠。很多公司内部，开发部门和运维部门都是分开设立的，而且两个部门的目标也是不同的。开发人员追求的是交付效率，希望能够将自己完成的功能随时发布上产品环境。而运维人员追求的是稳定性，频繁的发布不但增加了运维人员的工作负担，而且也大大增加了线上出问题的概率。DevOps的核心思想就是将两个部门合并，更确切的说是将两种角色合并。DevOps工程师既要负责产品功能的开发，又要负责产品的发布，部署，监控等任务，这样就可以打破开发和运维两种角色的对立，进而能够在交付频率和线上稳定性上找到一种平衡。虽然这个想法是好的，但既要开发功能，又要负责运营维护，这样的改变势必会增加工作的复杂度和强度的，所以想要实现DevOps就一定需要自动化工具来提升团队的生产开发效率。</p>
 <p><img src="/img/agile_devops.png" alt="/img/agile_devops.png"></p>
-<p>上面这幅图是我对敏捷，Scrum还有DevOps两者关系的理解。首先敏捷开发(Agile)其实是一种思想并提供一系列的方法论，大家感兴趣的话可以看一下<a href="https://agilemanifesto.org/iso/zhchs/principles.html" target="_blank" rel="noopener">敏捷宣言原则</a>，里面可以了解到敏捷开发的一些基本价值观。而DevOps是基于敏捷方法论下的一种最佳实践，通过开发和运维的角色合并，利用自动化的工具来实现更好的协作与沟通，进而实现更加流畅和高效的交付。</p>
+<p>上面这幅图是我对敏捷，DevOps两者关系的理解。首先敏捷开发(Agile)其实是一种思想并提供一系列的方法论，大家感兴趣的话可以看一下<a href="https://agilemanifesto.org/iso/zhchs/principles.html" target="_blank" rel="noopener">敏捷宣言原则</a>，里面可以了解到敏捷开发的一些基本价值观。而DevOps是基于敏捷方法论下的一种最佳实践，通过开发和运维的角色合并，利用自动化的工具来实现更好的协作与沟通，进而实现更加流畅和高效的交付。</p>
 <h3 id="DevOps是如何运作的"><a href="#DevOps是如何运作的" class="headerlink" title="DevOps是如何运作的"></a>DevOps是如何运作的</h3><p><img src="/img/devops_ring.png" alt="/img/devops_ring.png"></p>
 <p>上面这幅图片是在google上面找的，相信很多同学都见过。这个图很清晰的展现了DevOps的运作流程。Plan, Code, Build, Test, Release, Deploy, Operation, Monitor完成一个迭代。但实际上，Operation和Monitor两个环节其实24/7持续进行的，并不是明确的可完成的事件。整个循环的背后有很多自动化工具来支撑。例如Plan可能会依赖Jira，Confluence，Trello等敏捷开发管理工具。Code可能会需要Git或SVN等版本控制工具，Build，Release，Devploy需要Jenkins来快速打包部署。Monitor则依赖各种日志工具和Dashboard，像ELK，Splunk，Grafana等等。Operation则需要依赖各种云Console platform。跳出DevOps循环，贯穿始终的沟通协调还需要Slack，Skype这样的即时通讯工具。接下来会讲讲自己过往工作中的DevOps体验。</p>
 <h3 id="DevOps的亲身体验"><a href="#DevOps的亲身体验" class="headerlink" title="DevOps的亲身体验"></a>DevOps的亲身体验</h3><p>由于还没有系统的梳理过，所以我就直接我能想到的<code>团队，沟通，开发，运维，监控</code>等方面来分别讲一讲我的一些DevOps体验，重点讲讲自动化工具是如何提高日常的生产开发效率的。</p>
@@ -238,6 +238,10 @@
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/07/01/Agile and Scrum/" data-toggle="tooltip" data-placement="top" title="Agile and Scrum">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">

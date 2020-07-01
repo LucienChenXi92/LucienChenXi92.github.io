@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/L.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Agile and Scrum - Lucien&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/07/01/Agile and Scrum/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/default.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                            
+                              <a class="tag" href="/tags/#Scrum" title="Scrum">Scrum</a>
+                            
+                        </div>
+                        <h2>Agile and Scrum</h2>
+                        <h3></h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-07-01
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lucien</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="什么是敏捷？"><a href="#什么是敏捷？" class="headerlink" title="什么是敏捷？"></a>什么是敏捷？</h2><p>敏捷是目前软件开发行业主流的开发模式，其核心思想是以最快速度产出一个最小可用版本供用户体验，然后再基于用户的反馈不断优化产品。相比传统的瀑布式开发，敏捷开发承认在开发过程中变化是不可避免的，并主动接纳变化，通过同用户的交互和协作，提升用户的满意度，同时规避重大风险。敏捷开发只是一种思想和价值观，只是在开发过程中做决策时提供了一套准则，并未明确定义如何去实现敏捷。</p>
+<h3 id="敏捷宣言"><a href="#敏捷宣言" class="headerlink" title="敏捷宣言"></a>敏捷宣言</h3><p>我们一直在实践中探寻更好的软件开发方法，身体力行的同时也帮助他人。由此我们建立了如下价值观：</p>
+<ul>
+<li>个体和互动 高于 流程和工具</li>
+<li>工作的软件 高于 详尽的文档</li>
+<li>客户合作 高于 合同谈判</li>
+<li>响应变化 高于 遵循计划</li>
+</ul>
+<p>也就是说，尽管右项有其价值，我们更重视左项的价值。</p>
+<p><a href="https://agilemanifesto.org/iso/zhchs/principles.html" target="_blank" rel="noopener">敏捷宣言遵循的12条原则</a></p>
+<h2 id="什么是Scrum？"><a href="#什么是Scrum？" class="headerlink" title="什么是Scrum？"></a>什么是Scrum？</h2><p>Scrum是基于敏捷开发思想，用于开发、交付和持续支持复杂产品的一个框架。目的是为了提高产品开发的效率和灵活性。Scrum提供了完整的开发管理解决方案，包括角色(Roles)，事件(Activities)和待办列表(Backlog)等等。</p>
+<h3 id="Scrum中的角色-Roles"><a href="#Scrum中的角色-Roles" class="headerlink" title="Scrum中的角色(Roles)"></a>Scrum中的角色(Roles)</h3><h4 id="产品负责人-Product-Owner"><a href="#产品负责人-Product-Owner" class="headerlink" title="产品负责人(Product Owner)"></a>产品负责人(Product Owner)</h4><p>产品负责人的角色定位和项目经理非常相似，都是要对产品投资回报率(ROI)负责的人。产品负责人(后面会简写PO)会负责确定产品的方向和愿景，定义产品发布的内容、优先级和交付时间。产品负责人会是团队对外沟通非常重要的门户，产品负责人需要积极地向用户和利益相关者征求反馈，不断挖掘产品潜在价值，为开发团队指明发展的方向。</p>
+<h4 id="开发团队-Develop-Team"><a href="#开发团队-Develop-Team" class="headerlink" title="开发团队(Develop Team)"></a>开发团队(Develop Team)</h4><p>开发团队包含各种专业人员，一般规模在3-9人之间。团队自己组织和管理他们的工作。由此产生的正面效应能最大化开发整体效率和效用。</p>
+<p>开发团队具有如下特点：</p>
+<ul>
+<li>他们是自组织的。没有人（即使是 Scrum Master）有权告诉开发团队应该如何把产品待办列表变成潜在可发布的功能增量；</li>
+<li>开发团队是跨职能的团队，团队作为一个整体，拥有创建产品增量所需的全部技能；</li>
+<li>Scrum 不认可开发团队成员的任何头衔，不管其承担何种工作（他们都叫开发人员）。</li>
+<li>Scrum 不认可开发团队中所谓的“子团队”，无论其需要处理的领域是诸如测试、架构、运维或业务分析；同时，开发团队中的每个成员也许有特长和专注的领域，但是责任属于整个开发团队。</li>
+</ul>
+<h4 id="Scurm教练-Scrum-Master"><a href="#Scurm教练-Scrum-Master" class="headerlink" title="Scurm教练(Scrum Master)"></a>Scurm教练(Scrum Master)</h4><p>Scrum教练负责促进Scrum过程，主持Scrum事件，扫清团队交付冲刺目标的阻碍，确保团队有按照Scrum的规则实施。另外一方面，既然是叫做教练，有义务让开发团队成员们理解Scrum理论、实践、规则和价值。<br><img src="/img/scrum_master.png" alt="/img/scrum_master.png"></p>
+<h4 id="利益相关方-Stakeholder"><a href="#利益相关方-Stakeholder" class="headerlink" title="利益相关方(Stakeholder)"></a>利益相关方(Stakeholder)</h4><p>指产品最终的用户，客户，提供商及经理等角色。这些人虽然不是Scrum团队的一部分，但他们提供对产品的意见与反馈，因此必须考虑他们。</p>
+<h3 id="Scrum事件-Activity"><a href="#Scrum事件-Activity" class="headerlink" title="Scrum事件(Activity)"></a>Scrum事件(Activity)</h3><h4 id="Sprint"><a href="#Sprint" class="headerlink" title="Sprint"></a>Sprint</h4><p>Sprint是Scrum的核心，Sprint 是 Scrum 的核心，其长度（持续时间）为一个月或更短的限时，这段时间内构建一个“完成”、可用的和潜在可发布的产品增量。在整个开发过程期间，Sprint 的长度保持一致。前一个 Sprint 结束后，下一个新的 Sprint 紧接着立即开始。Sprint 由 Sprint 计划会议、每日 Scrum 站会、开发工作、Sprint 评审会议和 Sprint 回顾会议构成。</p>
+<p>在 Sprint 期间：</p>
+<ul>
+<li>不能做出有害于 Sprint 目标的改变；</li>
+<li>不能降低质量的目标；</li>
+<li>随着对信息掌握的增加，产品负责人与开发团队之间对范围内要做的事可以加以澄清和重新协商。</li>
+</ul>
+<h4 id="Sprint-计划会议（Planing）"><a href="#Sprint-计划会议（Planing）" class="headerlink" title="Sprint 计划会议（Planing）"></a>Sprint 计划会议（Planing）</h4><p>Sprint中要做的工作都在计划会议中计划，这份计划由整个Scrum团队共同协作完成。</p>
+<p>Sprint 计划会议回答以下问题：</p>
+<ul>
+<li>接下来的 Sprint 交付的增量中要包含什么内容？</li>
+<li>要如何完成交付增量所需的工作？</li>
+</ul>
+<h4 id="每日站会（Standup）"><a href="#每日站会（Standup）" class="headerlink" title="每日站会（Standup）"></a>每日站会（Standup）</h4><p>每日 Scrum 站会是开发团队的一个时间盒限定为 15 分钟的事件。每日 Scrum 站会在Sprint 的每一天都举行。在每日 Scrum 站会上，开发团队为接下来的 24 小时的工作制定计划。通过检视上次每日 Scrum 站会以来的工作和预测即将到来的 Sprint 工作来优化团队协作和效能。每日 Scrum 站会在同一时间同一地点举行，以便降低复杂性。<br>一般每个人都要汇报三个问题：</p>
+<ol>
+<li>昨天我做了什么？</li>
+<li>是否有遇到什么阻碍或困难？</li>
+<li>今天我打算做什么？</li>
+</ol>
+<p>每日 Scrum 站会是开发团队的内部会议。如果有开发团队之外的人出席会议，Scrum Master 必须确保他们不会干扰会议进行。</p>
+<p>每日 Scrum 站会增进交流沟通、减少其他会议、发现开发过程中需要移除的障碍、突显并促进快速地做决策、提高开发团队的认知程度。这是一个进行检视与适应的关键会议。</p>
+<h4 id="Sprint-评审会议（Review）"><a href="#Sprint-评审会议（Review）" class="headerlink" title="Sprint 评审会议（Review）"></a>Sprint 评审会议（Review）</h4><p>Sprint 评审会议在 Sprint 快结束时举行 ，用以检视所交付的产品增量并按需调整产品待办列表。在 Sprint 评审会议中，Scrum 团队和利益攸关者协同讨论在这次 Sprint 中所完成的工作。根据完成情况和 Sprint 期间产品待办列表的变化，所有参会人员协同讨论接下来可能要做的事情来优化价值。这是一个非正式会议，并不是一个进度汇报会议，演示增量的目的是为了获取反馈并促进合作。</p>
+<h4 id="Sprint-回顾会议（Retrospect）"><a href="#Sprint-回顾会议（Retrospect）" class="headerlink" title="Sprint 回顾会议（Retrospect）"></a>Sprint 回顾会议（Retrospect）</h4><p>Sprint 回顾会议是 Scrum 团队检视自身并创建下一个 Sprint 改进计划的机会。</p>
+<p>Sprint 回顾会议的目的在于：<br>• 检视前一个 Sprint 中关于人、关系、过程和工具的情况如何；<br>• 找出并加以排序做得好的和潜在需要改进的主要方面；同时，制定改进 Scrum 团队工作方式的计划。</p>
+<p>Scrum Master 鼓励 Scrum 团队在 Scrum 的过程框架内改进开发过程和实践，使得他们能在下个 Sprint 中更高效更愉快。在每个 Sprint 回顾会议中，如果适用并且不与产品或组织标准相冲突，Scrum 团队计划不同的方式通过改进工作过程或调整“完成”的定义来提高产品质量。</p>
+<h3 id="Scrum-工件"><a href="#Scrum-工件" class="headerlink" title="Scrum 工件"></a>Scrum 工件</h3><p>Scrum 的工件以不同的方式表现工作任务和价值，可以用来提供透明以及检视和适应的机会。Scrum 所定义的工件是特别地设计的，是为了给关键信息提供最大透明化，因此每个人对工件都需要有相同的理解。</p>
+<h4 id="产品待办列表（Product-Backlog）"><a href="#产品待办列表（Product-Backlog）" class="headerlink" title="产品待办列表（Product Backlog）"></a>产品待办列表（Product Backlog）</h4><p>产品待办列表是一份涵盖产品中已知所需每项内容的有序列表，它是产品需求变动的唯一来源。产品负责人负责管理产品待办列表的内容、可用性和排序。</p>
+<p>产品待办列表永远是不完整的。最早开发的产品待办列表列举最初所知的以及理解最透彻的需求。产品待办列表会随着产品及其应用环境的改变而演进。产品待办列表是动态的，需要持续更新以反映出产品需要什么来保持其适用性、竞争力和有用。如果产品存在，产品待办列表也就同样存在。</p>
+<p>产品待办列表列出所有的特性、功能、需求、增强和修复等对未来要发布的产品进行的更新。产品待办列表项具有这些属性：描述、次序、估算和价值。产品待办列表项通常包括测试描述，将在“完成”时证明其完整性。</p>
+<p>随着产品的使用、价值的获取和获得市场的反馈，产品待办列表会成长为更大和更详尽的列表。因为需求永不停止改变，所以产品待办列表就如一份活的工件。业务需求、市场形势或者技术的变化都会引起产品待办列表的改变。</p>
+<p>多个 Scrum 团队常常会一起参与对同一产品的开发。一个产品只有一个产品待办列表用于描述下一步产品开发工作。那么这就可能需要使用能够对产品待办列表项进行分组的属性。</p>
+<p>产品待办列表精化指的是为产品待办列表项增添细节、估算和排序的动作。这是一个持续的过程，产品负责人和开发团队协同工作在产品待办列表项的细节上。在产品待办列表精化过程中，产品待办列表项被重新评审和修改。Scrum 团队决定如何来完成精化以及何时来完成。精化的工作通常占用开发团队不超过 10% 的产能。然而，产品负责人或者其他人在产品负责人的斟酌下，产品待办列表项可以在任何时间来更新。</p>
+<p>排序越高的产品待办列表项通常比排序低的更清晰同时包含更多细节。根据更清晰的内容和更详尽的细节信息就能做出更为准确的估算；同样，排序越低，则细节信息越少。产品待办列表项中那些即将会占用开发团队下一个 Sprint 大部分时间的项会被加以精化，因此，任一产品待办列表项都能够在 Sprint 的时间盒期限内适当地“完成”。这些能够被开发团队在一个 Sprint 中“完成”的产品待办列表项称为“准备就绪”，它们将作为Sprint 计划会议中的待选产品列表项。产品待办列表项的足够透明程度通常要经过上述的精化活动来获得。</p>
+<p>开发团队负责所有估算工作。产品负责人可以通过帮助开发团队更好地理解需求，并根据情况权衡取舍来影响他们，但是最终估算是由开发团队决定的。</p>
+<h4 id="Sprint待办列表（Sprint-Backlog）"><a href="#Sprint待办列表（Sprint-Backlog）" class="headerlink" title="Sprint待办列表（Sprint Backlog）"></a>Sprint待办列表（Sprint Backlog）</h4><p>Sprint 待办列表是一组为当前 Sprint 选出的产品待办列表项，同时加上交付产品增量和实现 Sprint 目标的计划。Sprint 待办列表是开发团队对于下一个产品增量所需的那些功能以及交付那些功能到“完成”的增量中所需工作的预测。</p>
+<p>Sprint 产品待办列表将开发团队用来达成 Sprint 目标的所有工作变得清晰可见。为了确保持续改进，它至少包括一项在前次回顾会议中确定下来的高优先级的过程改进。</p>
+<p>Sprint 产品待办列表是拥有足够细节的计划，任何进度的变化可以在每日 Scrum 站会中清晰地看到。开发团队在 Sprint 期间修改 Sprint 待办列表，使得 Sprint 待办列表在Sprint 期间涌现。涌现发生在开发团队按计划开展工作并学习到更多的关于哪些工作是达成 Sprint 目标所必需的工作时。</p>
+<p>当新工作出现时，开发团队需要将其加入到 Sprint 待办列表中去。随着工作的执行或完成，剩余的工作量被估算并更新。当计划中的某个部分失去开发意义，就可以将其移除。在 Sprint 期间，只有开发团队可以改变 Sprint 待办列表。Sprint 待办列表是高度可见的，是对开发团队计划在当前 Sprint 内工作完成情况的实时反映，该列表由开发团队全<br>权负责。</p>
+<h4 id="工件透明"><a href="#工件透明" class="headerlink" title="工件透明"></a>工件透明</h4><p>Scrum 依赖于透明。优化价值和控制风险的决定都是基于所获知的工件状态。当工件的状态是完全透明时，这些做出的决定才有一个坚实的基础；当工件的状态是不完全透明时，这些做出的决定就会有瑕疵，而价值也可能因此遭受损失，同时风险也可能会因此而增加。</p>
+<p>Scrum Master 必须和产品负责人、开发团队和其他相关人员一起合作，以确保所有工件都是完全透明的。有些实践就是为应对不完全透明的状态而生的，Scrum Master 必须帮助每个人，让他们能够在遇到不透明的情况下采取最合适的实践。Scrum Master 能够通过检视工件、嗅探模式、倾听周围的声音以及观察预期和实际结果之间的差异来发现不完全透明。</p>
+<p>Scrum Master 的职责就是和 Scrum 团队以及组织一起合作增加工件的透明化。这一工作通常包括学习、说服和改变。 透明化不会在一夜之间发生，但是这是一条必经之路。</p>
+<h4 id="完成的定义（Define-of-Done）"><a href="#完成的定义（Define-of-Done）" class="headerlink" title="完成的定义（Define of Done）"></a>完成的定义（Define of Done）</h4><p>当产品待办列表项或增量被描述为“完成”时，每个人都必须理解“完成”意味着什么。虽然在不同 Scrum 团队之间或许会存在显著差异，但是每个团队成员必须对完成工作意味着什么有相同的理解以便确保透明化。这就是 Scrum 团队的“完成”定义，用来评估产品增量是否完成。</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/06/25/聊一聊DevOps/" data-toggle="tooltip" data-placement="top" title="聊一聊DevOps">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#什么是敏捷？"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是敏捷？</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#敏捷宣言"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">敏捷宣言</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#什么是Scrum？"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">什么是Scrum？</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Scrum中的角色-Roles"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">Scrum中的角色(Roles)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#产品负责人-Product-Owner"><span class="toc-nav-number">2.1.1.</span> <span class="toc-nav-text">产品负责人(Product Owner)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#开发团队-Develop-Team"><span class="toc-nav-number">2.1.2.</span> <span class="toc-nav-text">开发团队(Develop Team)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Scurm教练-Scrum-Master"><span class="toc-nav-number">2.1.3.</span> <span class="toc-nav-text">Scurm教练(Scrum Master)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#利益相关方-Stakeholder"><span class="toc-nav-number">2.1.4.</span> <span class="toc-nav-text">利益相关方(Stakeholder)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Scrum事件-Activity"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">Scrum事件(Activity)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Sprint"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">Sprint</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Sprint-计划会议（Planing）"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">Sprint 计划会议（Planing）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#每日站会（Standup）"><span class="toc-nav-number">2.2.3.</span> <span class="toc-nav-text">每日站会（Standup）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Sprint-评审会议（Review）"><span class="toc-nav-number">2.2.4.</span> <span class="toc-nav-text">Sprint 评审会议（Review）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Sprint-回顾会议（Retrospect）"><span class="toc-nav-number">2.2.5.</span> <span class="toc-nav-text">Sprint 回顾会议（Retrospect）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Scrum-工件"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">Scrum 工件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#产品待办列表（Product-Backlog）"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">产品待办列表（Product Backlog）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Sprint待办列表（Sprint-Backlog）"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">Sprint待办列表（Sprint Backlog）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#工件透明"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">工件透明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#完成的定义（Define-of-Done）"><span class="toc-nav-number">2.3.4.</span> <span class="toc-nav-text">完成的定义（Define of Done）</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                        
+                          <a class="tag" href="/tags/#Scrum" title="Scrum">Scrum</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-lucienchen-xyz";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/07/01/Agile%20and%20Scrum/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/07/01/Agile%20and%20Scrum/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LucienChenXi92">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Lucien Chen 2020
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.lucienChen.xyz/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-155184201-1';
+    var _gaDomain = 'www.lucienchen.xyz';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.lucienChen.xyz/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
