@@ -14,7 +14,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          设计模式-工厂设计模式 - Lucien&#39;s Blog
+          设计模式 - 工厂设计模式 - Lucien&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
                               <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
                             
                         </div>
-                        <h2>设计模式-工厂设计模式</h2>
+                        <h2>设计模式 - 工厂设计模式</h2>
                         <h3>Factory</h3>
                         <span class="meta">
                             Posted by Lucien Chen on
@@ -214,12 +214,9 @@
 <h3 id="工厂设计模式的优点"><a href="#工厂设计模式的优点" class="headerlink" title="工厂设计模式的优点"></a>工厂设计模式的优点</h3><ul>
 <li>工厂设计模式提供了接口而不是实现的代码方法。</li>
 <li>工厂模式从客户端代码中删除实际实现类的实例化。工厂模式使我们的代码更健壮，耦合更少，易于扩展。例如，我们可以轻松更改PC类实现，因为客户端程序不知道这一点。</li>
-<li>工厂模式通过继承提供实现和客户端类之间的抽象。</li>
+<li>工厂模式通过继承提供实现和客户端类之间的抽象。<br><img src="/img/factory.png" alt="/img/factory.png"></li>
 </ul>
-<p><img src="/img/factory.png" alt="/img/factory.png"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 客户端（主方法）不再需要关注具体有多少子类，及子类的具体实现，只面向Factory提自己的需求。</span></span><br><span class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"你想吃什么？Bread or Milk?"</span>);</span><br><span class="line">        <span class="keyword">while</span> (sc.hasNext()) &#123;</span><br><span class="line">            IFood food1 = Factory.getInstance(sc.next());</span><br><span class="line">            <span class="keyword">if</span> (food1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                food1.eat();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IFood <span class="title">getInstance</span><span class="params">(String className)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (Milk.class.getName().equals(className)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Milk();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (Bread.class.getName().equals(className)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Bread();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IFood</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bread</span> <span class="keyword">implements</span> <span class="title">IFood</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"吃面包"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Milk</span> <span class="keyword">implements</span> <span class="title">IFood</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"喝牛奶"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
                 
 
                 <hr>
@@ -227,12 +224,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/02/19/设计模式 - 代理模式/" data-toggle="tooltip" data-placement="top" title="设计模式-代理设计模式">&larr; Previous Post</a>
+                            <a href="/2020/02/19/设计模式 - 代理模式/" data-toggle="tooltip" data-placement="top" title="设计模式 - 代理设计模式">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/02/05/设计模式 - 模版模式/" data-toggle="tooltip" data-placement="top" title="设计模式-模版设计模式">Next Post &rarr;</a>
+                            <a href="/2020/02/05/设计模式 - 模版模式/" data-toggle="tooltip" data-placement="top" title="设计模式 - 模版设计模式">Next Post &rarr;</a>
                         </li>
                     
                 </ul>

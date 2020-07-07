@@ -14,7 +14,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          设计模式-模版设计模式 - Lucien&#39;s Blog
+          设计模式 - 模版设计模式 - Lucien&#39;s Blog
         
     </title>
 
@@ -89,7 +89,7 @@
                               <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
                             
                         </div>
-                        <h2>设计模式-模版设计模式</h2>
+                        <h2>设计模式 - 模版设计模式</h2>
                         <h3>Pattern</h3>
                         <span class="meta">
                             Posted by Lucien Chen on
@@ -211,19 +211,22 @@
                 post-container">
 
                 <h3 id="什么是模版模式？"><a href="#什么是模版模式？" class="headerlink" title="什么是模版模式？"></a>什么是模版模式？</h3><p>在模板模式（Template Pattern）中，一个抽象类公开定义了执行它的方法的方式/模板。它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。这种类型的设计模式属于行为型模式。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
-<li>封装不变部分，扩展可变部分。 </li>
-<li>提取公共代码，便于维护。 </li>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>封装不变部分，扩展可变部分。</li>
+<li>提取公共代码，便于维护。</li>
 <li>行为由父类控制，子类实现。</li>
-</ol>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>每一个不同的实现都需要一个子类来实现，导致类的个数增加，使得系统更加庞大。</p>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol>
-<li>有多个子类共有的方法，且逻辑相同。 </li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>每一个不同的实现都需要一个子类来实现，导致类的个数增加，使得系统更加庞大。</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>有多个子类共有的方法，且逻辑相同。</li>
 <li>重要的、复杂的方法，可以考虑作为模板方法。</li>
-</ol>
+</ul>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>为防止恶意操作，一般模板方法都加上 final 关键词。</p>
 <p>如下为模版模式的一个示例，React当中的所有生命周期方法其实就是应用模版模式，组件要继承React.Component。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"组件已完成挂载。"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"组件渲染。"</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>"Hello World"<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"组件已完成挂载。"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"组件渲染。"</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>"Hello World"<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
                 
 
                 <hr>
@@ -231,12 +234,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/02/17/设计模式 - 工厂模式/" data-toggle="tooltip" data-placement="top" title="设计模式-工厂设计模式">&larr; Previous Post</a>
+                            <a href="/2020/02/17/设计模式 - 工厂模式/" data-toggle="tooltip" data-placement="top" title="设计模式 - 工厂设计模式">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/01/17/2019年终总结/" data-toggle="tooltip" data-placement="top" title="2019年终总结">Next Post &rarr;</a>
+                            <a href="/2020/01/08/浅谈Javascript中对象以及原型链/" data-toggle="tooltip" data-placement="top" title="浅谈Javascript中对象以及原型链">Next Post &rarr;</a>
                         </li>
                     
                 </ul>

@@ -207,6 +207,39 @@
 
 <div class="post-preview">
 
+    <a href="/2020/03/27/前端资源加载如何优化 - 12点建议/">
+        <h2 class="post-title">
+            前端资源加载如何优化 - 12点建议
+        </h2>
+        <h3 class="post-subtitle">
+            Pattern
+        </h3>
+        <div class="post-content-preview">
+            最近一直在忙着做产品页面性能优化，调查了一些页面加载过程，大部分页面的瓶颈都在资源加载这里，我整理了以下12条资源加载的优化方案：
+静态资源
+开启Gzip压缩资源。
+服务端对静态资源添加缓存。
+对于React， Vue等框架项目，尽量拆解编译后的CSS和JS文件，利用懒加载，减少所需加载的资源内容。
+项目中不需要的依赖要及时清除掉，只在开发时需要的依赖资源请放在devDependencies......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-03-27
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#前端" title="前端">前端</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/22/JVM GC/">
         <h2 class="post-title">
             JVM GC
@@ -222,11 +255,13 @@
 生还者1区(Survivor 1) 内存占比1/10
 
 
+
+
 老年代 2/3
 永久代: JDK 1.7之前hotspot有永久代的概念，用以实现方法区的功能，在Java 1.8后移除了永久代的概念。方法区被移至元空间(Metaspace)
 
 GC 回收标记算法
-引用计数器......
+引用计......
         </div>
     </a>
     
@@ -294,10 +329,9 @@ GC 回收标记算法
         </h3>
         <div class="post-content-preview">
             
-最近在知乎上看到两篇关于Java内存模型的文章，讲的非常透彻，而且纠正了很多以前的理解误区，分享以下：
+最近在知乎上看到两篇关于Java内存模型的文章，讲的非常透彻，而且纠正了很多以前的理解误区，分享一下：第一篇： 《什么是Java内存模型》 – 占小狼第二篇： 《深入理解JVM-内存模型（jmm）和GC》 – Garwer
 
-第一篇： 《什么是Java内存模型》 – 占小狼 第二篇： 《深入理解JVM-内存模型（jmm）和GC》 – Garwer 
-什么是内存模型为了保证共享内存的正确性（可见性、有序性、原子性），内存模型定义了共享内存系统中多线程程序读写操作行为的规范。通过这些规则来规范对内存的读写操作，......
+什么是内存模型为了保证共享内存的正确性（可见性、有序性、原子性），内存模型定义了共享内存系统中多线程程序读写操作行为的规范。通过这些规则来规范对内存的读写操作，从而保......
         </div>
     </a>
     
@@ -321,7 +355,7 @@ GC 回收标记算法
 
     <a href="/2020/02/25/设计模式 - 建造者模式/">
         <h2 class="post-title">
-            设计模式-建造者设计模式
+            设计模式 - 建造者设计模式
         </h2>
         <h3 class="post-subtitle">
             Builder
@@ -351,7 +385,7 @@ GC 回收标记算法
 
     <a href="/2020/02/20/设计模式 - 单例模式/">
         <h2 class="post-title">
-            设计模式-单例设计模式
+            设计模式 - 单例设计模式
         </h2>
         <h3 class="post-subtitle">
             Singleton
@@ -380,7 +414,7 @@ GC 回收标记算法
 
     <a href="/2020/02/19/设计模式 - 代理模式/">
         <h2 class="post-title">
-            设计模式-代理设计模式
+            设计模式 - 代理设计模式
         </h2>
         <h3 class="post-subtitle">
             Proxy
@@ -389,8 +423,8 @@ GC 回收标记算法
             什么是代理模式？代理模式给某一个对象提供一个代理对象，并由代理对象控制对原对象的引用。通俗的来讲代理模式就是我们生活中常见的中介。
 
 为什么要用代理模式？
-解偶作用：有时可以利用代理模式，将客户端同委托类进行解偶，这样当委托类进行替换或是升级时，客户端无需修改代码。
-功能增强：比如添加日志，记录方法执行时间等机械重复的操作可以利用代理模式，将功能增强的代码在代理类中实现，这样就可以大大节省代......
+解偶作用：有时可以利用代理模式，将客户端同委托类进行解偶，这样当委托类进行替换或是升级时，客户端无需修改代码。 
+功能增强：比如添加日志，记录方法执行时间等机械重复的操作可以利用代理模式，将功能增强的代码在代理类中实现，这样就可以大大节省......
         </div>
     </a>
     
@@ -412,7 +446,7 @@ GC 回收标记算法
 
     <a href="/2020/02/17/设计模式 - 工厂模式/">
         <h2 class="post-title">
-            设计模式-工厂设计模式
+            设计模式 - 工厂设计模式
         </h2>
         <h3 class="post-subtitle">
             Factory
@@ -443,7 +477,7 @@ GC 回收标记算法
 
     <a href="/2020/02/05/设计模式 - 模版模式/">
         <h2 class="post-title">
-            设计模式-模版设计模式
+            设计模式 - 模版设计模式
         </h2>
         <h3 class="post-subtitle">
             Pattern
@@ -451,11 +485,13 @@ GC 回收标记算法
         <div class="post-content-preview">
             什么是模版模式？在模板模式（Template Pattern）中，一个抽象类公开定义了执行它的方法的方式/模板。它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。这种类型的设计模式属于行为型模式。
 优点
-封装不变部分，扩展可变部分。 
-提取公共代码，便于维护。 
+封装不变部分，扩展可变部分。
+提取公共代码，便于维护。
 行为由父类控制，子类实现。
 
-缺点每一个不同的实现都需要一个子类来实现，导致类的个数增加，使得系统更加庞大。
+缺点
+每一个不同的实现都需要一个子类来实现，导致类的个数增加，使得系统更加庞大。
+
 使用......
         </div>
     </a>
@@ -467,37 +503,6 @@ GC 回收标记算法
         <div class="tags">
             
               <a href="/tags/#设计模式" title="设计模式">设计模式</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/01/17/2019年终总结/">
-        <h2 class="post-title">
-            2019年终总结
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            2019年这一年，啊。。。(长叹一声气)，感觉这一年好漫长，长到感觉自己老了好多岁。
-2019年第一件比较大的任务应该算是年会主持吧，第一次双语主持年会，好紧张嘞，一句”Welcome to Expedia 2019 annual party!”反反复复的叨咕，练了几个星期，最后可以做到靠肌肉记忆喊出来。最终效果还是棒棒哒，第一句出来之后整个会场的气氛一下子就爆炸了，后面所有的流程也就顺了很......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2020-01-17
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-              <a href="/tags/#成长" title="成长">成长</a>
             
         </div>
     
@@ -579,25 +584,23 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
     <div class="tags">
         
             
-            <a href="/tags/#Blog" title="Blog" rel="6">Blog</a>
+            <a href="/tags/#Blog" title="Blog" rel="5">Blog</a>
             
         
-            
-            <a href="/tags/#成长" title="成长" rel="2">成长</a>
-            
-        
-            
-            <a href="/tags/#后端" title="后端" rel="4">后端</a>
-            
-        
-            
-            <a href="/tags/#Java" title="Java" rel="5">Java</a>
             
         
             
             <a href="/tags/#前端" title="前端" rel="5">前端</a>
             
         
+            
+        
+            
+            <a href="/tags/#后端" title="后端" rel="5">后端</a>
+            
+        
+            
+            <a href="/tags/#Java" title="Java" rel="5">Java</a>
             
         
             
@@ -612,6 +615,8 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
         
             
             <a href="/tags/#设计模式" title="设计模式" rel="5">设计模式</a>
+            
+        
             
         
     </div>
@@ -675,6 +680,10 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
     <ul>
       
         <li>
+          <a href="/2020/07/07/%E6%95%B4%E7%90%86%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C/">整理常用Git命令行</a>
+        </li>
+      
+        <li>
           <a href="/2020/07/01/Agile%20and%20Scrum/">Agile and Scrum</a>
         </li>
       
@@ -690,10 +699,6 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
           <a href="/2020/05/24/React%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/">React学习之路</a>
         </li>
       
-        <li>
-          <a href="/2020/05/17/2020%E9%87%8D%E6%96%B0%E5%87%BA%E5%8F%91/">2020重新出发</a>
-        </li>
-      
     </ul>
   </div>
 
@@ -702,7 +707,7 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
