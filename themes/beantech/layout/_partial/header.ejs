@@ -1,0 +1,54 @@
+<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        <% if (is_home()) { %>
+            background-image: url('<%= config.root + config["header-img"] %>') 
+            /*config*/
+        <%} else if (is_post()){%>
+            background-image: url('<%= page["header-img"] %>')
+            /*post*/
+        <%} else {%>
+            background-image: url('<%= config.root + page["header-img"] %>')
+            /*page*/
+        <%} %>
+    }
+    <% if (config.signature) {%>
+    #signature{
+        background-image: url('<%= config.root + config["signature-img"] %>');
+    }
+    <%}%>
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                <% if (is_post()) { %>
+                    <div class="post-heading">
+                        <div class="tags">
+                            <% page.tags.forEach(function(tag){ %>
+                              <a class="tag" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name %></a>
+                            <% }) %>
+                        </div>
+                        <h2><%= page.title || "" %></h2>
+                        <h3><%= page.subtitle || "" %></h3>
+                        <span class="meta">
+                            Posted by <%- page.author || config.author %> on
+                            <%= page.date.format(config.date_format) %>
+                        </span>
+                    </div>
+                <% } else { %>
+                    <div class="site-heading">
+                        <h2><%= page.description || config.subtitle || "" %></h2>
+                    </div>
+                <% } %>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
