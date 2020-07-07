@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Hello World - Lucien&#39;s Blog
+          整理常用Git命令行 - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/2019/12/07/hello-world/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/07/07/整理常用Git命令行/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,7 +69,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/StockSnap_7RFDWITHMF.jpg')
+            background-image: url('/img/default.png')
             /*post*/
         
     }
@@ -86,14 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                              <a class="tag" href="/tags/#Git" title="Git">Git</a>
                             
                         </div>
-                        <h2>Hello World</h2>
-                        <h3>万物伊始</h3>
+                        <h2>整理常用Git命令行</h2>
+                        <h3></h3>
                         <span class="meta">
                             Posted by Lucien Chen on
-                            2019-12-07
+                            2020-07-07
                         </span>
                     </div>
                 
@@ -210,8 +210,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="为什么”才”想起来写Blog"><a href="#为什么”才”想起来写Blog" class="headerlink" title="为什么”才”想起来写Blog?"></a>为什么”才”想起来写Blog?</h2><p>自我反思了一下这些年的成长，感觉平时大部分的时间都花在工作中的设计和实现上了，很少进行梳理和总结。查阅过的资料，网上学过的课程视频也只是”看过”和”学过”，别人说是什么样子就是什么样子，缺少实践和验证，同时也未建立起自己的知识体系。现在网上各种学习资料层出不穷，各种技术也是日益更迭，人的大脑空间终究是有极限的，一边学一边忘，最终也没剩下什么。</p>
-<p>思来想去，不妨写写个人博客吧，不单单是技术，我想成长呀，学习呀，技术呀，生活呀都是可以来记录下来，以后回头看看，全当给自己人生留点痕迹吧。希望自此可以培养起记录的习惯，加油！</p>
+                <p>咳咳，这个东东早就想要整理一下啦，以前用惯了Git Extensions和Sourcetree，很少用得上命令行。现在的工作环境由于很多安全因素的限制，迫不得已只能用命令行，好多次都是临时抱佛脚现去百度，好在慢慢适应一段时间也就习惯了，今天就整理一些常用的命令。</p>
+<h3 id="新建代码库"><a href="#新建代码库" class="headerlink" title="新建代码库"></a>新建代码库</h3><p>在当前本地目录新建Git代码库<br>$ git init<br>从远端下载一个项目和它的代码历史<br>$ git clone [url]</p>
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><p>新建分支<br>$ git branch [branch_name]<br>查看本地分支<br>$ git branch<br>查看本地和远端所有分支<br>$ git branch -a<br>删除分支<br>$ git branch -d [branch_name]<br>切换分支<br>$ git checkout [branch_name]<br>创建并切换指定分支<br>$ git checkout -b [branch_name]<br>合并指定分支<br>$ git merge [branch_name]</p>
+<h3 id="提交代码"><a href="#提交代码" class="headerlink" title="提交代码"></a>提交代码</h3><p>提交变更的文件<br>$ git add [file]<br>提交所有变更的文件<br>$ git add .<br>查看变更<br>$ git status<br>提交变更到仓库区<br>$ git commit -m “message”<br>撤销上一次commit并保留代码<br>$ git reset –soft HEAD^<br>推送代码到远端<br>$ git push<br>拉取代码到本地<br>$ git pull</p>
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>显示所有远程地址<br>$ git remote -v<br>修改远端地址<br>$ git remote set-url origin [url]<br>显示当前git配置<br>$ git config –list<br>修改配置信息<br>$ git config -e [–global]</p>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>一般解决代码冲突会推荐在本地解决，将两个冲突的分支都拉到本地，然后<code>run git merge</code>命令。之后会提示有哪些文件需要解决冲突，解决完成后将这些文件提交，然后<code>git commit -m &quot;fix conflicts&quot;</code>将冲突解决的结果同步到远程分支上去.</p>
 
                 
 
@@ -219,10 +223,10 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/01/08/浅谈Javascript中对象以及原型链/" data-toggle="tooltip" data-placement="top" title="浅谈Javascript中对象以及原型链">&larr; Previous Post</a>
-                        </li>
                     
+                        <li class="next">
+                            <a href="/2020/07/01/Agile and Scrum/" data-toggle="tooltip" data-placement="top" title="Agile and Scrum">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -251,7 +255,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#为什么”才”想起来写Blog"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">为什么”才”想起来写Blog?</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建代码库"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">新建代码库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分支管理"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">分支管理</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#提交代码"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">提交代码</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#修改配置"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">修改配置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#解决冲突"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">解决冲突</span></a></li></ol>
         
         </div>
       </aside>
@@ -271,7 +275,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                          <a class="tag" href="/tags/#Git" title="Git">Git</a>
                         
                     </div>
                 </section>
@@ -298,8 +302,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "www-lucienchen-xyz";
-    var disqus_identifier = "http://www.lucienchen.xyz/2019/12/07/hello-world/";
-    var disqus_url = "http://www.lucienchen.xyz/2019/12/07/hello-world/";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/07/07/%E6%95%B4%E7%90%86%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/07/07/%E6%95%B4%E7%90%86%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
