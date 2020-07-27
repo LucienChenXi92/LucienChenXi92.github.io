@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          整理常用Git命令行 - Lucien&#39;s Blog
+          React 基础 - 组件 &amp; Props &amp; state - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/2020/07/07/整理常用Git命令行/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/07/20/React 基础 - 组件 &amp; Props &amp; state/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -86,14 +86,16 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#Git" title="Git">Git</a>
+                              <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                            
+                              <a class="tag" href="/tags/#React" title="React">React</a>
                             
                         </div>
-                        <h2>整理常用Git命令行</h2>
-                        <h3></h3>
+                        <h2>React 基础 - 组件 &amp; Props &amp; state</h2>
+                        <h3>React学习系列第三篇</h3>
                         <span class="meta">
                             Posted by Lucien Chen on
-                            2020-07-07
+                            2020-07-20
                         </span>
                     </div>
                 
@@ -210,12 +212,34 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>咳咳，这个东东早就想要整理一下啦，以前用惯了Git Extensions和Sourcetree，很少用得上命令行。现在的工作环境由于很多安全因素的限制，迫不得已只能用命令行，好多次都是临时抱佛脚现去百度，好在慢慢适应一段时间也就习惯了，今天就整理一些常用的命令。</p>
-<h3 id="新建代码库"><a href="#新建代码库" class="headerlink" title="新建代码库"></a>新建代码库</h3><p>在当前本地目录新建Git代码库<br>$ git init<br>从远端下载一个项目和它的代码历史<br>$ git clone [url]</p>
-<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><p>新建分支<br>$ git branch [branch_name]<br>查看本地分支<br>$ git branch<br>查看本地和远端所有分支<br>$ git branch -a<br>删除分支<br>$ git branch -d [branch_name]<br>切换分支<br>$ git checkout [branch_name]<br>创建并切换指定分支<br>$ git checkout -b [branch_name]<br>合并指定分支<br>$ git merge [branch_name]</p>
-<h3 id="提交代码"><a href="#提交代码" class="headerlink" title="提交代码"></a>提交代码</h3><p>提交变更的文件<br>$ git add [file]<br>提交所有变更的文件<br>$ git add .<br>查看变更<br>$ git status<br>提交变更到仓库区<br>$ git commit -m “message”<br>撤销上一次commit并保留代码<br>$ git reset –soft HEAD^<br>推送代码到远端<br>$ git push<br>拉取代码到本地<br>$ git pull</p>
-<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>显示所有远程地址<br>$ git remote -v<br>修改远端地址<br>$ git remote set-url origin [url]<br>显示当前git配置<br>$ git config –list<br>修改配置信息<br>$ git config -e [–global]</p>
-<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>一般解决代码冲突会推荐在本地解决，将两个冲突的分支都拉到本地，然后<code>run git merge</code>命令。之后会提示有哪些文件需要解决冲突，解决完成后将这些文件提交，然后<code>git commit -m &quot;fix conflicts&quot;</code>将冲突解决的结果同步到远程分支上去.</p>
+                <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>组件，从概念上类似于JavaScript函数。它接受任意的入参（即 “props”），并返回用于描述页面展示内容的React元素。</p>
+<h3 id="函数组件与class组件"><a href="#函数组件与class组件" class="headerlink" title="函数组件与class组件"></a>函数组件与class组件</h3><h4 id="函数组件"><a href="#函数组件" class="headerlink" title="函数组件"></a>函数组件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Welcome</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该函数是一个有效的React组件，因为它接收唯一带有数据的 “props”（代表属性）对象与并返回一个React元素。这类组件被称为“函数组件”，因为它本质上就是JavaScript函数。</p>
+<h4 id="class组件"><a href="#class组件" class="headerlink" title="class组件"></a>class组件</h4><p>通过以下五步将 Clock 的函数组件转成 class 组件：</p>
+<ol>
+<li>创建一个同名的ES6 class，并且继承于React.Component。</li>
+<li>添加一个空的render()方法。</li>
+<li>将函数体移动到render()方法之中。</li>
+<li>在render()方法中使用this.props替换props。</li>
+<li>删除剩余的空函数声明。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Welcome</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;this.props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="state-amp-props"><a href="#state-amp-props" class="headerlink" title="state &amp; props"></a>state &amp; props</h4><p>state和props是React中两个重要的变量，一般情况下其中任何一个变量发生变化都会导致组件重新渲染。</p>
+<ul>
+<li>state 可以看作是组件自身的一些属性，调用时用<code>this.state</code>来获取，通过<code>this.setState()</code>函数来进行更新，<code>切不可用this.state.state1 = newValue</code>方式更新state，不会生效。</li>
+<li>props 可以看作是父组件赋予给子组件的属性，其值不可改变。</li>
+</ul>
+<blockquote>
+<p>有时有些变量在多个组件中都有应用到，一般可以选择从更高层组件往下传递，但这种共享变量的方式有两个弊端，一是当组件层级过深的时候，增加了项目组件之间的耦合度。二是当各子组件都需要能够更新共享变量时，不便于变量的管理和控制。<br>因此，当出现如上两种情况时，更加推荐适用<code>Redux</code>等状态管理工具。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">date</span>: <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1&gt;Hello, world!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">        &lt;h2&gt;It is &#123;<span class="keyword">this</span>.state.date.toLocaleTimeString()&#125;.&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="数据向下流动"><a href="#数据向下流动" class="headerlink" title="数据向下流动"></a>数据向下流动</h4><p>不管是父组件或是子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是class组件。</p>
+<p>这就是为什么称state为局部的或是封装的的原因。除了拥有并设置了它的组件，其他组件都无法访问。</p>
+<p>组件可以选择把它的state作为props向下传递到它的子组件中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;FormattedDate date=&#123;<span class="keyword">this</span>.state.date&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<p>这通常会被叫做“自上而下”或是“单向”的数据流。任何的state总是所属于特定的组件，而且从该state派生的任何数据或UI只能影响树中“低于”它们的组件。</p>
+<p>如果你把一个以组件构成的树想象成一个props的数据瀑布的话，那么每一个组件的state就像是在任意一点上给瀑布增加额外的水源，但是它只能向下流动。</p>
 
                 
 
@@ -223,13 +247,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/07/20/React 基础 - JSX & 元素渲染/" data-toggle="tooltip" data-placement="top" title="React 基础 - JSX & 元素渲染">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/07/01/Agile and Scrum/" data-toggle="tooltip" data-placement="top" title="Agile and Scrum">Next Post &rarr;</a>
+                            <a href="/2020/07/20/React 基础 - JSX & 元素渲染/" data-toggle="tooltip" data-placement="top" title="React 基础 - JSX & 元素渲染">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -259,7 +279,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#新建代码库"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">新建代码库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分支管理"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">分支管理</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#提交代码"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">提交代码</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#修改配置"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">修改配置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#解决冲突"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">解决冲突</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#组件"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">组件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#函数组件与class组件"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">函数组件与class组件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#函数组件"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">函数组件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#class组件"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">class组件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#state-amp-props"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">state &amp; props</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据向下流动"><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text">数据向下流动</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
@@ -279,7 +299,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Git" title="Git">Git</a>
+                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                          <a class="tag" href="/tags/#React" title="React">React</a>
                         
                     </div>
                 </section>
@@ -306,8 +328,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "www-lucienchen-xyz";
-    var disqus_identifier = "http://www.lucienchen.xyz/2020/07/07/%E6%95%B4%E7%90%86%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C/";
-    var disqus_url = "http://www.lucienchen.xyz/2020/07/07/%E6%95%B4%E7%90%86%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E8%A1%8C/";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/07/20/React%20%E5%9F%BA%E7%A1%80%20-%20%E7%BB%84%E4%BB%B6%20&amp;%20Props%20&amp;%20state/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/07/20/React%20%E5%9F%BA%E7%A1%80%20-%20%E7%BB%84%E4%BB%B6%20&amp;%20Props%20&amp;%20state/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

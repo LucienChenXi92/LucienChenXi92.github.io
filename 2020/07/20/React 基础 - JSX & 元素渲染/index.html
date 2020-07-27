@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/L.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          React 基础 - JSX &amp; 元素渲染 - Lucien&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/07/20/React 基础 - JSX &amp; 元素渲染/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/default.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                            
+                              <a class="tag" href="/tags/#React" title="React">React</a>
+                            
+                        </div>
+                        <h2>React 基础 - JSX &amp; 元素渲染</h2>
+                        <h3>React学习系列第二篇</h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-07-20
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lucien</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>学习React最好的起点就是<a href="https://zh-hans.reactjs.org/docs/getting-started.html" target="_blank" rel="noopener">React官网</a>，个人觉得React官网对中文的支持度还是蛮高的。Follow React官网的示例，第一个值得我们学习的知识点就是JSX。</p>
+<h2 id="JSX-Javascript-XML"><a href="#JSX-Javascript-XML" class="headerlink" title="JSX(Javascript XML)"></a>JSX(Javascript XML)</h2><p>刚接触React的时候最大惊喜就是可以把Js代码和Html标签写在一起，非常的灵活。深入了解了一下，原来JSX仅仅是React.createElement(component, props, …children)函数的语法糖。如下JSX代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyButton color=<span class="string">"blue"</span> shadowSize=&#123;<span class="number">2</span>&#125;&gt;</span><br><span class="line">    Click Me</span><br><span class="line">&lt;<span class="regexp">/MyButton&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最终编译为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">React.createElement(</span><br><span class="line">    MyButton,</span><br><span class="line">    &#123;<span class="attr">color</span>: <span class="string">'blue'</span>, <span class="attr">shadowSize</span>: <span class="number">2</span>&#125;, </span><br><span class="line">    <span class="string">'Click Me'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用JSX的前提准备"><a href="#使用JSX的前提准备" class="headerlink" title="使用JSX的前提准备"></a>使用JSX的前提准备</h3><h4 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h4><p>首先你要明白JSX是Javascript内定义的一套XML语法，可以编译成Javascript代码。而浏览器是无法识别的未编译处理的JSX代码的，因此想要在浏览器中运行，必须要进行预编译处理。React官方给出的解决方案是<code>babel</code>。最简单的方式是通过<code>&lt;script&gt;</code>标签直接引入到项目中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://unpkg.com/babel-standalone@6/babel.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>然后就可以在任何<code>&lt;script&gt;</code>标签内使用JSX语法了，方法是为其添加<code>type=&quot;text/babel&quot;</code>属性。<br>如果你的项目是React项目并且已经安装了Node.js，可以通过<code>npm install babel-cli@6 babel-preset-react-app@3</code>来安装。</p>
+<h4 id="React必须在作用域内"><a href="#React必须在作用域内" class="headerlink" title="React必须在作用域内"></a>React必须在作用域内</h4><p>由于JSX会编译为React.createElement调用形式，所以React库也必须包含在JSX代码作用域内。<br>例如，在如下代码中，虽然React和CustomButton并没有被直接使用，但还是需要导入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> CustomButton <span class="keyword">from</span> <span class="string">'./CustomButton'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">WarningButton</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// return React.createElement(CustomButton, &#123;color: 'red'&#125;, null);</span></span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">CustomButton</span> <span class="attr">color</span>=<span class="string">"red"</span> /&gt;</span>;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>如果你不使用JavaScript打包工具而是直接通过 <code>&lt;script&gt;</code> 标签加载 React，则必须将React挂载到全局变量中。</p>
+<h3 id="JSX用法"><a href="#JSX用法" class="headerlink" title="JSX用法"></a>JSX用法</h3><h4 id="在JSX中嵌入表达式"><a href="#在JSX中嵌入表达式" class="headerlink" title="在JSX中嵌入表达式"></a>在JSX中嵌入表达式</h4><p>在下面的例子中，我们声明了一个名为<code>name</code>的变量，然后在JSX中使用它，并将它包裹在大括号中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">'Josh Perez'</span>;</span><br><span class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  element,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>在JSX语法中，你可以在<code>大括号</code>内放置任何有效的JavaScript表达式。例如，<code>2 + 2</code>，<code>user.firstName</code> 或 <code>formatName(user)</code> 都是有效的 JavaScript表达式。</p>
+<p>在下面的示例中，我们将调用JavaScript函数formatName(user)的结果，并将结果嵌入到<code>&lt;h1&gt;</code>元素中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatName</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> user.firstName + <span class="string">' '</span> + user.lastName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  firstName: <span class="string">'Harper'</span>,</span><br><span class="line">  lastName: <span class="string">'Perez'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;h1&gt;</span><br><span class="line">    Hello, &#123;formatName(user)&#125;!</span><br><span class="line">  &lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">ReactDOM.render(</span></span><br><span class="line"><span class="regexp">  element,</span></span><br><span class="line"><span class="regexp">  document.getElementById('root')</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="JSX也是一个表达式"><a href="#JSX也是一个表达式" class="headerlink" title="JSX也是一个表达式"></a>JSX也是一个表达式</h4><p>在编译之后，JSX表达式会被转为普通JavaScript函数调用，并且对其取值后得到JavaScript对象。</p>
+<p>也就是说，你可以在<code>if</code>语句和<code>for</code>循环的代码块中使用JSX，将JSX赋值给变量，把JSX当作参数传入，以及从函数中返回JSX：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getGreeting(user) &#123;</span><br><span class="line">  if (user) &#123;</span><br><span class="line">    return <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;formatName(user)&#125;!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  return <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, Stranger.<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="JSX特定属性"><a href="#JSX特定属性" class="headerlink" title="JSX特定属性"></a>JSX特定属性</h4><p>可以使用大括号，来在属性值中插入一个JavaScript表达式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;user.avatarUrl&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="JSX指定子元素"><a href="#JSX指定子元素" class="headerlink" title="JSX指定子元素"></a>JSX指定子元素</h4><p>JSX 标签里能够包含很多子元素:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    &lt;h2&gt;Good to see you here.&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="元素渲染"><a href="#元素渲染" class="headerlink" title="元素渲染"></a>元素渲染</h2><p>元素是构成React应用的最小砖块。与浏览器的DOM元素不同，React元素是创建开销极小的普通对象，<code>React DOM</code>会负责更新DOM来与React元素保持一致。</p>
+<blockquote>
+<p><code>注意： 元素不等于组件，元素是更小的单位。</code></p>
+</blockquote>
+<h3 id="渲染元素为DOM"><a href="#渲染元素为DOM" class="headerlink" title="渲染元素为DOM"></a>渲染元素为DOM</h3><p>想要将React元素须髯到DOM节点，只需要将他们一起传入ReactDOM.render():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"root"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> element = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">ReactDOM.render(element, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="更新已渲染的元素"><a href="#更新已渲染的元素" class="headerlink" title="更新已渲染的元素"></a>更新已渲染的元素</h3><blockquote>
+<p><code>React元素是不可变对象。一旦被创建，你就无法更改它的子元素或者属性。一个元素就像电影的单帧：它代表了某个特定时刻的UI。</code></p>
+</blockquote>
+<p>根据我们已有的知识，更新UI唯一的方式是创建一个全新的元素，并将其传入 ReactDOM.render()。考虑一个计时器的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> element = (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Hello, world!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">      &lt;h2&gt;It is &#123;<span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleTimeString()&#125;.&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">  ReactDOM.render(element, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>));</span><br><span class="line">&#125;</span><br><span class="line">setInterval(tick, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="React只更新需要更新的部分"><a href="#React只更新需要更新的部分" class="headerlink" title="React只更新需要更新的部分"></a>React只更新需要更新的部分</h3><p>React DOM会将元素和它的子元素与它们之前的状态进行比较，并只会进行必要的更新来使DOM达到预期的状态。<code>也正是因为这个特性，React的性能优于传统的Jquery性能。</code></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/07/20/React 基础 - 组件 & Props & state/" data-toggle="tooltip" data-placement="top" title="React 基础 - 组件 & Props & state">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/07/07/整理常用Git命令行/" data-toggle="tooltip" data-placement="top" title="整理常用Git命令行">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#JSX-Javascript-XML"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">JSX(Javascript XML)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#使用JSX的前提准备"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">使用JSX的前提准备</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#babel"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">babel</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#React必须在作用域内"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">React必须在作用域内</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#JSX用法"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">JSX用法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#在JSX中嵌入表达式"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">在JSX中嵌入表达式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#JSX也是一个表达式"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">JSX也是一个表达式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#JSX特定属性"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">JSX特定属性</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#JSX指定子元素"><span class="toc-nav-number">1.2.4.</span> <span class="toc-nav-text">JSX指定子元素</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#元素渲染"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">元素渲染</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#渲染元素为DOM"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">渲染元素为DOM</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#更新已渲染的元素"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">更新已渲染的元素</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#React只更新需要更新的部分"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">React只更新需要更新的部分</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                          <a class="tag" href="/tags/#React" title="React">React</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-lucienchen-xyz";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/07/20/React%20%E5%9F%BA%E7%A1%80%20-%20JSX%20&amp;%20%E5%85%83%E7%B4%A0%E6%B8%B2%E6%9F%93/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/07/20/React%20%E5%9F%BA%E7%A1%80%20-%20JSX%20&amp;%20%E5%85%83%E7%B4%A0%E6%B8%B2%E6%9F%93/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LucienChenXi92">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Lucien Chen 2020
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.lucienChen.xyz/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-155184201-1';
+    var _gaDomain = 'www.lucienchen.xyz';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.lucienChen.xyz/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
