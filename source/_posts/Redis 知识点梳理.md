@@ -1,7 +1,7 @@
 ---
 title: "Redis 知识点梳理"
 catalog: true
-date: 2020-7-25 10:51:24
+date: 2020-7-27 23:51:24
 subtitle: “学习笔记”
 header-img: "/img/default.png"
 tags:
@@ -149,4 +149,8 @@ Sentinel(哨兵)进程是用于监控redis集群中Master主服务器工作的�
 
 ### Redis数据持久化
 
-在思否上找到了一篇非常好的文章[《Redis持久化》](https://segmentfault.com/a/1190000002906345)
+在思否上找到了一篇非常好的文章[《Redis持久化》](https://segmentfault.com/a/1190000002906345)介绍Redis两种持久化的方式。
+
++ 快照（RDB）：在指定的时间间隔保存数据快照，如每天0点。优点：持久化文件简洁，便于数据恢复，启动速度更快。缺点：很难及时备份，数据丢失更多。
++ 追加式文件（AOF）：默认每秒将内存中的数据刷到硬盘里，逐行追加。优点：相比RDB更可靠。缺点：性能会略有降低，AOF文件大小比RDB更大。
+
