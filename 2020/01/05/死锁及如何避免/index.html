@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          设计模式 - 单例设计模式 - Lucien&#39;s Blog
+          梳理Spring-boot知识点 - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/2020/02/20/设计模式 - 单例模式/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/01/05/死锁及如何避免/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -86,14 +86,16 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                              <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                            
+                              <a class="tag" href="/tags/#Java" title="Java">Java</a>
                             
                         </div>
-                        <h2>设计模式 - 单例设计模式</h2>
-                        <h3>Singleton</h3>
+                        <h2>梳理Spring-boot知识点</h2>
+                        <h3></h3>
                         <span class="meta">
                             Posted by Lucien Chen on
-                            2020-02-20
+                            2020-01-05
                         </span>
                     </div>
                 
@@ -210,8 +212,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="什么是单例模式？"><a href="#什么是单例模式？" class="headerlink" title="什么是单例模式？"></a>什么是单例模式？</h3><p>单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SingleSingleton S1 = SingleSingleton.getInstance();</span><br><span class="line">        SingleSingleton S2 = SingleSingleton.getInstance();</span><br><span class="line">        System.out.println(<span class="string">"S1 == S2: "</span> + (S1 == S2));</span><br><span class="line"></span><br><span class="line">        ConcurrentSingleton S3 = ConcurrentSingleton.getInstance();</span><br><span class="line">        ConcurrentSingleton S4 = ConcurrentSingleton.getInstance();</span><br><span class="line">        System.out.println(<span class="string">"S3 == S4: "</span> + (S3 == S4));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 单线程版本</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleSingleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有化实例，保存在方法区内</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingleSingleton instance;</span><br><span class="line">    <span class="comment">// 私有构造器，防止外部调用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleSingleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 采用懒汉式创建实例</span></span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> SingleSingleton();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 线程安全版本</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcurrentSingleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有化实例，保存在方法区内，使用volatile</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> ConcurrentSingleton instance;</span><br><span class="line">    <span class="comment">// 私有构造器，防止外部调用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ConcurrentSingleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ConcurrentSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 一旦实例已创建，不会再走同步代码块，优化性能</span></span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (ConcurrentSingleton.class) &#123;</span><br><span class="line">                <span class="comment">// 双重验证，确保多个线程同时进入第一层非空判断而产生多个实例</span></span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> ConcurrentSingleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <p>死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。</p>
+<h4 id="产生条件"><a href="#产生条件" class="headerlink" title="产生条件"></a>产生条件</h4><ul>
+<li>互斥条件：指进程对所分配到的资源进行排它性使用，即在一段时间内某资源只由一个进程占用。如果此时还有其它进程请求资源，则请求者只能等待，直至占有资源的进程用毕释放。</li>
+<li>请求和保持条件：指进程已经保持至少一个资源，但又提出了新的资源请求，而该资源已被其它进程占有，此时请求进程阻塞，但又对自己已获得的其它资源保持不放。</li>
+<li>不剥夺条件：指进程已获得的资源，在未使用完之前，不能被剥夺，只能在使用完时由自己释放。</li>
+<li>环路等待条件：指在发生死锁时，必然存在一个进程——资源的环形链，即进程集合{P0，P1，P2，···，Pn}中的P0正在等待一个P1占用的资源；P1正在等待P2占用的资源，……，Pn正在等待已被P0占用的资源。</li>
+</ul>
+<h4 id="如何预防"><a href="#如何预防" class="headerlink" title="如何预防"></a>如何预防</h4><p>理解了死锁的原因，尤其是产生死锁的四个必要条件，就可以最大可能地避免、预防和解除死锁。只要打破四个必要条件之一就能有效预防死锁的发生：打破互斥条件：改造独占性资源为虚拟资源，大部分资源已无法改造。打破不可抢占条件：当一进程占有一独占性资源后又申请一独占性资源而无法满足，则退出原占有的资源。打破占有且申请条件：采用资源预先分配策略，即进程运行前申请全部资源，满足则运行，不然就等待，这样就不会占有且申请。打破循环等待条件：实现资源有序分配策略，对所有设备实现分类编号，所有进程只能采用按序号递增的形式申请资源。</p>
+
                 
 
                 <hr>
@@ -219,12 +228,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/02/25/设计模式 - 建造者模式/" data-toggle="tooltip" data-placement="top" title="设计模式 - 建造者设计模式">&larr; Previous Post</a>
+                            <a href="/2020/01/08/浅谈Javascript中对象以及原型链/" data-toggle="tooltip" data-placement="top" title="浅谈Javascript中对象以及原型链">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/02/19/设计模式 - 代理模式/" data-toggle="tooltip" data-placement="top" title="设计模式 - 代理设计模式">Next Post &rarr;</a>
+                            <a href="/2020/01/02/常见排序算法/" data-toggle="tooltip" data-placement="top" title="常见排序算法">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -254,7 +263,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是单例模式？"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是单例模式？</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#产生条件"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">产生条件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#如何预防"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">如何预防</span></a></li></ol>
         
         </div>
       </aside>
@@ -274,7 +283,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
                     </div>
                 </section>
@@ -301,8 +312,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "www-lucienchen-xyz";
-    var disqus_identifier = "http://www.lucienchen.xyz/2020/02/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/";
-    var disqus_url = "http://www.lucienchen.xyz/2020/02/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/01/05/%E6%AD%BB%E9%94%81%E5%8F%8A%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/01/05/%E6%AD%BB%E9%94%81%E5%8F%8A%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
