@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Javascript中公共属性及方法的两种声明方式对比 - Lucien&#39;s Blog
+          UML 学习笔记 - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/2020/05/11/Javascript中公共属性及方法的两种声明方式对比/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/08/07/UML 学习笔记/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -86,16 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#前端" title="前端">前端</a>
-                            
-                              <a class="tag" href="/tags/#Javascript" title="Javascript">Javascript</a>
+                              <a class="tag" href="/tags/#后端" title="后端">后端</a>
                             
                         </div>
-                        <h2>Javascript中公共属性及方法的两种声明方式对比</h2>
-                        <h3>解析特权属性和原型属性对比</h3>
+                        <h2>UML 学习笔记</h2>
+                        <h3></h3>
                         <span class="meta">
                             Posted by Lucien Chen on
-                            2020-05-11
+                            2020-08-07
                         </span>
                     </div>
                 
@@ -212,33 +210,29 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <blockquote>
-<p>之前写过一篇日志<a href="/2020/01/08/浅谈Javascript中对象以及原型链">《浅谈Javascript中对象以及原型链》</a>，在这篇日志中有介绍过如何声明对象公有的属性和方法，今天我们来深入聊一下Prototype声明和在构造器中声明的两种方式的异同。</p>
-</blockquote>
-<p>在解释这两种声明方法之前，我们需要回忆一下Javascript 通过<code>new</code>指令创建对象的过程：</p>
-<blockquote>
+                <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>统一建模语言(Unified Modeling Language, 缩写： UML)是非专利的第三代建模和规约语言。UML是一种开放的方法，用于说明、可视化、构建和编写一个正在开发的，面向对象、软件密集系统的产品的开放方法。UML展现了一系列最佳工程实践，这些最佳实践在大规模，复杂系统进行建模方面，特别是在软件架构层次已经被验证有效。</p>
+<p>在UML系统开发中有三个重要的模型：</p>
+<ul>
+<li>功能模型：从用户的角度展示系统的功能，包括用例图。</li>
+<li>对象模型：采用对象，属性，操作，关联等概念展示系统的结构和基础，包括类别图，对象图。</li>
+<li>动态模型：展现系统的内部行为。包括序列图，活动图，状态图。</li>
+</ul>
+<h3 id="在Java开发中的应用"><a href="#在Java开发中的应用" class="headerlink" title="在Java开发中的应用"></a>在Java开发中的应用</h3><h4 id="UML类图及画法"><a href="#UML类图及画法" class="headerlink" title="UML类图及画法"></a>UML类图及画法</h4><p>Java是一门面向对象编程的语言，因此使用UML类图可以非常好的表现出各个类之间的各种关联关系，具体如下6种：</p>
 <ol>
-<li>创建一个空对象，作为将要返回的对象实例。</li>
-<li>将这个空对象的原型，指向构造函数的prototype属性。</li>
-<li>将这个空对象赋值给函数内部的this关键字。</li>
-<li>开始执行构造函数内部的代码。</li>
+<li><p><strong>泛化关系(generalization)</strong><br>可以理解为Java中<code>继承关系</code>。 如果满足“is-a”语句的两个类就可以理解为泛化关系。<code>泛化关系用一条实线带空心箭头来表示。</code><br><img src="/img/uml/generalization.png" alt="generalization"></p>
+</li>
+<li><p><strong>实现关系(realize)</strong><br>实现完全可以理解为是Java中的<code>接口</code>的概念，它用来表示具有某一种功能或特性的一类事务，需要被实现。<code>实现关系用一条虚线带空心箭头来表示。</code><br><img src="/img/uml/realize.png" alt="realize"></p>
+</li>
+<li><p><strong>聚合关系(aggregation)</strong><br>两个对立存在的对象之间呈现所属关系，如老师和班级。老师属于某个班级，但是班级如果不存在了，老师不会一同消失。这样的关系就是聚合关系。<code>聚合关系用一条实现带空心菱形箭头来表示。</code><br><img src="/img/uml/aggregation.png" alt="aggregation"></p>
+</li>
+<li><p><strong>组合关系(composition)</strong><br>两个相互依赖的对象之间的所属关系，如部门和公司。各个部门一同组成公司，如果公司主体不存在了，各个部门也会一同消失。这样强依赖关系为组合关系。<code>组合关系用一条带实心菱形箭头来表示。</code><br><img src="/img/uml/composition.png" alt="composition"></p>
+</li>
+<li><p><strong>关联关系(association)</strong><br>关联关系是一种静态关系，通常与运行状态无关，一般由常识等因素决定；一般用来定义对象之间的静态的，天然的结构；所以，关联关系是一种<code>强关联</code>关系。例如，乘客和车票就是一种关联。关联对象通常是以成员变量的形式实现的；<code>关联关系用直线带箭头表示。</code><br><img src="/img/uml/association.png" alt="association"></p>
+</li>
+<li><p><strong>依赖关系(dependency)</strong><br>依赖关系是指一个对象在运行期间会用到另一个对象的关系，与关联关系不同的是，依赖关系只在运行期间存在，是一种临时性的关系。显然，依赖也有方向，双向依赖是一种非常糟糕的结构，我们应该保持单向依赖。再代码中体现为方法传入参数，箭头指向为调用关系。<code>依赖关系用虚线箭头表示。</code><br><img src="/img/uml/dependency.png" alt="dependency"></p>
+</li>
 </ol>
-</blockquote>
-<h3 id="构造函数中声明"><a href="#构造函数中声明" class="headerlink" title="构造函数中声明"></a>构造函数中声明</h3><p>构造函数中可以声明共有的对象属性，同时也可以声明共有的方法，这种声明的属性和方法又称为<code>特权属性</code>和<code>特权方法</code>。我们之前有了解过通过构造函数创建对象的过程，第三步中 <code>新创建的空对象会被赋值给构造函数内部的this关键字</code>，换句话说，所声明的属性和方法是直接挂在新创建的对象下面的。</p>
-<p>我们来举个例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.age = <span class="number">0</span>;   <span class="comment">// 声明Number类型属性</span></span><br><span class="line">    <span class="keyword">this</span>.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;     <span class="comment">// 声明共有方法</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"吃东西。。。"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="在原型中声明"><a href="#在原型中声明" class="headerlink" title="在原型中声明"></a>在原型中声明</h3><p>我们接着刚才介绍过的Javascript构造过程来讲，其第二步 <code>将这个空对象的原型，指向构造函数的prototype属性。</code> 中讲到所有新创建的对象的原型都会指向他们共有的构造函数的prototype属性上，因此prototype下所声明的属性和方法即可被所有同类对象访问到。我们把这种方式声明的属性和方法称为<code>原型属性</code>和<code>原型方法</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype = &#123;</span><br><span class="line">    age: <span class="number">10</span>,</span><br><span class="line">    name: <span class="string">"Lucien"</span>,</span><br><span class="line">    drink: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"喝东西。。。"</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    eat: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"被喂东西。。。"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="两种声明方式的差异"><a href="#两种声明方式的差异" class="headerlink" title="两种声明方式的差异"></a>两种声明方式的差异</h3><p>我们先来写个测试：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"age: "</span> + person.age)   <span class="comment">// age: 0</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"name: "</span> + person.name)     <span class="comment">// name: Lucien</span></span><br><span class="line"></span><br><span class="line">person.drink();     <span class="comment">// 喝东西。。。</span></span><br><span class="line">person.eat();       <span class="comment">// 吃东西。。。</span></span><br></pre></td></tr></table></figure>
-<p>通过以上结果我们发现：</p>
-<ol>
-<li>无论采用哪种声明方式，都可以让新创建对象上带上已声明的属性或方法。</li>
-<li>当某一属性同时在构造器中和原型中声明时，<code>特权属性</code>值会覆盖<code>原型属性</code>的值，方法也是同理。也就是说<code>特权属性</code>有更高的优先级。</li>
-</ol>
-<h3 id="为什么特权属性更高呢？"><a href="#为什么特权属性更高呢？" class="headerlink" title="为什么特权属性更高呢？"></a>为什么特权属性更高呢？</h3><p>在Javascript中，当访问一个对象的属性或方法时，Javascript会从对象本身开始往上遍历整个原型链，直到找到对应属性和方法为止。如果此时到达了原型链的最顶端，既<code>Object.prototype</code>仍未能找到时返回undefined。从此我们明白了，<code>特权属性</code>由于是直接挂在新建对象上的，所以它更早被Javascript捕获，而<code>原型属性</code> 是挂在其上一层对象的prototype上的，所以更晚被捕获。我们可以通过Debug来印证这一点，在person对象下，只有<code>特权属性</code> age 和<code>特权方法</code> eat，而<code>原型方法</code>和<code>原型属性</code> 则是在<code>person.__proto__</code> 下面。<br><img src="/img/javascript_constructor.png" alt="/img/javascript_constructor.png"></p>
+<h4 id="关系强弱排序"><a href="#关系强弱排序" class="headerlink" title="关系强弱排序"></a>关系强弱排序</h4><p>泛化关系 = 实现关系 &gt; 组合关系 &gt; 聚合关系 &gt; 依赖关系</p>
 
                 
 
@@ -246,13 +240,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/05/17/2020重新出发/" data-toggle="tooltip" data-placement="top" title="2020重新出发">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/05/08/总结一下5年来的成长心得/" data-toggle="tooltip" data-placement="top" title="总结一下5年来的成长心得">Next Post &rarr;</a>
+                            <a href="/2020/08/01/MySQL 知识点梳理/" data-toggle="tooltip" data-placement="top" title="MySQL 知识点梳理">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -282,7 +272,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#构造函数中声明"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">构造函数中声明</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在原型中声明"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">在原型中声明</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#两种声明方式的差异"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">两种声明方式的差异</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么特权属性更高呢？"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">为什么特权属性更高呢？</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#定义"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">定义</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在Java开发中的应用"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">在Java开发中的应用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UML类图及画法"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">UML类图及画法</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#关系强弱排序"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">关系强弱排序</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -302,9 +292,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
-                        
-                          <a class="tag" href="/tags/#Javascript" title="Javascript">Javascript</a>
+                          <a class="tag" href="/tags/#后端" title="后端">后端</a>
                         
                     </div>
                 </section>
@@ -333,8 +321,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "www-lucienchen-xyz";
-    var disqus_identifier = "http://www.lucienchen.xyz/2020/05/11/Javascript%E4%B8%AD%E5%85%AC%E5%85%B1%E5%B1%9E%E6%80%A7%E5%8F%8A%E6%96%B9%E6%B3%95%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94/";
-    var disqus_url = "http://www.lucienchen.xyz/2020/05/11/Javascript%E4%B8%AD%E5%85%AC%E5%85%B1%E5%B1%9E%E6%80%A7%E5%8F%8A%E6%96%B9%E6%B3%95%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%A3%B0%E6%98%8E%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94/";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/08/07/UML%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/08/07/UML%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
