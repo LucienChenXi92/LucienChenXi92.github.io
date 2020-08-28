@@ -82,7 +82,10 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 
 
 ## Friends
-friends: []
+friends: [
+  {title: '阮一峰', href: 'http://www.ruanyifeng.com/blog/archives.html'},
+  {title: '纯洁的微笑', href: 'http://www.ityouknow.com'}
+]
 
 
 #Custom Setting End
