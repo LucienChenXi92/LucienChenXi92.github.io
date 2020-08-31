@@ -87,7 +87,7 @@ PROPAGATION_NEVER--以非事务方式执行，如果当前存在事务，则抛�
 #### 事务超时
 
 当事务执行时间超出所设置的时间阀值，事务会抛出TransactionTimedOutException并回滚。
-超时时间可以通过transactionManager配置类进行配置或是在@Transactional注解中声明，默认30s。
+超时时间可以通过配置文件application.properties的spring.transaction.default-timeout进行配置或是在@Transactional注解中声明，默认30s。
 
 #### 共享锁和排他锁
 
