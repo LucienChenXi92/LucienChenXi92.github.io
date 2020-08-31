@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          JVM GC - Lucien&#39;s Blog
+          设计模式 - 桥接模式模式 - Lucien&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://www.lucienChen.xyz/2020/03/22/JVM GC/">
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/08/31/设计模式 - 桥接模式/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -86,16 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#后端" title="后端">后端</a>
-                            
-                              <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                              <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
                             
                         </div>
-                        <h2>JVM GC</h2>
-                        <h3></h3>
+                        <h2>设计模式 - 桥接模式模式</h2>
+                        <h3>Bridge</h3>
                         <span class="meta">
                             Posted by Lucien Chen on
-                            2020-03-22
+                            2020-08-31
                         </span>
                     </div>
                 
@@ -212,128 +210,26 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="Heap内存分区"><a href="#Heap内存分区" class="headerlink" title="Heap内存分区"></a>Heap内存分区</h3><ul>
-<li>新生代 1/3<ul>
-<li>伊甸区(Eden) 内存占比8/10<ul>
-<li>生还者0区(Survivor 0) 内存占比1/10</li>
-<li>生还者1区(Survivor 1) 内存占比1/10</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>老年代 2/3</li>
-<li>永久代: JDK 1.7之前hotspot有永久代的概念，用以实现方法区的功能，在Java 1.8后移除了永久代的概念。方法区被移至元空间(Metaspace)</li>
-</ul>
-<h3 id="GC-回收标记算法"><a href="#GC-回收标记算法" class="headerlink" title="GC 回收标记算法"></a>GC 回收标记算法</h3><ul>
-<li>引用计数器<br>每个对象都有一个计数器，没被引用一次便+1，失去引用便-1，当引用次数为0时并持续一段时间后，可以被回收。但是此算法无法解决两个对象相互引用的情况。</li>
-<li>可达性分析法<br>从Root node 开始不断寻找引用对象，构成一条或多条引用链。如果有对象不在引用链中，则此对象可以被回收。此方法可以解决相互引用的情况。</li>
-</ul>
-<h3 id="GC-算法"><a href="#GC-算法" class="headerlink" title="GC 算法"></a>GC 算法</h3><ul>
-<li>标记-清除(MS)<ul>
-<li>根据可达性分析，找到无引用的对象进行标记，标记完成后进行删除</li>
-<li>优点: 对内存空间无要求，效率相对标记-整理较高</li>
-<li>不足: 清除后会产生内存空间碎片，内存可利率变低，从而加速GC的频率</li>
-</ul>
-</li>
-<li>拷贝-清除(CS)<ul>
-<li>将整块内存分成两等分，每次只使用其中的一块。GC时，根据可达性分析，将需要保留的对象复制到另一块盘上，然后将原内存盘清空。</li>
-<li>优点: 当需保留的对象很少时效率很高，GC后内存平整，无空间碎片。</li>
-<li>不足: 每次只使用所有内存的一半，内存使用率低</li>
-</ul>
-</li>
-<li>标记-整理(MC)<ul>
-<li>其过程和标记-清除算法类似，只不过在标记后没有直接进行清理，而是将所有对象进行排序，将需要保留的对象排到内存的一端，然后再将需要清除的对象一次性清理掉。</li>
-<li>优点: 空间利用率高，无空间碎片产生</li>
-<li>不足: 效率相对标记-清除的效率效率低</li>
-</ul>
-</li>
-</ul>
-<h3 id="分代收集策略"><a href="#分代收集策略" class="headerlink" title="分代收集策略"></a>分代收集策略</h3><p>对Heap内存进行区域划分，充分利用各种算法的优点进行分代收集，把Java Heap分为新生代和老年代，根据不同代的特点选用不同的GC算法。</p>
-<ul>
-<li>新生代<br>采用灵活比例的复制算法，每当伊甸区内存满了即会触发Minor GC(Young GC)，基于IBM的调查结果，新生代中98%的对象都会被首次GC清除掉，因此剩余的对象会被刷入Survivor 0区，下次GC时，会将Survivor 0区和Eden区的剩余对象一同刷入Survivor 1区。GC多次仍然无法清除掉的对象最终被刷入老年代。</li>
-<li>老年代<br>由于老年代中的对象存活率高，没有额外的空间进行分配，必须使用标记-清除或标记整理算法。</li>
-</ul>
-<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><ol>
-<li>串行：垃圾回收器(Serial Garbage Collector)<ul>
-<li>串行垃圾回收器是最古老的，在GC时它会冻结所有程序线程，使用单个垃圾回收线程进行垃圾回收。此垃圾回收器是为单线程环境设计的。</li>
-<li>GC时会产生较长的的Stop The World(服务暂停)</li>
-<li>使用方法：-XX:+UseSerialGC 串联收集</li>
-</ul>
-</li>
-<li>串行：ParNew收集器<ul>
-<li>ParNew收集器其实就是Serial收集器的多线程版本。新生代并行，老年代串行。新生代复制算法，老年代标记压缩</li>
-<li>使用方法：-XX:+UseParNewGC ParNew收集器</li>
-</ul>
-</li>
-<li>并行： Parallel收集器<ul>
-<li>Parallel Scavenge收集器类似ParNew收集器，Parallel收集器关注系统的吞吐量。可以通过参数来打开自适应调节策略，虚拟机根据当前系统的运行状况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或最大的吞吐量；也可以通过参数控制GC的时间不大于多少毫秒或是多大比例；新生代复制算法，老年代标记-整理</li>
-</ul>
-</li>
-<li>并行： Parallel Old收集器<ul>
-<li>Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和“标记整理算法”。JDK 1.6才开始提供使用</li>
-</ul>
-</li>
-<li>并发标记扫描 CMS收集器<ul>
-<li>CMS(Concurrent Mark Sweep)收集器是一种获取最短回收停顿时间为目标的收集器。目前很大一部分的Java应用都集中在互联网网站或B/S系统的服务上，这类应用尤其重视服务的相应速度，希望系统停顿的时间最短，以给用户带来较好的体验。</li>
-<li>CMS是基于标记-清除算法实现的，它的运作过程相对前面集中收集器来说更为复杂一些，整个过程分为4个过程<ul>
-<li>初始标记<ul>
-<li>Stop The World</li>
-<li>标记GC Roots能够直接关联到的对象，速度很快</li>
-</ul>
-</li>
-<li>并发标记<ul>
-<li>执行时间较长，工作线程不停顿</li>
-<li>基于初始标记的结果，多线程GC Roots Tracing，在这个过程中由于工作线程还在不断产生新的需要收集的对象，因此还需要下一步重新标记</li>
-</ul>
-</li>
-<li>重新标记<ul>
-<li>Stop The World</li>
-<li>修正并发期间因用户程序继续运作导致的标记变化，这个阶段的挺短时间会比初始标记长一些，但是比并发标记的时间短。</li>
-</ul>
-</li>
-<li>并发清除<ul>
-<li>执行时间较长，工作线程不停顿</li>
-<li>多线程清除已标记的对象</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>优点: 并发收集，低停顿</li>
-<li>缺点: 产生大量空间碎片、并发阶段会降低吞吐量</li>
-</ul>
-</li>
-<li>G1收集器(此部分还需深入学习)<br>最新的成果之一，Hotspot开发团队赋予它的使命是未来可以替换掉JDK1.5中的CMS</li>
-</ol>
-<ul>
-<li>G1 特点：<ul>
-<li>空间整合，采用标记整理算法，不会产生内存空间碎片。</li>
-<li>可预测停顿，降低停顿时间是G1和CMS的共同关注点，但G1和CMS的共同关注点，但G1除了追求低停顿外，还能建立可预测的时间模型，能让使用者明确指定一个长度为N毫秒的时间片段内，消耗在GC上的时间不超过N毫秒。</li>
-<li>G1 不再将新生代和老年代进行物理隔离，而是一视同仁的划分成等大的若干个Region</li>
-</ul>
-</li>
-<li>收集步骤<ul>
-<li>初始标记 + Minor GC (Stop The World)</li>
-<li>Root Region Scanning</li>
-<li>并发标记</li>
-<li>重新标记(Stop The World)</li>
-<li>拷贝-清理(Stop The World)</li>
-</ul>
-</li>
-</ul>
+                <h3 id="什么是桥接模式？"><a href="#什么是桥接模式？" class="headerlink" title="什么是桥接模式？"></a>什么是桥接模式？</h3><p>桥接（Bridge）是用于把抽象化与实现化解耦，使得二者可以独立变化。这种类型的设计模式属于结构型模式，它通过提供抽象化和实现化之间的桥接结构，来实现二者的解耦。</p>
+<p><strong>这种模式涉及到一个作为桥接的接口</strong>，使得实体类的功能独立于接口实现类。这两种类型的类可被结构化改变而互不影响。</p>
+<h3 id="可以解决什么样的问题？"><a href="#可以解决什么样的问题？" class="headerlink" title="可以解决什么样的问题？"></a>可以解决什么样的问题？</h3><p>定义说的太抽象了，当我们面对一个由多个维度元素构成的实体时，如果直接通过<code>继承</code>来声明类往往会导致类的数量过多。同过桥接模式可以通过聚合的方式来自由组合对象，灵活，并更容易扩展。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>优点：<br>1.抽象和实现的分离。<br>2.优秀的扩展能力。<br>3.实现细节对客户透明。</p>
+<p>缺点：<br>桥接模式的引入会增加系统的理解与设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程。</p>
+<h3 id="Java代码实现"><a href="#Java代码实现" class="headerlink" title="Java代码实现"></a>Java代码实现</h3><p>比如我们想要实现一个菜谱的场景，一道菜的名字一般都包含两个元素，一个是材料，一个是烹饪的方式，例如：”红烧肉”，“清蒸鲈鱼”…我们用桥接模式来实现一下。</p>
+<p><img src="/img/bridge.png" alt="bridge"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Food</span> <span class="keyword">implements</span> <span class="title">CookMethod</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> CookMethod cookMethod;</span><br><span class="line">    <span class="keyword">protected</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Food</span><span class="params">(String name, CookMethod cookMethod)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.cookMethod = cookMethod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">CookMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fried</span> <span class="keyword">implements</span> <span class="title">CookMethod</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"油炸一下"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Braised</span> <span class="keyword">implements</span> <span class="title">CookMethod</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"红烧一下"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Steamed</span> <span class="keyword">implements</span> <span class="title">CookMethod</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"清蒸一下"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Meat</span> <span class="keyword">extends</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Meat</span><span class="params">(String name, CookMethod cookMethod)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, cookMethod);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.print(name + <span class="string">": 肉"</span>);</span><br><span class="line">        cookMethod.cook();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fish</span> <span class="keyword">extends</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Fish</span><span class="params">(String name, CookMethod cookMethod)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(name, cookMethod);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cook</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.print(name + <span class="string">": 鱼"</span>);</span><br><span class="line">        cookMethod.cook();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Food braisedMeat = <span class="keyword">new</span> Meat(<span class="string">"红烧肉"</span>, <span class="keyword">new</span> Braised());</span><br><span class="line">        braisedMeat.cook();</span><br><span class="line"></span><br><span class="line">        Food steamedFish = <span class="keyword">new</span> Fish(<span class="string">"清蒸鲈鱼"</span>, <span class="keyword">new</span> Steamed());</span><br><span class="line">        steamedFish.cook();</span><br><span class="line"></span><br><span class="line">        Food FriedMeat = <span class="keyword">new</span> Meat(<span class="string">"小酥肉"</span>, <span class="keyword">new</span> Fried());</span><br><span class="line">        FriedMeat.cook();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>输出结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">红烧肉: 肉红烧一下</span><br><span class="line">清蒸鲈鱼: 鱼清蒸一下</span><br><span class="line">小酥肉: 肉油炸一下</span><br></pre></td></tr></table></figure>
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/03/27/前端资源加载如何优化 - 12点建议/" data-toggle="tooltip" data-placement="top" title="前端资源加载如何优化 - 12点建议">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/03/20/JVM 内存结构/" data-toggle="tooltip" data-placement="top" title="JVM 内存结构">Next Post &rarr;</a>
+                            <a href="/2020/08/31/设计模式 - 组合模式/" data-toggle="tooltip" data-placement="top" title="设计模式 - 组合模式">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -363,7 +259,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Heap内存分区"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Heap内存分区</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GC-回收标记算法"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">GC 回收标记算法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GC-算法"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">GC 算法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分代收集策略"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">分代收集策略</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#垃圾收集器"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">垃圾收集器</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是桥接模式？"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">什么是桥接模式？</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#可以解决什么样的问题？"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">可以解决什么样的问题？</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#优缺点"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">优缺点</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Java代码实现"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Java代码实现</span></a></li></ol>
         
         </div>
       </aside>
@@ -383,9 +279,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#后端" title="后端">后端</a>
-                        
-                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
                         
                     </div>
                 </section>
@@ -416,8 +310,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "www-lucienchen-xyz";
-    var disqus_identifier = "http://www.lucienchen.xyz/2020/03/22/JVM%20GC/";
-    var disqus_url = "http://www.lucienchen.xyz/2020/03/22/JVM%20GC/";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/08/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/08/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
