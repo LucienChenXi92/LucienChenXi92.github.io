@@ -130,14 +130,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -204,6 +204,210 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2020/03/22/JVM GC/">
+        <h2 class="post-title">
+            JVM GC
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Heap内存分区
+新生代 1/3
+伊甸区(Eden) 内存占比8/10
+生还者0区(Survivor 0) 内存占比1/10
+生还者1区(Survivor 1) 内存占比1/10
+
+
+
+
+老年代 2/3
+永久代: JDK 1.7之前hotspot有永久代的概念，用以实现方法区的功能，在Java 1.8后移除了永久代的概念。方法区被移至元空间(Metaspace)
+
+GC 回收标记算法
+引用计......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-03-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#后端" title="后端">后端</a>
+            
+              <a href="/tags/#Java" title="Java">Java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/20/JVM 内存结构/">
+        <h2 class="post-title">
+            JVM 内存结构
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            栈(Stacks)
+一个线程对应一个栈，线程销毁，栈空间释放。
+线程每调用一个方法，则有一个栈帧(Stack Frame)入栈，栈帧用于存储局部变量表，操作表，动态连接，方法出口等信息。方法执行完成，则栈帧出栈。
+一个栈被塞1亿个帧，空间不够时会报StackOverflow 错误。
+栈过多，超过栈总空间则报OOM。
+
+本地方法栈(Native method stacks)
+本地方法栈与JVM......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-03-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#后端" title="后端">后端</a>
+            
+              <a href="/tags/#Java" title="Java">Java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/19/Java 内存模型/">
+        <h2 class="post-title">
+            Java 内存模型
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+最近在知乎上看到两篇关于Java内存模型的文章，讲的非常透彻，而且纠正了很多以前的理解误区，分享一下：第一篇： 《什么是Java内存模型》 – 占小狼第二篇： 《深入理解JVM-内存模型（jmm）和GC》 – Garwer
+
+什么是内存模型为了保证共享内存的正确性（可见性、有序性、原子性），内存模型定义了共享内存系统中多线程程序读写操作行为的规范。通过这些规则来规范对内存的读写操作，从而保......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-03-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#后端" title="后端">后端</a>
+            
+              <a href="/tags/#Java" title="Java">Java</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/25/设计模式 - 建造者模式/">
+        <h2 class="post-title">
+            设计模式 - 建造者设计模式
+        </h2>
+        <h3 class="post-subtitle">
+            Builder
+        </h3>
+        <div class="post-content-preview">
+            什么是建造者模式？建造者模式（Builder Pattern）使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+一个 Builder 类会一步一步构造最终的对象。该 Builder 类是独立于其他对象的。
+为什么要用建造者模式？在程序中我们往往需要构建一些比较复杂的对象，其通常由各个部分的子对象用一定的算法构成；由于需求的变化......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-02-25
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#设计模式" title="设计模式">设计模式</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/20/设计模式 - 单例模式/">
+        <h2 class="post-title">
+            设计模式 - 单例设计模式
+        </h2>
+        <h3 class="post-subtitle">
+            Singleton
+        </h3>
+        <div class="post-content-preview">
+            什么是单例模式？单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。
+1234567891011121314151617181920212......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-02-20
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#设计模式" title="设计模式">设计模式</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/19/设计模式 - 代理模式/">
+        <h2 class="post-title">
+            设计模式 - 代理设计模式
+        </h2>
+        <h3 class="post-subtitle">
+            Proxy
+        </h3>
+        <div class="post-content-preview">
+            什么是代理模式？代理模式给某一个对象提供一个代理对象，并由代理对象控制对原对象的引用。通俗的来讲代理模式就是我们生活中常见的中介。
+
+为什么要用代理模式？
+解偶作用：有时可以利用代理模式，将客户端同委托类进行解偶，这样当委托类进行替换或是升级时，客户端无需修改代码。 
+功能增强：比如添加日志，记录方法执行时间等机械重复的操作可以利用代理模式，将功能增强的代码在代理类中实现，这样就可以大大节省......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Lucien Chen on
+            2020-02-19
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#设计模式" title="设计模式">设计模式</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -340,70 +544,6 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/01/02/常见排序算法/">
-        <h2 class="post-title">
-            常见排序算法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            排序的定义对一序列对象根据某个字段进行排序。
-相关术语
-稳定：如果a原本在b前面，而a=b，排序之后a仍然在b的前面；
-不稳定：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面；
-内排序：所有排序操作都在内存中完成；
-外排序：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行；
-时间复杂度： 一个算法执行所耗费的时间。
-空间复杂度：运行完一个程序所需内存......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2020-01-02
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#算法" title="算法">算法</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/12/07/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <h3 class="post-subtitle">
-            万物伊始
-        </h3>
-        <div class="post-content-preview">
-            为什么”才”想起来写Blog?自我反思了一下这些年的成长，感觉平时大部分的时间都花在工作中的设计和实现上了，很少进行梳理和总结。查阅过的资料，网上学过的课程视频也只是”看过”和”学过”，别人说是什么样子就是什么样子，缺少实践和验证，同时也未建立起自己的知识体系。现在网上各种学习资料层出不穷，各种技术也是日益更迭，人的大脑空间终究是有极限的，一边学一边忘，最终也没剩下什么。
-思来想去，不妨写写......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Lucien Chen on
-            2019-12-07
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Blog" title="Blog">Blog</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -414,6 +554,10 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
             <a href="/archives/3/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/archives/5/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -462,12 +606,6 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
             
         
             
-            <a href="/tags/#Javascript" title="Javascript" rel="2">Javascript</a>
-            
-        
-            
-        
-            
         
             
             <a href="/tags/#随笔" title="随笔" rel="2">随笔</a>
@@ -482,7 +620,17 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
             
         
             
-            <a href="/tags/#设计模式" title="设计模式" rel="9">设计模式</a>
+            <a href="/tags/#Javascript" title="Javascript" rel="2">Javascript</a>
+            
+        
+            
+        
+            
+            <a href="/tags/#设计模式" title="设计模式" rel="10">设计模式</a>
+            
+        
+            
+            <a href="/tags/#阿里云" title="阿里云" rel="5">阿里云</a>
             
         
     </div>
@@ -546,23 +694,23 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
     <ul>
       
         <li>
-          <a href="/2020/08/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/">设计模式 - 桥接模式模式</a>
+          <a href="/2020/09/12/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E9%98%BF%E9%87%8C%E4%BA%91SLB/">[ACP考试] - 阿里云SLB</a>
         </li>
       
         <li>
-          <a href="/2020/08/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/">设计模式 - 组合模式</a>
+          <a href="/2020/09/11/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E9%98%BF%E9%87%8C%E4%BA%91%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/">[ACP考试] - 阿里云网络管理</a>
         </li>
       
         <li>
-          <a href="/2020/08/29/%E5%BF%83%E6%83%85%E9%9A%8F%E7%AC%94%20-%202020-08-29/">心情随笔 - 2020-08-29</a>
+          <a href="/2020/09/10/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS%E7%9A%84%E6%A6%82%E5%BF%B5/">[ACP考试] - 云服务器ECS的概念</a>
         </li>
       
         <li>
-          <a href="/2020/08/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">设计模式 - 适配器模式</a>
+          <a href="/2020/09/08/%E9%98%BF%E9%87%8C%E4%BA%91%E8%AE%A1%E7%AE%97ACP%E8%80%83%E8%AF%95%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">阿里云计算ACP考试复习笔记</a>
         </li>
       
         <li>
-          <a href="/2020/08/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/">设计模式 - 装饰器模式</a>
+          <a href="/2020/09/08/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E9%98%BF%E9%87%8C%E4%BA%91%E6%8F%8F%E8%BF%B0/">[ACP考试] - 阿里云描述</a>
         </li>
       
     </ul>
@@ -573,7 +721,7 @@ Javascript是一种非常灵活的面向对象的语言，Java虽然也是面向
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
