@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/L.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          [ACP考试] - 阿里云对象存储OSS - Lucien&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/09/13/[ACP考试] - 阿里云对象存储OSS/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/default.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#阿里云" title="阿里云">阿里云</a>
+                            
+                        </div>
+                        <h2>[ACP考试] - 阿里云对象存储OSS</h2>
+                        <h3></h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-09-13
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lucien</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h4 id="对象存储的概念"><a href="#对象存储的概念" class="headerlink" title="对象存储的概念"></a>对象存储的概念</h4><h5 id="阿里云存储产品"><a href="#阿里云存储产品" class="headerlink" title="阿里云存储产品"></a>阿里云存储产品</h5><ul>
+<li>块存储：阿里云为云服务器ECS提供的块设备，具有高性能和低延迟的特点，支持随机读写，可以作为系统盘或是数据盘直接挂载在ECS实例上。</li>
+<li>文件存储NAS：适合存储非结构化的海量数据。需要通过标准的文件访问协议访问这些数据。Linux系统需要使用NFS协议，Windows系统需要使用SMB，又称为CIFS协议。类似于Window企业级文件共享的方式。</li>
+<li>对象存储OSS：一个海量的存储空间，适合存储互联网上产生额图片、短视频、音频等海量非结构化数据。可以通过API在任何时间、任何地点访问对象存储的数据。</li>
+</ul>
+<h5 id="对象的概念"><a href="#对象的概念" class="headerlink" title="对象的概念"></a>对象的概念</h5><p>对象是OSS存储数据的基本单元，也被称为OSS的文件。对象由元信息(Metadata)、用户数据(Data)、和文件名(Key)组成。对象由存储空间内部唯一的Key来标识。对象元信息是是一组键值对，表示了对象的一些属性，比如最后修改时间、大小等信息，同时也在元信息中定义了一些属性。</p>
+<h5 id="阿里云对象存储OSS"><a href="#阿里云对象存储OSS" class="headerlink" title="阿里云对象存储OSS"></a>阿里云对象存储OSS</h5><ul>
+<li>阿里云对象存储服务(Object Storage Service，简称OSS)，是阿里云提供的海量、安全、低成本、高可靠的云存储服务。其数据持久性不低于99.99…(12个9)，服务设计可用性不低于99.995。</li>
+<li>OSS具有与平台无关的RESTful API接口，可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。</li>
+<li>可以使用阿里云提供的API、SDK接口或是OSS迁移工具轻松地将海量数据移入或移出阿里云OSS。</li>
+</ul>
+<h5 id="OSS的优势"><a href="#OSS的优势" class="headerlink" title="OSS的优势"></a>OSS的优势</h5><ul>
+<li>方便、快捷的使用方式</li>
+<li>强大、灵活的安全机制</li>
+<li>数据冗余机制</li>
+<li>丰富、强大的增值服务</li>
+</ul>
+<h5 id="存储空间-Bucket"><a href="#存储空间-Bucket" class="headerlink" title="存储空间(Bucket)"></a>存储空间(Bucket)</h5><p>存储空间是用户用于存储对象(Object)的容器，所有的对象都必须隶属于某个存储空间。存储空间具有各种配置属性，包括地域、访问权限、存储类型等。用户可以根据实际需求，创建不同类型的存储空间来存储不同的数据。</p>
+<ul>
+<li>同一个存储空间内部是扁平的，没有文件系统的目录等概念，搜有对象直接隶属于其对应的存储空间。</li>
+<li>每个用户可以拥有多个存储空间。</li>
+<li>存储空间的名称在OSS范围内必须全局唯一，一旦创建不可修改。</li>
+<li>存储空间内部的对象数量没有限制。</li>
+</ul>
+<blockquote>
+<p>存储空间命名规范：</p>
+<ul>
+<li>只能包括消息字母、数字和短横线(-)。</li>
+<li>必须一小写字母或者数字开头和结尾。</li>
+<li>长度必须在3 - 63字节之间。</li>
+</ul>
+</blockquote>
+<h5 id="对象-文件-Object"><a href="#对象-文件-Object" class="headerlink" title="对象/文件(Object)"></a>对象/文件(Object)</h5><p>对象是OSS存储数据的基本单元，也被称为OSS的文件。对象由元信息(Metadata)、用户数据(Data)、和文件名(Key)组成。对象的生命周期是从上传到删除为止。整个生命周期内，只有通过追加上传的Object可以继续通过追加上传写入数据，其他上传的Object内容无法编辑，可以通过重复上传同名的对象来覆盖之前的对象。</p>
+<blockquote>
+<p>对象命名规范：</p>
+<ul>
+<li>使用UTF-8编码。</li>
+<li>长度必须在1-1023个字符之间。</li>
+<li>不能以正斜杠或反斜杠开头。</li>
+</ul>
+</blockquote>
+<h5 id="其他概念"><a href="#其他概念" class="headerlink" title="其他概念"></a>其他概念</h5><ul>
+<li>Region(地域)</li>
+<li>Endpoint(访问域名)</li>
+<li>AccessKey(访问秘钥)</li>
+<li>强一致性</li>
+<li>数据冗余机制</li>
+</ul>
+<h5 id="OSS对比文件系统"><a href="#OSS对比文件系统" class="headerlink" title="OSS对比文件系统"></a>OSS对比文件系统</h5><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>OSS</th>
+<th>文件系统</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据模型</td>
+<td>OSS是Hash索引</td>
+<td>文件系统是典型的树状索引结构</td>
+</tr>
+<tr>
+<td>数据获取</td>
+<td>根据key获取内容</td>
+<td>先访问目录，然后再逐级查找文件</td>
+</tr>
+<tr>
+<td>优势</td>
+<td>支持海量的用户并发访问</td>
+<td>支持文件修改</td>
+</tr>
+<tr>
+<td>劣势</td>
+<td>OSS保存Object不支持修改</td>
+<td>受限于单个设备的性能限制。</td>
+</tr>
+</tbody></table>
+<h5 id="对象存储OSS的存储类型"><a href="#对象存储OSS的存储类型" class="headerlink" title="对象存储OSS的存储类型"></a>对象存储OSS的存储类型</h5><ul>
+<li>标准存储类型</li>
+<li>低频访问存储类型</li>
+<li>归档存储类型</li>
+</ul>
+<blockquote>
+<p>低频访问存储类型最少存储时间为30天，归档类型存储至少60天。归档类型数据取回需要先解冻，大约一分钟延迟，解冻的数据要按GB为单位来收费。</p>
+</blockquote>
+<h4 id="阿里云对象存储的使用"><a href="#阿里云对象存储的使用" class="headerlink" title="阿里云对象存储的使用"></a>阿里云对象存储的使用</h4><h5 id="OSS管理流程"><a href="#OSS管理流程" class="headerlink" title="OSS管理流程"></a>OSS管理流程</h5><p>开通OSS服务 -&gt; 创建存储空间 -&gt; 上传文件 -&gt; 下载文件 -&gt; 删除文件 -&gt; 删除存储空间</p>
+<h5 id="创建存储空间流程"><a href="#创建存储空间流程" class="headerlink" title="创建存储空间流程"></a>创建存储空间流程</h5><p>Bucket名称 -&gt; Region -&gt; Endpoint -&gt; 存储类型 -&gt; 授权类型 -&gt; 加密 -&gt; 日志 -&gt; 开通</p>
+<h5 id="存储空间的读写权限"><a href="#存储空间的读写权限" class="headerlink" title="存储空间的读写权限"></a>存储空间的读写权限</h5><ul>
+<li>私有</li>
+<li>公共读</li>
+<li>公共读写</li>
+</ul>
+<h5 id="Bucket-Policy授权其他用户访问OSS资源"><a href="#Bucket-Policy授权其他用户访问OSS资源" class="headerlink" title="Bucket Policy授权其他用户访问OSS资源"></a>Bucket Policy授权其他用户访问OSS资源</h5><p>登录OSS管理控制台 -&gt; 在存储空间列表中 -&gt; 单击存储空间概览页面 -&gt; 单击文件管理 -&gt; 在授权页面单击新增授权 -&gt; 在新增页面设置项目 -&gt; 单击确定</p>
+<ul>
+<li>当前账号：可以从下拉菜单中选择当前账号的子账号，授予Bucket访问权限。账号必须是主账号，或拥有此Bucket管理权限以及RAM控制台ListUsurs权限的子账号。</li>
+<li>其他账号：当需要给其他账号授予Bucket访问权限，或账号无ListUsers权限时，请直接收入授权账号的UID。</li>
+<li>匿名账号：或需要给所有用户授权，可以选择匿名账号(*)。</li>
+</ul>
+<h5 id="控制台下载Object"><a href="#控制台下载Object" class="headerlink" title="控制台下载Object"></a>控制台下载Object</h5><p>在该存储空间概览页面中，单击文件管理也签，然后通过一下方式下载文件：</p>
+<ul>
+<li>下载一个或多个文件，选中一个或多个文件，选择批量操作 &gt; 下载。</li>
+<li>下载单一文件，单击文件的文件名或其右侧的详情，在打开的详情页面中单击下载。</li>
+<li>要下载单个文件，还可以选择目标文件右侧的更多 &gt; 下载。</li>
+<li>要在浏览器里通过打开URL的方式直接下载文件，单击文件的文件名或其右侧的详情，在打开的详情页面中单击打开URL。</li>
+</ul>
+<h5 id="获取文件的URL"><a href="#获取文件的URL" class="headerlink" title="获取文件的URL"></a>获取文件的URL</h5><p>其他访问者进行下载需要获取文件的URL，单击目标文件的文件名或其右侧的详情，在打开的详情页面中单击复制URL。</p>
+<h5 id="删除OSS文件"><a href="#删除OSS文件" class="headerlink" title="删除OSS文件"></a>删除OSS文件</h5><p>登录OSS控制台 -&gt; 在左侧存储空间列表中，单击目标存储空间名称 -&gt; 在该存储空间概览页面中，单击文件管理页 -&gt; 选择一个或多个文件，选择批量操作 &gt; 删除 -&gt; 在删除文件对话框中，单击确定。</p>
+<blockquote>
+<p>批量删除一次性最多选择1000个。</p>
+</blockquote>
+<h5 id="防盗链"><a href="#防盗链" class="headerlink" title="防盗链"></a>防盗链</h5><p>对象存储OSS是按照使用量收费的服务，为了减少存储于OSS的数据被其他人盗链而产生额外费用，OSS支持设置基于HTTP和HTTPS header中标投资端Referer的防盗链方法。可以通过控制台中为存储空间设置Referer字段的白名单以控制请求访问。</p>
+<h5 id="声明周期规则"><a href="#声明周期规则" class="headerlink" title="声明周期规则"></a>声明周期规则</h5><p>为方便管理存储空间的资源，OSS提供了生命周期规则。可以通过生命周期规则来批量转换Bucket内的对象的存储类型，也可以批量删除指定的Object和碎片。 </p>
+<h5 id="OSS之间的数据迁移"><a href="#OSS之间的数据迁移" class="headerlink" title="OSS之间的数据迁移"></a>OSS之间的数据迁移</h5><p>使用阿里云在线迁移服务可以在阿里云存储OSS之间进行<code>跨账号、跨地域、以及同地域内</code>的数据迁移。</p>
+<p>使用在线迁移服务，只需在控制台填写源数据地址和目标OSS地址信息，并创建迁移任务即可。启动迁移后，可以通过控制台管理迁移任务，查看进度，流量等信息。也可以生成迁移报告，查看迁移文件列表，错误文件列表。</p>
+<h5 id="数据库备份到OSS"><a href="#数据库备份到OSS" class="headerlink" title="数据库备份到OSS"></a>数据库备份到OSS</h5><p>通过数据库备份DBS将本地IDC、公网、第三方云数据库、阿里云RDS和阿里云ECS自建数据库实时备份到OSS上。</p>
+<h4 id="对象存储OSS的计费和限制"><a href="#对象存储OSS的计费和限制" class="headerlink" title="对象存储OSS的计费和限制"></a>对象存储OSS的计费和限制</h4><h5 id="计费方式"><a href="#计费方式" class="headerlink" title="计费方式"></a>计费方式</h5><ul>
+<li>按量付费：使用量 * 单价的方式，按小时收费</li>
+<li>报年包月：三种存储类型价格不同</li>
+</ul>
+<h5 id="费用构成"><a href="#费用构成" class="headerlink" title="费用构成"></a>费用构成</h5><ul>
+<li>存储费用<ul>
+<li>标准存储：按照实际存储时间和空间计费</li>
+<li>低频存储：存储时间最少30天，文件大小最小64k，少于64k按照64k计算。</li>
+<li>归档存储：存储时间最少60天，文件大小最小64k，少于64k按照64k计算。</li>
+</ul>
+</li>
+<li>流量费用<ul>
+<li>外网流出流量：通过互联网从OSS下载到本地的流量费用。</li>
+<li>CDN回源流量：通过CDN服务下载OSS资源的费用。</li>
+<li>跨区域复制流量：将源Bucket同步到目标Bucket上花费的流量费用。</li>
+</ul>
+</li>
+<li>请求费用<ul>
+<li>请求次数：按小时请求数量计费。</li>
+</ul>
+</li>
+<li>数据处理<ul>
+<li>图片处理：按图片大小计费。</li>
+<li>视频戳帧：按截取数量计费。</li>
+<li>Select扫描：扫描数据量大小计费。</li>
+<li>数据取回：低频存储类型和归档存储类型数据需要额外费用。</li>
+</ul>
+</li>
+</ul>
+<h5 id="OSS使用限制"><a href="#OSS使用限制" class="headerlink" title="OSS使用限制"></a>OSS使用限制</h5><ul>
+<li>归档存储：需要一分钟解冻时间。</li>
+<li>存储空间：存储空间同一账号、同一地域下总Bucket数量不可超过30个，存储空间名称不可重复，一旦创建成功，其名称、地域、存储类型不能修改。单个存储空间容量没有上限。</li>
+<li>上传下载：通过控制台上传、简单上传、表单上传、追加上传的文件大小不能超过<code>5G</code>，要上传更大的文件必须使用<code>断点续传</code>的方式。断点续传的方式上传的文件大小最大不能超过<code>48.8TB</code>。同一个账号在同一地域上传或下载带宽缺省阈值：中国大陆10G/s，其他地区5G/s。OSS支持上传同名文件，但会覆盖已有文件。</li>
+<li>删除文件：文件删除后无法恢复，控制台批量操作上线1000个，更大的批量操作必须通过API或SDK实现。</li>
+<li>域名绑定：账号必须在阿里云官网完成实名认证。中国大陆地域绑定的域名必须在工信部备案，其他地域的域名绑定不需要在工信部备案。每个存储空间最多可以绑定100个域名。</li>
+<li>生命周期：每个存储空间的生命周期配置最多1000条规则。</li>
+<li>图片处理：对于原图，文件格式：jpg，png，bmp，gif，webp，tiff。文件大小不能超过20MB。</li>
+<li>资源包：全国通用只能在中国大陆使用。</li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/09/14/[ACP考试] - 阿里云块存储/" data-toggle="tooltip" data-placement="top" title="[ACP考试] - 阿里云块存储">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/09/12/[ACP考试] - 阿里云SLB/" data-toggle="tooltip" data-placement="top" title="[ACP考试] - 阿里云SLB">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对象存储的概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">对象存储的概念</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#阿里云存储产品"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">阿里云存储产品</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#对象的概念"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">对象的概念</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#阿里云对象存储OSS"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">阿里云对象存储OSS</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#OSS的优势"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">OSS的优势</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#存储空间-Bucket"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">存储空间(Bucket)</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#对象-文件-Object"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">对象/文件(Object)</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#其他概念"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">其他概念</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#OSS对比文件系统"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">OSS对比文件系统</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#对象存储OSS的存储类型"><span class="toc-nav-number">1.9.</span> <span class="toc-nav-text">对象存储OSS的存储类型</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阿里云对象存储的使用"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">阿里云对象存储的使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#OSS管理流程"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">OSS管理流程</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#创建存储空间流程"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">创建存储空间流程</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#存储空间的读写权限"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">存储空间的读写权限</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Bucket-Policy授权其他用户访问OSS资源"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">Bucket Policy授权其他用户访问OSS资源</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#控制台下载Object"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">控制台下载Object</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#获取文件的URL"><span class="toc-nav-number">2.6.</span> <span class="toc-nav-text">获取文件的URL</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#删除OSS文件"><span class="toc-nav-number">2.7.</span> <span class="toc-nav-text">删除OSS文件</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#防盗链"><span class="toc-nav-number">2.8.</span> <span class="toc-nav-text">防盗链</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#声明周期规则"><span class="toc-nav-number">2.9.</span> <span class="toc-nav-text">声明周期规则</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#OSS之间的数据迁移"><span class="toc-nav-number">2.10.</span> <span class="toc-nav-text">OSS之间的数据迁移</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据库备份到OSS"><span class="toc-nav-number">2.11.</span> <span class="toc-nav-text">数据库备份到OSS</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#对象存储OSS的计费和限制"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">对象存储OSS的计费和限制</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#计费方式"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">计费方式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#费用构成"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">费用构成</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#OSS使用限制"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">OSS使用限制</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#阿里云" title="阿里云">阿里云</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a></li>
+                    
+                        <li><a href="http://www.ityouknow.com" target="_blank">纯洁的微笑</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-lucienchen-xyz";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/09/13/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8OSS/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/09/13/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8OSS/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LucienChenXi92">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Lucien Chen 2020
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.lucienChen.xyz/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-155184201-1';
+    var _gaDomain = 'www.lucienchen.xyz';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.lucienChen.xyz/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
