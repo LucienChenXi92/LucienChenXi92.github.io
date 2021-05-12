@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/L.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          [ACP考试] - 阿里云网络管理 - Lucien&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/09/11/[ACP考试] - 阿里云网络管理/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/default.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#阿里云" title="阿里云">阿里云</a>
+                            
+                        </div>
+                        <h2>[ACP考试] - 阿里云网络管理</h2>
+                        <h3></h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-09-11
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lucien</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h4 id="VPC的概念"><a href="#VPC的概念" class="headerlink" title="VPC的概念"></a>VPC的概念</h4><h5 id="网络演进"><a href="#网络演进" class="headerlink" title="网络演进"></a>网络演进</h5><ol>
+<li>传统网络</li>
+<li>网络虚拟化</li>
+<li>SDN网络</li>
+</ol>
+<h5 id="网络产品概览"><a href="#网络产品概览" class="headerlink" title="网络产品概览"></a>网络产品概览</h5><ul>
+<li>专有网络VPC</li>
+<li>负载均衡SLB</li>
+<li>NAT网关</li>
+<li>弹性公网EIP</li>
+<li>VPN网关</li>
+<li>共享带宽</li>
+<li>共享流量包</li>
+<li>高速通道</li>
+<li>云托付</li>
+<li>全球加速</li>
+</ul>
+<h5 id="专有网络VPC"><a href="#专有网络VPC" class="headerlink" title="专有网络VPC"></a>专有网络VPC</h5><p>专有网络VPC(Virtual Private Cloud)是基于阿里云构建的一个隔离的网络环境，专有网络之间逻辑上彻底隔离。VPC主要提供两个能力：</p>
+<ul>
+<li>用户可以自定义网络拓扑，包括选择自由IP地址范围、划分网段、配置路由表和网关等；</li>
+<li>通过专线或VPN与原有数据中心连接，云上和云下的资源使用同一个网络地址划分，实现应用的平滑迁移上云。</li>
+</ul>
+<h5 id="网络虚拟化"><a href="#网络虚拟化" class="headerlink" title="网络虚拟化"></a>网络虚拟化</h5><p>引入Overlay技术和SDN技术：</p>
+<ul>
+<li>VM IP地址灵活分配</li>
+<li>IP地址从寻址功能编程标记</li>
+<li>多租户</li>
+<li>转发逻辑由自学习编程集中控制</li>
+<li>消除大二层网络问题</li>
+</ul>
+<h5 id="VPC网络的组成"><a href="#VPC网络的组成" class="headerlink" title="VPC网络的组成"></a>VPC网络的组成</h5><ul>
+<li>每一个VPC都由一个私有网段、一个路由器和至少一个交换机组成。</li>
+<li>路由器(VRouter)是专有网络的枢纽。作为专有网络中重要的功能组件，它可以连接VPC内的各个交换机，同时也是连接VPC和其他网络的网关设备。</li>
+<li>交换机(vSwitch)是组成专有网络的基础网络设备，用来连接不同的云产品实例。</li>
+</ul>
+<blockquote>
+<p>VPC</p>
+<ul>
+<li>路由器<ul>
+<li>交换机1</li>
+<li>交换机2</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h6 id="虚拟路由器"><a href="#虚拟路由器" class="headerlink" title="虚拟路由器"></a>虚拟路由器</h6><ul>
+<li>路由器是一个专有网络的枢纽；</li>
+<li>作为专有网络最重要的功能组件，连接专有网络内的各个交换机；</li>
+<li>连接专有网络和其他网络的网关设备；</li>
+<li>维护专有网络内路由转发的路由表；</li>
+<li>创建专有网络时默认创建VRouter；</li>
+</ul>
+<h6 id="路由表"><a href="#路由表" class="headerlink" title="路由表"></a>路由表</h6><ul>
+<li>管理路由条目的列表；</li>
+<li>控制着整个专有网络报文转发策略。</li>
+</ul>
+<h6 id="虚拟交换机"><a href="#虚拟交换机" class="headerlink" title="虚拟交换机"></a>虚拟交换机</h6><ul>
+<li>用户基于专用网络内自定义私有网络；</li>
+<li>组成专有网络的基础网络设备；</li>
+<li>连接专有网络的云产品实例；</li>
+<li>不同的交换机代表不同的网段；</li>
+</ul>
+<h6 id="安全组"><a href="#安全组" class="headerlink" title="安全组"></a>安全组</h6><p>类似虚拟防火墙：</p>
+<ul>
+<li>用于设置单个或多个ECS实例的网络访问控制；</li>
+<li>以安全组规则组成，对该安全组下的所有ECS实例的出方向和入方向进行网络控制。</li>
+</ul>
+<h5 id="Overlay技术"><a href="#Overlay技术" class="headerlink" title="Overlay技术"></a>Overlay技术</h5><ul>
+<li>阿里云借鉴了OVERLAY技术来实现隔离。</li>
+<li>基于OVERLAY技术，海量用户被隔离开。</li>
+<li>网络实际分为上下两层，上层是虚拟网络，下层是物理网络。</li>
+</ul>
+<h5 id="VXLAN协议"><a href="#VXLAN协议" class="headerlink" title="VXLAN协议"></a>VXLAN协议</h5><p>网络虚拟化：基于OVERLAY技术在物理网络基础上构造虚拟网络。<br>VPC间完全隔离：</p>
+<ul>
+<li>VXLAN协议作用是将二层报文在三层范围内进行拓展，使用VXLAN协议对每个VPC网络进行隔离，不同的VPC之间保证安全隔离，无法进行通信。</li>
+<li>每个VPC，一条隧道，隧道ID唯一，不同用户不同隧道，隧道之间无法直接通信。</li>
+</ul>
+<h4 id="VPC的组件"><a href="#VPC的组件" class="headerlink" title="VPC的组件"></a>VPC的组件</h4><h5 id="弹性公网IP-EIP"><a href="#弹性公网IP-EIP" class="headerlink" title="弹性公网IP(EIP)"></a>弹性公网IP(EIP)</h5><ul>
+<li>可独立持有公网IP；</li>
+<li>一个公网IP，全球可达；</li>
+<li>优质的BGP线路；</li>
+<li>可用于VPC中的ECS服务器、NAT网关、私网负载均衡SLB等云产品；</li>
+<li>可以动态绑定和解绑；</li>
+</ul>
+<h5 id="VPN网关"><a href="#VPN网关" class="headerlink" title="VPN网关"></a>VPN网关</h5><ul>
+<li>VPN网关是一款基于Internet，通过加密通道将企业数据中心、企业办公网络、或Internet终端和阿里云专有网络(VPC)安全可靠连接起来的服务。</li>
+<li>IPsec-VPN：提供站点到站点的VPN连接；</li>
+<li>SSL-VPN：提供点到站点的VPN连接，不需要客户网关，终端直接接入。</li>
+</ul>
+<h5 id="NAT网关"><a href="#NAT网关" class="headerlink" title="NAT网关"></a>NAT网关</h5><ul>
+<li>主从双备模式服务</li>
+<li>企业级VPC公用网关</li>
+</ul>
+<h4 id="VPC的规划和使用"><a href="#VPC的规划和使用" class="headerlink" title="VPC的规划和使用"></a>VPC的规划和使用</h4><h5 id="VPC的规划"><a href="#VPC的规划" class="headerlink" title="VPC的规划"></a>VPC的规划</h5><h6 id="使用几个VPC？"><a href="#使用几个VPC？" class="headerlink" title="使用几个VPC？"></a>使用几个VPC？</h6><ul>
+<li>单个VPC简单部署</li>
+<li>是否有多地域部署系统的要求？VPC不能跨地域，有几个地域至少有几个VPC，但VPC可以跨可用区。</li>
+<li>各个系统之间是否需要VPC隔离的需要？不同系统之间或信息敏感程度不同，需要多个VPC来隔离。</li>
+<li>多业务系统是否需要隔离？测试环境和产品环境往往需要不同VPC来隔离。</li>
+</ul>
+<h6 id="应该使用几个交换机？"><a href="#应该使用几个交换机？" class="headerlink" title="应该使用几个交换机？"></a>应该使用几个交换机？</h6><ul>
+<li>尽量使用至少两个交换机，并且两个交换机分布在不同的可用区。</li>
+<li>应用的不同部分，如前端服务和数据库服务使用不同的交换机。</li>
+</ul>
+<h6 id="应该选择什么网段？"><a href="#应该选择什么网段？" class="headerlink" title="应该选择什么网段？"></a>应该选择什么网段？</h6><ul>
+<li>规划VPC网段<ul>
+<li>在云上只有一个VPC并且不需要和本地IDC互通式，可以选择允许私有网网段中的任何一个网段或其子网。</li>
+<li>在如果有多个VPC，或者有VPC和线下IDC构建混合云的需求，建议使用上面这些标准网段的子网作为VPC的网段，掩码不建议超过16位。</li>
+</ul>
+</li>
+<li>规划交换机网段<ul>
+<li>在交换机的网段的大小在16位网络掩码与29位网络掩码之间，可提供8-65536个地址</li>
+<li>每个交换机的第一个和最后三个IP地址为系统保留地址</li>
+<li>交换机网段的确定还需要考虑交换机下容纳ECS的数量</li>
+</ul>
+</li>
+</ul>
+<h6 id="VPC与VPC互通或本地数据中心如何互通？"><a href="#VPC与VPC互通或本地数据中心如何互通？" class="headerlink" title="VPC与VPC互通或本地数据中心如何互通？"></a>VPC与VPC互通或本地数据中心如何互通？</h6><ul>
+<li>有互通需求是要保证VPC网段和IDC网段不冲突。</li>
+<li>在多VPC的情况下，建议遵循：<ul>
+<li>尽可能做到不同的VPC网段不同，不同的VPC可以使用标准网段的子网来增加VPC可用的网段数。</li>
+<li>如果不能做到不同的VPC的网段不同，则尽量保证不同的VPC的交换机网段不同。</li>
+<li>如果也不能做到交换机网段不同，则保证要通信的交换机网段不同。</li>
+</ul>
+</li>
+</ul>
+<h5 id="VPC的使用限制"><a href="#VPC的使用限制" class="headerlink" title="VPC的使用限制"></a>VPC的使用限制</h5><h6 id="每个专有网络可以有多少个路由器？"><a href="#每个专有网络可以有多少个路由器？" class="headerlink" title="每个专有网络可以有多少个路由器？"></a>每个专有网络可以有多少个路由器？</h6><p>每个专有网络有且只有一个路由器，每个路由器维护一个路由表。</p>
+<h6 id="如何选择交换机网段？"><a href="#如何选择交换机网段？" class="headerlink" title="如何选择交换机网段？"></a>如何选择交换机网段？</h6><p>交换机的网段必须属于所属专有网络的网段。如果交换机网段和所属的VPC的网段相同，VPC内就只能创建一个交换机。阿里云VPC提供了192.168.0.0/16，172.16.0.0/12，10.0.0.0/8以及他们的子网供用户选择。</p>
+<h6 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h6><table>
+<thead>
+<tr>
+<th>资源</th>
+<th>默认</th>
+<th>提升配额</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>每个地域可创建的专有网络数量</td>
+<td>10</td>
+<td>提交工单</td>
+</tr>
+<tr>
+<td>专有网络可选的网段范围</td>
+<td>192.168.0.0/16，172.16.0.0/12，10.0.0.0/8以及他们的子网</td>
+<td>提交工单</td>
+</tr>
+<tr>
+<td>单个专有网络路由器数量</td>
+<td>1</td>
+<td>无法调整</td>
+</tr>
+<tr>
+<td>单个专有网络的交换机数量</td>
+<td>24</td>
+<td>提交工单</td>
+</tr>
+<tr>
+<td>单个专有网络的路由表数量</td>
+<td>10</td>
+<td>提交工单</td>
+</tr>
+<tr>
+<td>单个路由表的自定义路由条目数量</td>
+<td>48</td>
+<td>提交工单</td>
+</tr>
+<tr>
+<td>单个专有网络支持云产品使用网络地址数量</td>
+<td>15000</td>
+<td>无法调整</td>
+</tr>
+</tbody></table>
+<h4 id="VPC的管理"><a href="#VPC的管理" class="headerlink" title="VPC的管理"></a>VPC的管理</h4><h5 id="VPC的访问控制"><a href="#VPC的访问控制" class="headerlink" title="VPC的访问控制"></a>VPC的访问控制</h5><h6 id="安全组-1"><a href="#安全组-1" class="headerlink" title="安全组"></a>安全组</h6><ul>
+<li>安全组是一个逻辑分组，相互信任的服务器可放在同一个安全组中，同一个安全组内网络互通。不同安全组之间通信需要相互授权。</li>
+<li>VPC安全组应保持最小原则，即白名单控制，所以需尽量开放和暴露最少的端口，同时尽可能少地分配公网IP。</li>
+</ul>
+<h6 id="创建安全组"><a href="#创建安全组" class="headerlink" title="创建安全组"></a>创建安全组</h6><ul>
+<li>一个VPC下可以有多个安全组，用户可以编辑，授权或取消安全组规则。</li>
+<li>安全组规则同ECS安全组规则。</li>
+</ul>
+<h6 id="系统路由"><a href="#系统路由" class="headerlink" title="系统路由"></a>系统路由</h6><p>创建专有网络后，系统会为用户创建一张默认的路由表并为其添加系统路由来管理专有网络的流量。一个VPC只能有一张系统路由表。该系统路由表在创建VPC时自动为用户创建，用户不能手动创建也不能删除。  </p>
+<p>创建专有网络后，系统路由表中默认会有：</p>
+<ul>
+<li>100.64.0.0/10 为目标网段的路由条目，用于VPC内部云产品通信。</li>
+<li>192.168.1.0/24，192.168.2.0/24以交换机网段的路由条目，用以交换机内部的云产品通信。</li>
+</ul>
+<h6 id="查看路由表"><a href="#查看路由表" class="headerlink" title="查看路由表"></a>查看路由表</h6><p>登录控制台 -&gt; 左侧导航栏路由表 -&gt; 选择地域，然后单击管理或路由表ID连接</p>
+<h6 id="添加自定义路由"><a href="#添加自定义路由" class="headerlink" title="添加自定义路由"></a>添加自定义路由</h6><p>登录控制台 -&gt; 左侧导航栏路由表 -&gt; 选择地域，然后单击管理或路由表ID连接 -&gt; 单击添加路由条目 -&gt; 弹出对话框，配置路由</p>
+<h5 id="VPC的互联"><a href="#VPC的互联" class="headerlink" title="VPC的互联"></a>VPC的互联</h5><h6 id="VPC互联-VPN网关"><a href="#VPC互联-VPN网关" class="headerlink" title="VPC互联(VPN网关)"></a>VPC互联(VPN网关)</h6><p>VPC1 自定义路由下一跳：VPN网关1<br>VPC2 自定义路由下一跳：VPN网关2<br>VPN网关1与VPN网关2之间通过IPsec-VPN互联  </p>
+<h6 id="VPC互联-云企业网CEN"><a href="#VPC互联-云企业网CEN" class="headerlink" title="VPC互联(云企业网CEN)"></a>VPC互联(云企业网CEN)</h6><p>云企业网在VPN间，VPC与本地数据之间搭建私网通信通道，通过自动路由分发及学习，提高网络的快速收敛和跨网络通信的质量和安全性，实现全网资源的互通。</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/09/12/[ACP考试] - 阿里云SLB/" data-toggle="tooltip" data-placement="top" title="[ACP考试] - 阿里云SLB">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/09/10/[ACP考试] - 云服务器ECS的概念/" data-toggle="tooltip" data-placement="top" title="[ACP考试] - 云服务器ECS的概念">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#VPC的概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">VPC的概念</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#网络演进"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">网络演进</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#网络产品概览"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">网络产品概览</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#专有网络VPC"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">专有网络VPC</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#网络虚拟化"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">网络虚拟化</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#VPC网络的组成"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">VPC网络的组成</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#虚拟路由器"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text">虚拟路由器</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#路由表"><span class="toc-nav-number">1.5.2.</span> <span class="toc-nav-text">路由表</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#虚拟交换机"><span class="toc-nav-number">1.5.3.</span> <span class="toc-nav-text">虚拟交换机</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#安全组"><span class="toc-nav-number">1.5.4.</span> <span class="toc-nav-text">安全组</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Overlay技术"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">Overlay技术</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#VXLAN协议"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">VXLAN协议</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#VPC的组件"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">VPC的组件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#弹性公网IP-EIP"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">弹性公网IP(EIP)</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#VPN网关"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">VPN网关</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#NAT网关"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">NAT网关</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#VPC的规划和使用"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">VPC的规划和使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#VPC的规划"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">VPC的规划</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#使用几个VPC？"><span class="toc-nav-number">3.1.1.</span> <span class="toc-nav-text">使用几个VPC？</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#应该使用几个交换机？"><span class="toc-nav-number">3.1.2.</span> <span class="toc-nav-text">应该使用几个交换机？</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#应该选择什么网段？"><span class="toc-nav-number">3.1.3.</span> <span class="toc-nav-text">应该选择什么网段？</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#VPC与VPC互通或本地数据中心如何互通？"><span class="toc-nav-number">3.1.4.</span> <span class="toc-nav-text">VPC与VPC互通或本地数据中心如何互通？</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#VPC的使用限制"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">VPC的使用限制</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#每个专有网络可以有多少个路由器？"><span class="toc-nav-number">3.2.1.</span> <span class="toc-nav-text">每个专有网络可以有多少个路由器？</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#如何选择交换机网段？"><span class="toc-nav-number">3.2.2.</span> <span class="toc-nav-text">如何选择交换机网段？</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#限制"><span class="toc-nav-number">3.2.3.</span> <span class="toc-nav-text">限制</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#VPC的管理"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">VPC的管理</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#VPC的访问控制"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">VPC的访问控制</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#安全组-1"><span class="toc-nav-number">4.1.1.</span> <span class="toc-nav-text">安全组</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#创建安全组"><span class="toc-nav-number">4.1.2.</span> <span class="toc-nav-text">创建安全组</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#系统路由"><span class="toc-nav-number">4.1.3.</span> <span class="toc-nav-text">系统路由</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#查看路由表"><span class="toc-nav-number">4.1.4.</span> <span class="toc-nav-text">查看路由表</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#添加自定义路由"><span class="toc-nav-number">4.1.5.</span> <span class="toc-nav-text">添加自定义路由</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#VPC的互联"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">VPC的互联</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#VPC互联-VPN网关"><span class="toc-nav-number">4.2.1.</span> <span class="toc-nav-text">VPC互联(VPN网关)</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#VPC互联-云企业网CEN"><span class="toc-nav-number">4.2.2.</span> <span class="toc-nav-text">VPC互联(云企业网CEN)</span></a></li></ol></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#阿里云" title="阿里云">阿里云</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a></li>
+                    
+                        <li><a href="http://www.ityouknow.com" target="_blank">纯洁的微笑</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-lucienchen-xyz";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/09/11/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E9%98%BF%E9%87%8C%E4%BA%91%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/09/11/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E9%98%BF%E9%87%8C%E4%BA%91%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LucienChenXi92">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Lucien Chen 2021
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.lucienChen.xyz/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-155184201-1';
+    var _gaDomain = 'www.lucienchen.xyz';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.lucienChen.xyz/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

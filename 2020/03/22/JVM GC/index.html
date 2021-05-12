@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/L.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          JVM GC - Lucien&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/03/22/JVM GC/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/default.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                            
+                              <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                            
+                        </div>
+                        <h2>JVM GC</h2>
+                        <h3></h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-03-22
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lucien</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="Heap内存分区"><a href="#Heap内存分区" class="headerlink" title="Heap内存分区"></a>Heap内存分区</h3><ul>
+<li>新生代 1/3<ul>
+<li>伊甸区(Eden) 内存占比8/10<ul>
+<li>生还者0区(Survivor 0) 内存占比1/10</li>
+<li>生还者1区(Survivor 1) 内存占比1/10</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>老年代 2/3</li>
+<li>永久代: JDK 1.7之前hotspot有永久代的概念，用以实现方法区的功能，在Java 1.8后移除了永久代的概念。方法区被移至元空间(Metaspace)</li>
+</ul>
+<h3 id="GC-回收标记算法"><a href="#GC-回收标记算法" class="headerlink" title="GC 回收标记算法"></a>GC 回收标记算法</h3><ul>
+<li>引用计数器<br>每个对象都有一个计数器，没被引用一次便+1，失去引用便-1，当引用次数为0时并持续一段时间后，可以被回收。但是此算法无法解决两个对象相互引用的情况。</li>
+<li>可达性分析法<br>从Root node 开始不断寻找引用对象，构成一条或多条引用链。如果有对象不在引用链中，则此对象可以被回收。此方法可以解决相互引用的情况。</li>
+</ul>
+<h3 id="GC-算法"><a href="#GC-算法" class="headerlink" title="GC 算法"></a>GC 算法</h3><ul>
+<li>标记-清除(MS)<ul>
+<li>根据可达性分析，找到无引用的对象进行标记，标记完成后进行删除</li>
+<li>优点: 对内存空间无要求，效率相对标记-整理较高</li>
+<li>不足: 清除后会产生内存空间碎片，内存可利率变低，从而加速GC的频率</li>
+</ul>
+</li>
+<li>拷贝-清除(CS)<ul>
+<li>将整块内存分成两等分，每次只使用其中的一块。GC时，根据可达性分析，将需要保留的对象复制到另一块盘上，然后将原内存盘清空。</li>
+<li>优点: 当需保留的对象很少时效率很高，GC后内存平整，无空间碎片。</li>
+<li>不足: 每次只使用所有内存的一半，内存使用率低</li>
+</ul>
+</li>
+<li>标记-整理(MC)<ul>
+<li>其过程和标记-清除算法类似，只不过在标记后没有直接进行清理，而是将所有对象进行排序，将需要保留的对象排到内存的一端，然后再将需要清除的对象一次性清理掉。</li>
+<li>优点: 空间利用率高，无空间碎片产生</li>
+<li>不足: 效率相对标记-清除的效率效率低</li>
+</ul>
+</li>
+</ul>
+<h3 id="分代收集策略"><a href="#分代收集策略" class="headerlink" title="分代收集策略"></a>分代收集策略</h3><p>对Heap内存进行区域划分，充分利用各种算法的优点进行分代收集，把Java Heap分为新生代和老年代，根据不同代的特点选用不同的GC算法。</p>
+<ul>
+<li>新生代<br>采用灵活比例的复制算法，每当伊甸区内存满了即会触发Minor GC(Young GC)，基于IBM的调查结果，新生代中98%的对象都会被首次GC清除掉，因此剩余的对象会被刷入Survivor 0区，下次GC时，会将Survivor 0区和Eden区的剩余对象一同刷入Survivor 1区。GC多次仍然无法清除掉的对象最终被刷入老年代。</li>
+<li>老年代<br>由于老年代中的对象存活率高，没有额外的空间进行分配，必须使用标记-清除或标记整理算法。</li>
+</ul>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><ol>
+<li>串行：垃圾回收器(Serial Garbage Collector)<ul>
+<li>串行垃圾回收器是最古老的，在GC时它会冻结所有程序线程，使用单个垃圾回收线程进行垃圾回收。此垃圾回收器是为单线程环境设计的。</li>
+<li>GC时会产生较长的的Stop The World(服务暂停)</li>
+<li>使用方法：-XX:+UseSerialGC 串联收集</li>
+</ul>
+</li>
+<li>串行：ParNew收集器<ul>
+<li>ParNew收集器其实就是Serial收集器的多线程版本。新生代并行，老年代串行。新生代复制算法，老年代标记压缩</li>
+<li>使用方法：-XX:+UseParNewGC ParNew收集器</li>
+</ul>
+</li>
+<li>并行： Parallel收集器<ul>
+<li>Parallel Scavenge收集器类似ParNew收集器，Parallel收集器关注系统的吞吐量。可以通过参数来打开自适应调节策略，虚拟机根据当前系统的运行状况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或最大的吞吐量；也可以通过参数控制GC的时间不大于多少毫秒或是多大比例；新生代复制算法，老年代标记-整理</li>
+</ul>
+</li>
+<li>并行： Parallel Old收集器<ul>
+<li>Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和“标记整理算法”。JDK 1.6才开始提供使用</li>
+</ul>
+</li>
+<li>并发标记扫描 CMS收集器<ul>
+<li>CMS(Concurrent Mark Sweep)收集器是一种获取最短回收停顿时间为目标的收集器。目前很大一部分的Java应用都集中在互联网网站或B/S系统的服务上，这类应用尤其重视服务的相应速度，希望系统停顿的时间最短，以给用户带来较好的体验。</li>
+<li>CMS是基于标记-清除算法实现的，它的运作过程相对前面集中收集器来说更为复杂一些，整个过程分为4个过程<ul>
+<li>初始标记<ul>
+<li>Stop The World</li>
+<li>标记GC Roots能够直接关联到的对象，速度很快</li>
+</ul>
+</li>
+<li>并发标记<ul>
+<li>执行时间较长，工作线程不停顿</li>
+<li>基于初始标记的结果，多线程GC Roots Tracing，在这个过程中由于工作线程还在不断产生新的需要收集的对象，因此还需要下一步重新标记</li>
+</ul>
+</li>
+<li>重新标记<ul>
+<li>Stop The World</li>
+<li>修正并发期间因用户程序继续运作导致的标记变化，这个阶段的挺短时间会比初始标记长一些，但是比并发标记的时间短。</li>
+</ul>
+</li>
+<li>并发清除<ul>
+<li>执行时间较长，工作线程不停顿</li>
+<li>多线程清除已标记的对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优点: 并发收集，低停顿</li>
+<li>缺点: 产生大量空间碎片、并发阶段会降低吞吐量</li>
+</ul>
+</li>
+<li>G1收集器(此部分还需深入学习)<br>最新的成果之一，Hotspot开发团队赋予它的使命是未来可以替换掉JDK1.5中的CMS</li>
+</ol>
+<ul>
+<li>G1 特点：<ul>
+<li>空间整合，采用标记整理算法，不会产生内存空间碎片。</li>
+<li>可预测停顿，降低停顿时间是G1和CMS的共同关注点，但G1和CMS的共同关注点，但G1除了追求低停顿外，还能建立可预测的时间模型，能让使用者明确指定一个长度为N毫秒的时间片段内，消耗在GC上的时间不超过N毫秒。</li>
+<li>G1 不再将新生代和老年代进行物理隔离，而是一视同仁的划分成等大的若干个Region</li>
+</ul>
+</li>
+<li>收集步骤<ul>
+<li>初始标记 + Minor GC (Stop The World)</li>
+<li>Root Region Scanning</li>
+<li>并发标记</li>
+<li>重新标记(Stop The World)</li>
+<li>拷贝-清理(Stop The World)</li>
+</ul>
+</li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/03/27/前端资源加载如何优化 - 12点建议/" data-toggle="tooltip" data-placement="top" title="前端资源加载如何优化 - 12点建议">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/03/20/JVM 内存结构/" data-toggle="tooltip" data-placement="top" title="JVM 内存结构">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Heap内存分区"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Heap内存分区</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GC-回收标记算法"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">GC 回收标记算法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GC-算法"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">GC 算法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分代收集策略"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">分代收集策略</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#垃圾收集器"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">垃圾收集器</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a></li>
+                    
+                        <li><a href="http://www.ityouknow.com" target="_blank">纯洁的微笑</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-lucienchen-xyz";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/03/22/JVM%20GC/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/03/22/JVM%20GC/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LucienChenXi92">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Lucien Chen 2021
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.lucienChen.xyz/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-155184201-1';
+    var _gaDomain = 'www.lucienchen.xyz';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.lucienChen.xyz/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

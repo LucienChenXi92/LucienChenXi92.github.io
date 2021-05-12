@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/L.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          2020重新出发 - Lucien&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/05/17/2020重新出发/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/2020_road.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                            
+                        </div>
+                        <h2>2020重新出发</h2>
+                        <h3>个人随笔</h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-05-17
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lucien</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="黑天鹅"><a href="#黑天鹅" class="headerlink" title="黑天鹅"></a>黑天鹅</h2><p>2020绝对算得上是我人生中最不寻常得年份了。新冠疫情对全世界冲击巨大，影响持久。从最初的武汉封城，美国股市熔断，原油价格跌成负数，再到现在的全球460万人感染，而且势头还没有停下来的意思。Expedia去年Q3的股价近140美元，今年Q1跌到只剩个零头。国内大量企业倒闭，其中娱乐，餐饮，旅游行业被冲击最为严重，目测电影院恢复营业怕是要等7月份了，想想一年中有两个季度交白卷，也真是够难的。所以，我相信这次疫情的影响绝对会远超出我们的认知，对未来几年的市场格局，各行业发展前景有深远的影响。</p>
+<h2 id="塞翁失马，焉知非福"><a href="#塞翁失马，焉知非福" class="headerlink" title="塞翁失马，焉知非福"></a>塞翁失马，焉知非福</h2><p>对我个人影响还好吧，毕竟我也只是茫茫人海中最普通的一朵浪花，没什么资产好损失的。唯一值得说的就是换工作了。疫情之下旅游行业受到的影响最大，Expedia在深圳的开发中心，Vender基本都被Release掉了，而且如果疫情得不到有效控制，深圳的裁员情况可能会更糟。我是在4/20号得知自己也在Release的名单中的，刚开始自己很震惊，但很快又能理解了。我相信目前的形式已经远远超出Tony，Jamie，甚至Spring的能力范围。世事本无常，如果没办法改变，那就要积极面对，危机危机，有“危”就会有“机”嘛。4/29号得到消息，自己拿到了OCBC和平安科技的Offer，考虑了整整一个5.1假期，最终选择了OCBC。觉得从毕业到现在的一路成长，好不容易积累了点英语，还有前端的技能，几个月要是不用就废掉了。5月13号得以入职，这还要感谢Momo和Xinxin帮忙推荐简历，push签合流程才能这么顺利。</p>
+<h2 id="新环境感受"><a href="#新环境感受" class="headerlink" title="新环境感受"></a>新环境感受</h2><p>刚刚上了三天班，对新的环境还在慢慢适应。银行对信息安全要求非常严格，离开工位必须要锁屏。不可以使用自己的电脑，不能上外网，项目代码必须申请权限才能看到，Jira和Confluence page也是一样。IDE和一些工具也会受到限制，截图居然需要全屏截下来，然后用小画家抠图。总结起来几点感受吧：</p>
+<ol>
+<li><strong>信息孤岛</strong>。就像探索地下城一样，除了自己当前屏幕是可见的，地图上其他地方全是黑暗的，需要一点点的摸索。偶尔还会碰上被锁上的房间。分不清东南西北，而且貌似过往的一些common sense也不太适用。总之，除了一点点从新积累，也没有太好的办法。</li>
+<li><strong>生产力倒退</strong>。安全高于一切，因此很多方面不得不做出妥协，就像前面说的，不能上外网，连截屏工具都没有，一下子回到了刀耕火种的时代。但我希望在这样的环境中，自己反倒能更加专注，沉下心来，既然没有轮子，干脆想想咱们能不能自己造轮子，想想是不是也很兴奋？</li>
+<li><strong>“正式”的环境</strong>。在没入职之前，Xinxin就有提醒我要穿的正式一些，果然，第一天就了解到银行要求周一到周四需要穿长袖衬衫和皮鞋，周五可以穿带领T-shirt和运动鞋，永远告别了过去T-shirt，大裤衩的生活。说真的，过去从来没想过自己会有一天过上这样“白领”的生活，但可能这也是人生必不可少的一个阶段吧，提升一下自己穿衣的品味，不是坏事。</li>
+<li><strong>自驱力更加重要</strong>。目前受疫情影响，办公室里很多项目的需求还没有下来，所以办公室里开发压力不大，差不多晚上每天7点人就都走光了。周末也是双休，所以平时自由支配的时间变得更多起来。也许等疫情过去了，大家会更忙碌一点，但相比以前在“Expedia”的生活，完全可以用“安逸”两个字来形容。所以，新的环境下自驱力变得更加重要，8小时工作，8小时学习，8小时生活。让自己的生活忙绿起来，好好利用时间。平时工作时上不了外网，下班时间就可以深入研究研究技术，上班时间再把技术转化为生产力。</li>
+</ol>
+<h2 id="下一个5年"><a href="#下一个5年" class="headerlink" title="下一个5年"></a>下一个5年</h2><p><strong>个人成长方面</strong>。回想我毕业后的第一个5年，感觉自己像个跑步机上的小老鼠，一直都在拼命的跑呀跑呀。工作上需要什么技能，自己就去学习，快速应用到工作中。一切学习都是以收益为驱动的，绝大部分知识，你只需要花费20%的精力去学习，你就可以应付工作中80%的需求。一直没有沉下心去深入研究过什么，回过头来也不曾积累下什么。我希望在未来的5年自己能有所改变，过去自己什么都没有，学到什么都是赚到，现在应该好好思考一下，自己想要成为一个什么样的人，选择好自己的路。在Expedia的这两年我虽然成长很多很多，但我还是明白，在外企中自己现在的英文水平已经是向上发展的阻碍，希望下个五年一定要能突破这个瓶颈。</p>
+<p><strong>家庭方面</strong>。首先自己也到了该结婚生子的年龄，要承担更多的责任，希望能给家庭带来更好的物质生活，多多赚钱！与深圳这座城市战斗了5年了，早已经习惯了披星戴月的生活，希望再过个三年，在这座城市中能有一座不大但温馨的房子，留一盏等待自己下班回家的灯。至于孩子问题，感觉自己还是个孩子，自然也没准备好去成为另一个小家伙的父亲，希望自己心智上能更成熟吧。最后还要感谢陪伴自己5年了的刘小鱼同志，回想前阵子一起通关的战争机器结尾的一句话，“If you want to go fast, go alone. If you want to go far, go together”，我相信我们还有很远的路要走嘞。</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/05/24/React学习之路/" data-toggle="tooltip" data-placement="top" title="React学习之路">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/05/11/Javascript中公共属性及方法的两种声明方式对比/" data-toggle="tooltip" data-placement="top" title="Javascript中公共属性及方法的两种声明方式对比">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#黑天鹅"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">黑天鹅</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#塞翁失马，焉知非福"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">塞翁失马，焉知非福</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#新环境感受"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">新环境感受</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#下一个5年"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">下一个5年</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a></li>
+                    
+                        <li><a href="http://www.ityouknow.com" target="_blank">纯洁的微笑</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-lucienchen-xyz";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/05/17/2020%E9%87%8D%E6%96%B0%E5%87%BA%E5%8F%91/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/05/17/2020%E9%87%8D%E6%96%B0%E5%87%BA%E5%8F%91/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LucienChenXi92">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Lucien Chen 2021
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.lucienChen.xyz/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-155184201-1';
+    var _gaDomain = 'www.lucienchen.xyz';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.lucienChen.xyz/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

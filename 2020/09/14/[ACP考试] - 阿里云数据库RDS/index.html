@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/L.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          [ACP考试] - 阿里云数据库RDS - Lucien&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/09/14/[ACP考试] - 阿里云数据库RDS/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/default.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#阿里云" title="阿里云">阿里云</a>
+                            
+                        </div>
+                        <h2>[ACP考试] - 阿里云数据库RDS</h2>
+                        <h3></h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-09-14
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lucien</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h4 id="云数据库RDS的概念"><a href="#云数据库RDS的概念" class="headerlink" title="云数据库RDS的概念"></a>云数据库RDS的概念</h4><h5 id="传统搭建数据库的过程"><a href="#传统搭建数据库的过程" class="headerlink" title="传统搭建数据库的过程"></a>传统搭建数据库的过程</h5><p>购买硬件 -&gt; 安装操作系统 -&gt; 安装数据库软件 -&gt; 配置数据库</p>
+<p>配置包括：</p>
+<ul>
+<li>安全性配置</li>
+<li>性能配置</li>
+<li>高可用配置</li>
+<li>备份容灾配置</li>
+<li>…</li>
+</ul>
+<h5 id="阿里云RDS"><a href="#阿里云RDS" class="headerlink" title="阿里云RDS"></a>阿里云RDS</h5><p>阿里云关系型数据库(Relational Database Service，简称RDS)是一种稳定可靠的、可弹性伸缩的在线数据库服务。RDS支持MySQL、SQL Server、PostgreSQL、PPAS和MariaDB TX引擎，并且提供了容灾、备份、恢复、监控、迁移等方面的全套解决方案，彻底解决数据库运维的烦恼。</p>
+<h5 id="云数据库对比自建数据库"><a href="#云数据库对比自建数据库" class="headerlink" title="云数据库对比自建数据库"></a>云数据库对比自建数据库</h5><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>云数据库RDS</th>
+<th>自己搭建数据库服务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务可用性</td>
+<td>高可用架构提供高可用性</td>
+<td>需自行保障，自行搭建主备复制，自建RAID等。</td>
+</tr>
+<tr>
+<td>数据可靠性</td>
+<td>自动主备复制、数据备份、日志备份等。</td>
+<td>需自行保障，自行搭建主备复制，自建RAID等。</td>
+</tr>
+<tr>
+<td>系统安全性</td>
+<td>防止DDos攻击，流量清洗；及时修复各种数据库安全漏洞</td>
+<td>自行部署，价格昂贵</td>
+</tr>
+<tr>
+<td>数据库备份</td>
+<td>自动备份</td>
+<td>自行实现，但需要寻找备份存放空间</td>
+</tr>
+<tr>
+<td>软硬件投入</td>
+<td>无需软硬件投入，按需付费</td>
+<td>数据库服务器成本相对较高，对于SQL Server还需支付许可证费用</td>
+</tr>
+<tr>
+<td>系统托管</td>
+<td>无托管费用</td>
+<td>每台2U服务器每年超过5000元</td>
+</tr>
+<tr>
+<td>维护成本</td>
+<td>无需运维</td>
+<td>招聘专业的DBA来维护</td>
+</tr>
+<tr>
+<td>部署扩容</td>
+<td>即时开通，快速部署，弹性扩容</td>
+<td>需硬件采购、机房托管、机器部署等工作，周期较长</td>
+</tr>
+<tr>
+<td>资源利用率</td>
+<td>按实际结算，100%利用率</td>
+<td>由于业务有高峰和低谷，容易造成资源利用率</td>
+</tr>
+</tbody></table>
+<h5 id="云数据库RDS相关概念"><a href="#云数据库RDS相关概念" class="headerlink" title="云数据库RDS相关概念"></a>云数据库RDS相关概念</h5><ul>
+<li>实例：实力是虚拟化的数据库服务器。可以在一个实例中创建和管理多个数据库。</li>
+<li>地域：一般情况下，RDS应该和ECS位于同一地域，以提高访问性能(内网带宽)。</li>
+<li>可用区：指在某个地域内拥有独立和网络的物理区域。同一地域的不同可用区之间没有实质性区别。</li>
+<li>数据库引擎：RDS支持多种数据库引擎，如MySQL，SQL Server、PostgreSQL、PPAS和MariaDB TX引擎等等。</li>
+<li>网络类型：可以选择将实例创建在经典网络或专有网络VPC中。</li>
+<li>产品系列：分为基础版、高可用版、集群版和金融版。</li>
+<li>规格族：分为通用型，独享型，独占物理机型。</li>
+<li>存储类型：分为SSD本地盘、SSD云盘和ESSD云盘。</li>
+</ul>
+<h5 id="阿里云RDS实例版本"><a href="#阿里云RDS实例版本" class="headerlink" title="阿里云RDS实例版本"></a>阿里云RDS实例版本</h5><ul>
+<li>基础版：单机，适合个人学习和微型网站，企业的开发测试环境，不适用于产品环境。</li>
+<li>高可用版：主备双机，机房容灾。适合大中企业的生产数据库，互联网，物联网，零售，游戏等行业。</li>
+<li>集群版：主备双实例，可以实现同步或异步复制数据。大中型企业的生产数据库，ERP系统等。</li>
+<li>三节点企业版(原金融版)：一主两备三节点。对数据安全性要求非常高的金融、证券、保险行业的核心数据库。</li>
+</ul>
+<h5 id="RDS的规格族"><a href="#RDS的规格族" class="headerlink" title="RDS的规格族"></a>RDS的规格族</h5><ul>
+<li>通用型：独享被分配的内存，与同一物理机上其他实例共享CPU和存储资源。</li>
+<li>独享型：具有完全独享的CPU和内存，性能长期稳定，不会因为物理机上其他实例影响性能。</li>
+</ul>
+<h5 id="RDS的存储类型"><a href="#RDS的存储类型" class="headerlink" title="RDS的存储类型"></a>RDS的存储类型</h5><ul>
+<li>本地SSD盘(推荐)</li>
+<li>SSD云盘</li>
+<li>ESSD云盘</li>
+</ul>
+<h5 id="RDS的灾备实例"><a href="#RDS的灾备实例" class="headerlink" title="RDS的灾备实例"></a>RDS的灾备实例</h5><ul>
+<li>RDS通过数据传输服务(DTS)实现主实例和异地灾备实例之间的实时同步。主实例和灾备实例均搭建主备高可用架构，当主实例所在地域发生自然灾害等情况，主节点和备节点均无法连接是，可将异地灾备实例切换成主实例，在应用端修改数据库链接地址后，即可快速回复应用的业务访问。</li>
+<li>灾备实例可通过DTS管理控制台实现同步对象变更、同步速度设置、延迟报警等同步链路原生功能。</li>
+</ul>
+<h5 id="只读实例"><a href="#只读实例" class="headerlink" title="只读实例"></a>只读实例</h5><p>在大量读请求的应用场景下，单个实例无法承受读取压力。为了实现读取能力的弹性扩展，分担数据库压力，可以创建一个或多个只读实例，利用只读实例满足大量的数据库读取需求，增加应用的吞吐量。</p>
+<h5 id="RDS优势-灵活计费"><a href="#RDS优势-灵活计费" class="headerlink" title="RDS优势 - 灵活计费"></a>RDS优势 - 灵活计费</h5><ul>
+<li>按需变配</li>
+<li>即开即用</li>
+<li>透明兼容</li>
+<li>管理便捷</li>
+</ul>
+<h5 id="RDS优势-高性能"><a href="#RDS优势-高性能" class="headerlink" title="RDS优势 - 高性能"></a>RDS优势 - 高性能</h5><ul>
+<li>参数优化</li>
+<li>SQL优化建议</li>
+<li>高端设备投入</li>
+<li>高速访问</li>
+</ul>
+<h5 id="RDS优势-灾备设计"><a href="#RDS优势-灾备设计" class="headerlink" title="RDS优势 - 灾备设计"></a>RDS优势 - 灾备设计</h5><ul>
+<li>RDS默认提供备份功能，支持自动备份和手动备份。</li>
+<li>RDS默认支持按备份集和指定时间点进行数据备份。</li>
+<li>除了默认的备份恢复功能，RDS for MySQL还提供了跨地域备份恢复功能。</li>
+</ul>
+<h5 id="RDS优势-高可用性"><a href="#RDS优势-高可用性" class="headerlink" title="RDS优势 - 高可用性"></a>RDS优势 - 高可用性</h5><ul>
+<li>防DDos攻击</li>
+<li>检测SQL注入威胁</li>
+<li>访问控制策略</li>
+<li>系统安全</li>
+<li>数据加密</li>
+<li>专业安全团队</li>
+</ul>
+<h4 id="阿里云RDS的使用"><a href="#阿里云RDS的使用" class="headerlink" title="阿里云RDS的使用"></a>阿里云RDS的使用</h4><h5 id="RDS创建流程"><a href="#RDS创建流程" class="headerlink" title="RDS创建流程"></a>RDS创建流程</h5><p>创建实例 -&gt; 设置白名单 -&gt; 申请外网地址 -&gt; 创建数据库 -&gt; 创建账号 -&gt; 连接并使用数据库</p>
+<h5 id="数据多样化存储"><a href="#数据多样化存储" class="headerlink" title="数据多样化存储"></a>数据多样化存储</h5><p>RDS可以搭配云数据库Redis、和Memcache和对象内存OSS等产品使用，实现多样化存储扩展。</p>
+<p>云数据库缓存有两个优势：响应速度块，QPS更高。</p>
+<h5 id="开放搜索-OpenSearch"><a href="#开放搜索-OpenSearch" class="headerlink" title="开放搜索(OpenSearch)"></a>开放搜索(OpenSearch)</h5><p>开放搜索服务(OpenSearch)是一款结构物数据搜索托管服务，为移动应用开发者和网站站长提供简单、高效、低成本和可扩展的搜索解决方案。通过OpenSearch自带功能，可将RDS中的数据自动同步至OpenSearch实现各类复杂搜索。</p>
+<h4 id="数据管理DMS和数据传输DTS"><a href="#数据管理DMS和数据传输DTS" class="headerlink" title="数据管理DMS和数据传输DTS"></a>数据管理DMS和数据传输DTS</h4><h5 id="什么是数据管理DMS"><a href="#什么是数据管理DMS" class="headerlink" title="什么是数据管理DMS"></a>什么是数据管理DMS</h5><p>数据管理(Data Management Service，简称DMS)是一种集数据管理、结构管理、用户授权、安全审计、数据趋势、数据追踪、BI图表、性能与优化和服务器管理于一体的数据管理服务。</p>
+<h5 id="数据管理DMS基础架构"><a href="#数据管理DMS基础架构" class="headerlink" title="数据管理DMS基础架构"></a>数据管理DMS基础架构</h5><ul>
+<li>基础层：DMS业务层提供数据库实时点击和SQL访问，业务层为无状态节点，确保为DMS整体服务能力的提升。宕机无状态切换，确保7 * 24小时服务。</li>
+<li>调度层：DMS调度层为提供调度，其后台主要通过线程池进行调度，分为实时调度和后台定时调度两类。实时调度提供前端点击后立即调度并一次性任务处理，数据管理后台自动完成所有工作。后台定时任务任务未用于定时获取用户指定的数据，提供查阅和分析。</li>
+<li>连接层：连接层为数据管理访问数据的核心组件，兼容各种存储引擎的请求。前端操作上会话隔离及保持，接近客户端的体验。实时会话数量控制，防止对单个实例建立大量的请求连接。按功能分级回收连接策略，尽可能确保不同功能体验的基础上减少对数据库连接数。</li>
+</ul>
+<h5 id="数据管理DMS产品优势"><a href="#数据管理DMS产品优势" class="headerlink" title="数据管理DMS产品优势"></a>数据管理DMS产品优势</h5><ul>
+<li>轻松拥有数据分析能力</li>
+<li>极大提升研发效率</li>
+<li>实时优化数据库性能</li>
+<li>全面的访问安全保护</li>
+<li>丰富的数据源支持</li>
+</ul>
+<h4 id="数据传输服务DTS"><a href="#数据传输服务DTS" class="headerlink" title="数据传输服务DTS"></a>数据传输服务DTS</h4><h5 id="什么是数据传输服务DTS"><a href="#什么是数据传输服务DTS" class="headerlink" title="什么是数据传输服务DTS"></a>什么是数据传输服务DTS</h5><p>数据传输服务DTS(Data Transmission Service)支持RDBMS、NoSQL、OLAP等数据源间的数据交互，及数据迁移、订阅、同步于一体，构建安全、可拓展、高可用的数据架构。</p>
+<h5 id="数据传输服务DTS的系统架构"><a href="#数据传输服务DTS的系统架构" class="headerlink" title="数据传输服务DTS的系统架构"></a>数据传输服务DTS的系统架构</h5><p>TBD</p>
+<h5 id="数据传输服务DTS的优势"><a href="#数据传输服务DTS的优势" class="headerlink" title="数据传输服务DTS的优势"></a>数据传输服务DTS的优势</h5><ul>
+<li>支持丰富多样的数据同步、迁移的业务场景。</li>
+<li>高性能</li>
+<li>安全可靠</li>
+<li>简单易用</li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/09/14/[ACP考试] - 阿里云安全体系/" data-toggle="tooltip" data-placement="top" title="[ACP考试] - 阿里云安全体系">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/09/14/[ACP考试] - 阿里云块存储/" data-toggle="tooltip" data-placement="top" title="[ACP考试] - 阿里云块存储">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#云数据库RDS的概念"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">云数据库RDS的概念</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#传统搭建数据库的过程"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">传统搭建数据库的过程</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#阿里云RDS"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">阿里云RDS</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#云数据库对比自建数据库"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">云数据库对比自建数据库</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#云数据库RDS相关概念"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">云数据库RDS相关概念</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#阿里云RDS实例版本"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">阿里云RDS实例版本</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#RDS的规格族"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">RDS的规格族</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#RDS的存储类型"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">RDS的存储类型</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#RDS的灾备实例"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">RDS的灾备实例</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#只读实例"><span class="toc-nav-number">1.9.</span> <span class="toc-nav-text">只读实例</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#RDS优势-灵活计费"><span class="toc-nav-number">1.10.</span> <span class="toc-nav-text">RDS优势 - 灵活计费</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#RDS优势-高性能"><span class="toc-nav-number">1.11.</span> <span class="toc-nav-text">RDS优势 - 高性能</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#RDS优势-灾备设计"><span class="toc-nav-number">1.12.</span> <span class="toc-nav-text">RDS优势 - 灾备设计</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#RDS优势-高可用性"><span class="toc-nav-number">1.13.</span> <span class="toc-nav-text">RDS优势 - 高可用性</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阿里云RDS的使用"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">阿里云RDS的使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#RDS创建流程"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">RDS创建流程</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据多样化存储"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">数据多样化存储</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#开放搜索-OpenSearch"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">开放搜索(OpenSearch)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据管理DMS和数据传输DTS"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">数据管理DMS和数据传输DTS</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#什么是数据管理DMS"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">什么是数据管理DMS</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据管理DMS基础架构"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">数据管理DMS基础架构</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据管理DMS产品优势"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">数据管理DMS产品优势</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据传输服务DTS"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">数据传输服务DTS</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#什么是数据传输服务DTS"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">什么是数据传输服务DTS</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据传输服务DTS的系统架构"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">数据传输服务DTS的系统架构</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据传输服务DTS的优势"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">数据传输服务DTS的优势</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#阿里云" title="阿里云">阿里云</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a></li>
+                    
+                        <li><a href="http://www.ityouknow.com" target="_blank">纯洁的微笑</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-lucienchen-xyz";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/09/14/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E9%98%BF%E9%87%8C%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93RDS/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/09/14/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E9%98%BF%E9%87%8C%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93RDS/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LucienChenXi92">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Lucien Chen 2021
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.lucienChen.xyz/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-155184201-1';
+    var _gaDomain = 'www.lucienchen.xyz';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.lucienChen.xyz/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/L.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          [ACP考试] - 云服务器ECS的概念 - Lucien&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/09/10/[ACP考试] - 云服务器ECS的概念/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/default.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#阿里云" title="阿里云">阿里云</a>
+                            
+                        </div>
+                        <h2>[ACP考试] - 云服务器ECS的概念</h2>
+                        <h3></h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-09-10
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lucien</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h4 id="阿里云云服务器ECS"><a href="#阿里云云服务器ECS" class="headerlink" title="阿里云云服务器ECS"></a>阿里云云服务器ECS</h4><h5 id="服务器的部署模式"><a href="#服务器的部署模式" class="headerlink" title="服务器的部署模式"></a>服务器的部署模式</h5><ul>
+<li>单机架构： 一台服务器提供给客户提供所有应用。硬件资源有上限。</li>
+<li>集群架构： 多台服务器提供应用。不易扩展，而且容易形成资源浪费。</li>
+<li>云计算架构： 弹性、扩展。易扩展，即开即用，方便管理。</li>
+</ul>
+<h5 id="ECS的优势"><a href="#ECS的优势" class="headerlink" title="ECS的优势"></a>ECS的优势</h5><ul>
+<li>无需自建机房，无需采购硬件配置。</li>
+<li>分钟级交付，快速部署，缩短上线周期。</li>
+<li>快速接入全球范围内的数据中心和BGP机房。</li>
+<li>成本透明，按需使用。</li>
+<li>支持多种类型计算服务器。</li>
+<li>支持内网访问其他云服务器，形成丰富的行业解决方案，降低公网流量成本。</li>
+<li>提供防火墙，角色权限控制，内网隔离，防病毒攻击等安全方案。</li>
+<li>提供监控和运维体系。</li>
+<li>提供行业标准API，提高易用性和适用性。</li>
+</ul>
+<h5 id="云服务器的灵魂：虚拟化技术"><a href="#云服务器的灵魂：虚拟化技术" class="headerlink" title="云服务器的灵魂：虚拟化技术"></a>云服务器的灵魂：虚拟化技术</h5><p>虚拟化前：IT资源独立，硬件资源易浪费。<br>虚拟化后：IT资源抽象为共享资源池，从资源池中灵活分配资源。</p>
+<h5 id="云服务器ECS的概念"><a href="#云服务器ECS的概念" class="headerlink" title="云服务器ECS的概念"></a>云服务器ECS的概念</h5><p>云服务器(Elastic Compute Service，简称ECS)是阿里云挺高的性能卓越、稳定可靠、弹性拓展的IaaS(Infrastructure as a Service)级别云计算服务。云服务器ECS免去了采购IT硬件的前期准备，像使用水、电、天然气等公共资源一样便捷、高效地使用服务器，实现云计算资源的即开即用和弹性伸缩。阿里云ECS持续提供创新性服务器，解决多种业务需求，助力业务发展。</p>
+<h5 id="ECS的组件"><a href="#ECS的组件" class="headerlink" title="ECS的组件"></a>ECS的组件</h5><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>实例</td>
+<td>一台虚拟服务器，内含CPU、内存、操作系统、网络配置、磁盘等基础的计算组件。实例的计算性能、内存性能、和适用业务场景由实力规格决定，其具体性能指标包括实例CPU核数、内存大小、网络性能等。</td>
+</tr>
+<tr>
+<td>镜像</td>
+<td>提供实例的操作系统、初始化应用数据及预装的软件。</td>
+</tr>
+<tr>
+<td>存储块</td>
+<td>块设备类型产品，具备高性能和低延迟的特性。提供基于分布式存储架构的云盘、共享块存储以及基于物理机本地存储的本地盘。</td>
+</tr>
+<tr>
+<td>快照</td>
+<td>某一时间点云盘或共享块存储的数据状态文件。常用于数据备份、数据恢复和制作自定义镜像等。</td>
+</tr>
+<tr>
+<td>安全组</td>
+<td>同一地域内具有相同保护需求并相互信任的实例组成，是一种虚拟的防火墙，用于设置实例的网络访问控制。</td>
+</tr>
+<tr>
+<td>网络</td>
+<td>专有网络：逻辑上彻底隔离的云上私有网络。可以自行分配私网IP地址范围、配置路由表和网关等。经典网络：所有经典网络类型实例都建立在一个公用的基础网络上。</td>
+</tr>
+</tbody></table>
+<h4 id="ECS实例"><a href="#ECS实例" class="headerlink" title="ECS实例"></a>ECS实例</h4><h5 id="选购云服务器"><a href="#选购云服务器" class="headerlink" title="选购云服务器"></a>选购云服务器</h5><ul>
+<li>个人用户: 个人用户只需要完成云服务器的购买即可。</li>
+<li>企业用户: 企业用户需要完成规划后再进行购买。</li>
+</ul>
+<h5 id="实例规格"><a href="#实例规格" class="headerlink" title="实例规格"></a>实例规格</h5><ul>
+<li>企业级x86计算规格族群</li>
+<li>企业级异构计算规格族群</li>
+<li>弹性裸金属服务器(神龙)超级计算集群(SCC)实例规格族群</li>
+<li>入门级x86计算规格族群</li>
+</ul>
+<blockquote>
+<p><strong>弹性裸金属服务器</strong></p>
+<ul>
+<li>弹性裸金属服务器融合了物理机和云服务器各自的优势，即提供超高的计算性能，又提供了阿里云特有的硬盘，网络，安全，监控等服务。</li>
+<li>弹性裸金属服务器本质是单台物理机，不会和其他人共享。</li>
+</ul>
+</blockquote>
+<h5 id="ECS实例的生命周期"><a href="#ECS实例的生命周期" class="headerlink" title="ECS实例的生命周期"></a>ECS实例的生命周期</h5><table>
+<thead>
+<tr>
+<th>控制台状态</th>
+<th>API状态</th>
+<th>状态属性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>准备中</td>
+<td>Pending</td>
+<td>中间</td>
+</tr>
+<tr>
+<td>启动中</td>
+<td>Starting</td>
+<td>中间</td>
+</tr>
+<tr>
+<td>运行中</td>
+<td>Running</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>即将过期</td>
+<td>Running</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>停止中</td>
+<td>Stopping</td>
+<td>中间</td>
+</tr>
+<tr>
+<td>已停止</td>
+<td>Stopped</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>已过期</td>
+<td>Stopped</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>过期回收中</td>
+<td>Stopped</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>欠费回收中</td>
+<td>Stopped</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>已锁定</td>
+<td>Stopped</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>等待释放中锁定</td>
+<td>Stopped</td>
+<td>稳定</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>即将过期是距离过期日期提前15天的状态。<br>过期回收中（vCPU + 内存）不再保留，本地盘数据不再保留，云盘和分配的公网IP会保留。<br>欠费回收中 同过期回收中。</p>
+</blockquote>
+<h5 id="镜像的概念"><a href="#镜像的概念" class="headerlink" title="镜像的概念"></a>镜像的概念</h5><p>镜像是云服务器实例运行环境的模板，包括操作系统和运行时环境，也可能包括预装的应用程序。</p>
+<ul>
+<li>公共镜像</li>
+<li>自定义镜像</li>
+<li>云市场镜像</li>
+</ul>
+<h5 id="阿里云网络VPC概念"><a href="#阿里云网络VPC概念" class="headerlink" title="阿里云网络VPC概念"></a>阿里云网络VPC概念</h5><p>阿里云推荐使用专有网络VPC(Virtual Private Cloud)，专有网络之间逻辑上彻底隔离，VPC作为用户上云首选的产品，主要特点：</p>
+<ul>
+<li>隔离的网络环境</li>
+<li>可控的网络配置</li>
+</ul>
+<h5 id="网络规划"><a href="#网络规划" class="headerlink" title="网络规划"></a>网络规划</h5><p>基于容灾的考虑，建议将不同的弹性裸金属服务器放在不同可用区下。</p>
+<h5 id="安全组的作用"><a href="#安全组的作用" class="headerlink" title="安全组的作用"></a>安全组的作用</h5><ul>
+<li>安全组是一种虚拟防火墙，用来控制出站和入站流量。</li>
+<li>在同一个VPC内，位于相同安全组的实例内网互通。</li>
+<li>默认规则： <ul>
+<li>入方向：默认拒绝所有访问。为了方便管理云服务器，默认安全组包含了ICMP协议、SSH 22端口、RDP 3389端口，还可以勾选80和443端口。</li>
+<li>出方向：允许所有访问。</li>
+</ul>
+</li>
+</ul>
+<h5 id="VPC安全组默认规则"><a href="#VPC安全组默认规则" class="headerlink" title="VPC安全组默认规则"></a>VPC安全组默认规则</h5><ul>
+<li>入方向： 开放端口有 22, 3389, -1, 80, 443。授权对象： 0.0.0.0/0</li>
+<li>出方向： 允许所有访问</li>
+</ul>
+<h4 id="ECS的优势-1"><a href="#ECS的优势-1" class="headerlink" title="ECS的优势"></a>ECS的优势</h4><p>与普通的IDC(Intergrated Data Center)机房相比，高可用，安全性，弹性等优势。</p>
+<ul>
+<li>机房部署</li>
+<li>操作易用</li>
+<li>容灾备份</li>
+<li>安全可靠</li>
+<li>灵活拓展</li>
+<li>节约成本</li>
+</ul>
+<h4 id="ECS的使用"><a href="#ECS的使用" class="headerlink" title="ECS的使用"></a>ECS的使用</h4><h5 id="购买ECS流程"><a href="#购买ECS流程" class="headerlink" title="购买ECS流程"></a>购买ECS流程</h5><p>打开创建实例页面 -&gt; 完成基础配置 -&gt; 配置网络和安全组 -&gt; 系统配置(可选) -&gt; 分组设置(可选) -&gt; 确认订单和购买</p>
+<h5 id="配置自定义安全组规则"><a href="#配置自定义安全组规则" class="headerlink" title="配置自定义安全组规则"></a>配置自定义安全组规则</h5><p>登录控制台 -&gt; 选择网络和安全组 &gt; 安全组 -&gt; 选择地域 -&gt; 点击配置规则 -&gt; 点击添加安全组规则 -&gt; 设置具体规则内容</p>
+<blockquote>
+<p>优先级： 1 - 100, 数值越小，优先级越高。相同优先级时拒绝请求优先级更高。</p>
+</blockquote>
+<h5 id="ECS管理方式"><a href="#ECS管理方式" class="headerlink" title="ECS管理方式"></a>ECS管理方式</h5><ul>
+<li>控制台： 最常用方法。</li>
+<li>API：熟悉网络服务协议和一种以上编程语言，使用云服务器ECS API管理云上资源和开发自己的应用程序。</li>
+</ul>
+<h5 id="SDK的编程语言"><a href="#SDK的编程语言" class="headerlink" title="SDK的编程语言"></a>SDK的编程语言</h5><ul>
+<li>支持的编程语言有Java，Python，PHP， .NET，C/C++，GO</li>
+<li>SDK操作流程：创建Profile，创建Client，创建Request，设置Request参数，使用Client对应方法传入Request并获得Response，解析Response。</li>
+</ul>
+<h5 id="ECS的登录"><a href="#ECS的登录" class="headerlink" title="ECS的登录"></a>ECS的登录</h5><ul>
+<li>控制台登录，先登录云控制台，然后再通过控制台中的远程终端</li>
+<li>直接登录，通过远程SSH工具登录</li>
+</ul>
+<h4 id="ECS的计费和使用限制"><a href="#ECS的计费和使用限制" class="headerlink" title="ECS的计费和使用限制"></a>ECS的计费和使用限制</h4><h5 id="ECS计费资源"><a href="#ECS计费资源" class="headerlink" title="ECS计费资源"></a>ECS计费资源</h5><table>
+<thead>
+<tr>
+<th>资源</th>
+<th>费用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>实例规格</td>
+<td>vCPU核数和内存容量</td>
+</tr>
+<tr>
+<td>镜像</td>
+<td>公用镜像、自定义镜像、共享镜像、镜像市场</td>
+</tr>
+<tr>
+<td>云盘</td>
+<td>随实例一起创建、计费方式与实例相同</td>
+</tr>
+<tr>
+<td>公网带宽</td>
+<td></td>
+</tr>
+<tr>
+<td>快照</td>
+<td>只要开通快照服务并生成快照就要收费</td>
+</tr>
+</tbody></table>
+<h5 id="ECS计费模式"><a href="#ECS计费模式" class="headerlink" title="ECS计费模式"></a>ECS计费模式</h5><ul>
+<li>包年包月：预付费、最少一个月、适合7 * 24固定服务</li>
+<li>按量付费：后付费、按秒计费单价按<code>元/小时</code>显示，不开启不收费</li>
+<li>抢占实例：后付费、竞价模式若出价 &gt; 市场价成交；若出价 &lt; 市场价，实例被释放。</li>
+</ul>
+<h5 id="ECS使用限制"><a href="#ECS使用限制" class="headerlink" title="ECS使用限制"></a>ECS使用限制</h5><ul>
+<li>不支持虚拟化软件的安装和在进行虚拟化(例如安装使用VMware Workstation)。目前，仅弹性裸金属服务器和超级计算集群支持再虚拟化。</li>
+<li>不支持声卡应用。</li>
+<li>不支持直接加载外界硬件设备。</li>
+<li>不支持SNAT等IP包地址转换服务，可以使用自己搭建VPN或代理方式实现。</li>
+<li>不支持多播协议。</li>
+<li>日志服务不支持32位Linux云服务器。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>限制项</th>
+<th>普通用户限制</th>
+<th>例外申请方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建ECS实例用户限制</td>
+<td>实名认证</td>
+<td>没有例外</td>
+</tr>
+<tr>
+<td>创建按量付费资源限制</td>
+<td>账户余额不可小于100</td>
+<td>提交工单</td>
+</tr>
+<tr>
+<td>可创建按量付费实例规格</td>
+<td>vCPU核数小于16</td>
+<td>提交工单</td>
+</tr>
+<tr>
+<td>一个账户所有地域的ECS实例数量</td>
+<td>100</td>
+<td>-</td>
+</tr>
+<tr>
+<td>一个账户在每个地域的按量付费总vCPU配额</td>
+<td>50 vCPU</td>
+<td>提交工单</td>
+</tr>
+<tr>
+<td>一个账户在每个地域的抢占式实例vCPU配额</td>
+<td>50 vCPU</td>
+<td>提交工单</td>
+</tr>
+<tr>
+<td>一个账号在每个地域实例启动模板数量</td>
+<td>30</td>
+<td>没有例外</td>
+</tr>
+<tr>
+<td>一个实例启动模板中的版本数量</td>
+<td>30</td>
+<td>没有例外</td>
+</tr>
+<tr>
+<td>按量付费转预付费</td>
+<td>以下规格不支持：t1、s1、s2、s3、c1、c2、m1、m2、n1、n2、e3</td>
+<td>没有例外</td>
+</tr>
+<tr>
+<td>预付费转按量付费</td>
+<td>是否支持要基于使用情况而定，退款有上限要求</td>
+<td>没有例外</td>
+</tr>
+</tbody></table>
+<h5 id="ECS的使用场景"><a href="#ECS的使用场景" class="headerlink" title="ECS的使用场景"></a>ECS的使用场景</h5><ul>
+<li>企业官网或轻量级的Web应用</li>
+<li>多媒体以及高并发应用或网站</li>
+<li>高I/O要求数据库</li>
+<li>访问量波动剧烈的应用或网站</li>
+<li>大数据及实时在线或离线分析</li>
+<li>机器学习和深度学习等AI应用</li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/09/11/[ACP考试] - 阿里云网络管理/" data-toggle="tooltip" data-placement="top" title="[ACP考试] - 阿里云网络管理">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/09/08/[ACP考试] - 阿里云描述/" data-toggle="tooltip" data-placement="top" title="[ACP考试] - 阿里云描述">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#阿里云云服务器ECS"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">阿里云云服务器ECS</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#服务器的部署模式"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">服务器的部署模式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#ECS的优势"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">ECS的优势</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#云服务器的灵魂：虚拟化技术"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">云服务器的灵魂：虚拟化技术</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#云服务器ECS的概念"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">云服务器ECS的概念</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#ECS的组件"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">ECS的组件</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#ECS实例"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">ECS实例</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#选购云服务器"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">选购云服务器</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#实例规格"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">实例规格</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#ECS实例的生命周期"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">ECS实例的生命周期</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#镜像的概念"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">镜像的概念</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#阿里云网络VPC概念"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">阿里云网络VPC概念</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#网络规划"><span class="toc-nav-number">2.6.</span> <span class="toc-nav-text">网络规划</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#安全组的作用"><span class="toc-nav-number">2.7.</span> <span class="toc-nav-text">安全组的作用</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#VPC安全组默认规则"><span class="toc-nav-number">2.8.</span> <span class="toc-nav-text">VPC安全组默认规则</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#ECS的优势-1"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">ECS的优势</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#ECS的使用"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">ECS的使用</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#购买ECS流程"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">购买ECS流程</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#配置自定义安全组规则"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">配置自定义安全组规则</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#ECS管理方式"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">ECS管理方式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#SDK的编程语言"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">SDK的编程语言</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#ECS的登录"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">ECS的登录</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#ECS的计费和使用限制"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">ECS的计费和使用限制</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#ECS计费资源"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">ECS计费资源</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#ECS计费模式"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">ECS计费模式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#ECS使用限制"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">ECS使用限制</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#ECS的使用场景"><span class="toc-nav-number">5.4.</span> <span class="toc-nav-text">ECS的使用场景</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#阿里云" title="阿里云">阿里云</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a></li>
+                    
+                        <li><a href="http://www.ityouknow.com" target="_blank">纯洁的微笑</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-lucienchen-xyz";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/09/10/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS%E7%9A%84%E6%A6%82%E5%BF%B5/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/09/10/%5BACP%E8%80%83%E8%AF%95%5D%20-%20%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8ECS%E7%9A%84%E6%A6%82%E5%BF%B5/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LucienChenXi92">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Lucien Chen 2021
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.lucienChen.xyz/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-155184201-1';
+    var _gaDomain = 'www.lucienchen.xyz';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.lucienChen.xyz/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

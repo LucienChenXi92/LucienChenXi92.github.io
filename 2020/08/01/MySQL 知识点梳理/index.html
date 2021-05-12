@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/L.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          MySQL 知识点梳理 - Lucien&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://www.lucienChen.xyz/2020/08/01/MySQL 知识点梳理/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/default.png')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-8 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                            
+                              <a class="tag" href="/tags/#Mysql" title="Mysql">Mysql</a>
+                            
+                        </div>
+                        <h2>MySQL 知识点梳理</h2>
+                        <h3></h3>
+                        <span class="meta">
+                            Posted by Lucien Chen on
+                            2020-08-01
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Lucien</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>终于得空梳理一下MySQL的知识点了，过去三年里由于业务场景特殊的原因，关系型数据库很少用到，渐渐的很多知识都开始淡忘了，今天就好好整理一下。<br>MySQL是目前全世界最受欢迎的开源数据库，免费，高性能，可扩展是MySQL的三大标签，可以说MySQL是学习数据库最好的起点。<br>和MySQL类似的，市面上主流的数据库还有Oracle和PostgreSQL这两款。Oracle功能强大，但也以价格贵而出名。Postgre也叫PGSQL，和Oracle类似，支持类型丰富，能很好胜任高并发的应用场景，相比MySQL更加稳定，因此更适合金融等严苛的企业应用场景，而MySQL更适合业务逻辑相对简单数据可靠性要求低一些的互联网场景。</p>
+<h3 id="数据库基础知识"><a href="#数据库基础知识" class="headerlink" title="数据库基础知识"></a>数据库基础知识</h3><h4 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h4><p>关系型数据库，是指采用了关系模型来组织数据的数据库，其以行和列的形式存储数据，以便于用户理解，关系型数据库这一系列的行和列被称为表，一组表组成了数据库。用户通过查询来检索数据库中的数据，而查询是一个用于限定数据库中某些区域的执行代码。关系模型可以简单理解为二维表格模型，而一个关系型数据库就是由二维表及其之间的关系组成的一个数据组织。</p>
+<h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><p>关系型数据库采用结构化查询语言（即SQL）来对数据库进行查询，SQL早已获得了各个数据库厂商的支持，成为数据库行业的标准，它能够支持数据库的CRUD（增加，查询，更新，删除）操作，具有非常强大的功能，SQL可以采用类似索引的方法来加快查询操作。SQL由可细分为：</p>
+<ul>
+<li>DDL：数据库设计语言</li>
+<li>DML：数据库操作语言</li>
+<li>DCL：数据库控制语言</li>
+<li>DQL：数据库查询语言</li>
+</ul>
+<h4 id="数据库设计三大范式"><a href="#数据库设计三大范式" class="headerlink" title="数据库设计三大范式"></a>数据库设计三大范式</h4><ul>
+<li><p>第一范式(确保每列保持原子性)<br>第一范式是最基本的范式。如果数据库表中的所有字段值都是<code>不可分解的原子值</code>，就说明该数据库表满足了第一范式。<br>第一范式的合理遵循需要根据系统的<code>实际需求</code>来定。比如某些数据库系统中需要用到“地址”这个属性，本来直接将“地址”属性设计成一个数据库表的字段就行。但是如果系统经常会访问“地址”属性中的“城市”部分，那么就非要将“地址”这个属性重新拆分为省份、城市、详细地址等多个部分进行存储，这样在对地址中某一部分操作的时候将非常方便。这样设计才算满足了数据库的第一范式。</p>
+</li>
+<li><p>第二范式(确保表中的每列都和主键相关)<br>第二范式在第一范式的基础之上更进一层。第二范式需要确保数据库表中的每一列都和主键相关，而不能只与主键的某一部分相关（主要针对联合主键而言）。也就是说在一个数据库表中，一个表中只能保存一种数据，不可以把多种数据保存在同一张数据库表中。</p>
+</li>
+<li><p>第三范式(确保每列都和主键列直接相关,而不是间接相关)<br>第三范式在第二范式上更进一层，比如在设计一个订单数据表的时候，可以将客户编号作为一个外键和订单表建立相应的关系。而不可以在订单表中添加关于客户其它信息（比如姓名、所属公司等）的字段。</p>
+</li>
+</ul>
+<h4 id="事务4大特性-ACID"><a href="#事务4大特性-ACID" class="headerlink" title="事务4大特性(ACID)"></a>事务4大特性(ACID)</h4><ul>
+<li><p><strong>原子性(Atomicity)</strong><br>原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚，因此事务的操作如果成功就必须要完全应用到数据库，如果操作失败则不能对数据库有任何影响。</p>
+</li>
+<li><p><strong>一致性（Consistency）</strong><br>一致性是指事务必须使数据库从一个一致性状态变换到另一个一致性状态，也就是说一个事务执行之前和执行之后都必须处于一致性状态。<br>拿转账来说，假设用户A和用户B两者的钱加起来一共是5000，那么不管A和B之间如何转账，转几次账，事务结束后两个用户的钱相加起来应该还得是5000，这就是事务的一致性。</p>
+</li>
+<li><p><strong>隔离性（Isolation）</strong><br>隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。<br>即要达到这么一种效果：对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都感觉不到有其他事务在并发地执行。</p>
+</li>
+<li><p><strong>持久性（Durability）</strong><br>持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的，即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。<br>例如我们在使用JDBC操作数据库时，在提交事务方法后，提示用户事务操作完成，当我们程序执行完成直到看到提示后，就可以认定事务以及正确提交，即使这时候数据库出现了问题，也必须要将我们的事务完全执行完成，否则就会造成我们看到提示事务处理完毕，但是数据库因为故障而没有执行事务的重大错误。</p>
+</li>
+</ul>
+<h4 id="事务隔离4个等级"><a href="#事务隔离4个等级" class="headerlink" title="事务隔离4个等级"></a>事务隔离4个等级</h4><table>
+<thead>
+<tr>
+<th>等级</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读未提交(RU)</td>
+<td>有</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td>读已提交(RC)</td>
+<td>无</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td>重复读(RR)</td>
+<td>无</td>
+<td>无</td>
+<td>有</td>
+</tr>
+<tr>
+<td>串行(Serializable)</td>
+<td>无</td>
+<td>无</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>读未提交</strong><br>由于读时未对数据行加锁，导致事务A可能读取到B未提交的数据，当事务B回滚时，A读到的数据即为脏数据。一般不建议使用此等级。</li>
+<li><strong>读已提交</strong><br>在读数据时加行级共享锁，读完该行数据后释放。修改时加行级排他锁。事务A读数据时对当前行加了共享锁，导致事务B想要修改数据时无法获取排他锁资源而被阻塞，避免了脏读的发生。但是由于是读完数据立即释放共享锁，因此事务A如果多次读取数据时，有可能出现数据不一致情况，这种问题称为不可重复读。</li>
+<li><strong>可重复读</strong><br>在读数据时加行级共享锁，事务完成后再释放。修改时加行级排他锁，也是事务完成后才释放。这样事务A读数据时，无论读多少次，B始终无法获取到排他锁资源。无法进行数据修改，因此读到的结果始终一致。可重复读只能防止数据更新。但是当有新的数据插入时，还是可能会导致数据查询结果不一致。</li>
+<li><strong>序列化</strong><br>Serializable 是最高的事务隔离级别，在该级别下，事务串行化顺序执行，可以避免脏读、不可重复读与幻读。但是这种事务隔离级别效率低下，比较耗数据库性能，一般不使用。事务在读取数据时，必须先对其加 表级共享锁 ，直到事务结束才释放；事务在更新数据时，必须先对其加 表级排他锁 ，直到事务结束才释放。</li>
+</ul>
+<h4 id="事务传播等级"><a href="#事务传播等级" class="headerlink" title="事务传播等级"></a>事务传播等级</h4><p>PROPAGATION_REQUIRED–支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。<br>PROPAGATION_SUPPORTS–支持当前事务，如果当前没有事务，就以非事务方式执行。<br>PROPAGATION_MANDATORY–支持当前事务，如果当前没有事务，就抛出异常。<br>PROPAGATION_REQUIRES_NEW–新建事务，如果当前存在事务，把当前事务挂起。<br>PROPAGATION_NOT_SUPPORTED–以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。<br>PROPAGATION_NEVER–以非事务方式执行，如果当前存在事务，则抛出异常。 </p>
+<h4 id="事务超时"><a href="#事务超时" class="headerlink" title="事务超时"></a>事务超时</h4><p>当事务执行时间超出所设置的时间阀值，事务会抛出TransactionTimedOutException并回滚。<br>超时时间可以通过配置文件application.properties的spring.transaction.default-timeout进行配置或是在@Transactional注解中声明，默认30s。</p>
+<h4 id="共享锁和排他锁"><a href="#共享锁和排他锁" class="headerlink" title="共享锁和排他锁"></a>共享锁和排他锁</h4><p>在MySQL中有行级锁，页级锁，表级锁。行级锁是MySQL中最系力度的锁。行级锁又分为共享锁和排他锁两种。  </p>
+<ul>
+<li><strong>共享锁</strong><br>共享锁又称为读锁，是读取操作创建的锁。其他用户可以并发读取数据，但任何事务都不能对数据进行修改（获取数据上的排他锁），直到已释放所有的共享锁。</li>
+<li><strong>排他锁</strong><br>排他锁又称写锁，如果事务T对数据A加上排他锁，则其他事务不能再对A加任何类型的锁。得到锁的事务既可以读又可以写。</li>
+</ul>
+<h4 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a>悲观锁和乐观锁</h4><p>传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。Java中synchronized和ReentrantLock等独占锁就是悲观锁思想的实现。<br>乐观锁CAS：InnoDB隐式地维护了两个版本好，创建版本和删除版本。每次提交事务会和这两个版本进行比对。虽然增加了表空间大小，但是减少了锁的使用，极大提高了性能。</p>
+<h3 id="MySQL知识"><a href="#MySQL知识" class="headerlink" title="MySQL知识"></a>MySQL知识</h3><h4 id="MySQL存储引擎"><a href="#MySQL存储引擎" class="headerlink" title="MySQL存储引擎"></a>MySQL存储引擎</h4><ul>
+<li><strong>InnoDB存储引擎</strong><br>InnoDB是事务性数据库的首选引擎，支持事务安全表（ACID），支持锁定和外键。由于支持事务，能够实现行粒度锁，在提高业务安全性的同时保证了较的高性能。<br>InnoDB的数据和索引是放在同一个逻辑表空间下的，文件大小上限64TB。InnoDB表支持外键约束，存储数据时按照主键顺序存放，没有指定主键时，InnoDB会为每一行生成6个字节的ROWID并作为主键。</li>
+<li><strong>MyISAM</strong><br>MyISAM是基于ISAM存储引擎，并对其进行扩展。它是在Web，数据仓储和其他环境下最常用的存储引擎之一。MyISAM拥有较高的插入，查询速度，但不支持事务。</li>
+<li><strong>MEMORY存储引擎</strong><br>MEMORY存储引擎将表中的数据存储到内存中，为查询和引用其他表数据提供快速访问。</li>
+</ul>
+<h4 id="MySQL索引类型"><a href="#MySQL索引类型" class="headerlink" title="MySQL索引类型"></a>MySQL索引类型</h4><ul>
+<li>主键索引 PRIMARY KEY</li>
+<li>唯一索引 UNIQUE INDEX</li>
+<li>普通索引 INDEX index_name(‘column_name’)</li>
+<li>组合索引 INDEX index_name(‘col1’, ‘col2’, ‘col3’)</li>
+<li>全文索引 FULLTEXT</li>
+</ul>
+<h4 id="索引的优缺点"><a href="#索引的优缺点" class="headerlink" title="索引的优缺点"></a>索引的优缺点</h4><p>索引就像字典的目录一样，可以帮我们快速定位到我们需要查阅的数据，如果没有索引，数据库在查找时就不得不全表扫描。要知道数据库中的数据是存储在磁盘上，而不是内存中。全表扫描会带来巨大的I/O开销，当数据量巨大时，查询时间会无法控制。</p>
+<p><strong>优势</strong><br>可以快速检索，减少I/O次数，加快检索速度；根据索引分组和排序，可以加快分组和排序；索引是行级锁的前提，没有索引，行级锁无法使用。</p>
+<p><strong>劣势</strong><br>索引本身也是表，因此会占用存储空间，一般来说，索引表占用的空间的数据表的1.5倍；索引表的维护和创建需要时间成本，这个成本随着数据量增大而增大；构建索引会降低数据表的修改操作（删除，添加，修改）的效率，因为在修改数据表的同时还需要修改索引表；</p>
+<h4 id="索引的数据结构及原理"><a href="#索引的数据结构及原理" class="headerlink" title="索引的数据结构及原理"></a>索引的数据结构及原理</h4><p>这里记录一篇美团技术团队整理的文章，介绍的非常详细。<a href="https://tech.meituan.com/2014/06/30/mysql-index.html" target="_blank" rel="noopener">MySQL索引原理及慢查询优化</a></p>
+<h4 id="如何优化MySQL性能"><a href="#如何优化MySQL性能" class="headerlink" title="如何优化MySQL性能"></a>如何优化MySQL性能</h4><ol>
+<li>尽量避免全表扫描查询，合理简历索引。</li>
+<li>索引应选择辨识高的列，如果建立了组合索引，应遵循左前缀原则设立。</li>
+<li>即便有索引，也要避免<code>LIKE ‘%XX’</code> 通配符开头的模糊查询，会使索引失效。</li>
+<li>避免SELECT * 查询，只返回选择所需的列，减少I/O开销。</li>
+<li>避免多个范围查询条件，会使索引失效。</li>
+<li>覆盖索引，上面美团博客那篇文章中的案例特别棒。可以用于优化分页查询。</li>
+<li>尽量不要用数据库进行数据运算，会拉高CPU占用。</li>
+<li>并发要求极高时，可以使用读写分离架构，部署只读实例，提高性能。</li>
+</ol>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/08/07/UML 学习笔记/" data-toggle="tooltip" data-placement="top" title="UML 学习笔记">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/07/27/Redis 知识点梳理/" data-toggle="tooltip" data-placement="top" title="Redis 知识点梳理">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#数据库基础知识"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">数据库基础知识</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#关系型数据库"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">关系型数据库</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#SQL"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">SQL</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据库设计三大范式"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">数据库设计三大范式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#事务4大特性-ACID"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">事务4大特性(ACID)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#事务隔离4个等级"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">事务隔离4个等级</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#事务传播等级"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">事务传播等级</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#事务超时"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">事务超时</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#共享锁和排他锁"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">共享锁和排他锁</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#悲观锁和乐观锁"><span class="toc-nav-number">1.9.</span> <span class="toc-nav-text">悲观锁和乐观锁</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#MySQL知识"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">MySQL知识</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#MySQL存储引擎"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">MySQL存储引擎</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#MySQL索引类型"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">MySQL索引类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#索引的优缺点"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">索引的优缺点</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#索引的数据结构及原理"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">索引的数据结构及原理</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#如何优化MySQL性能"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">如何优化MySQL性能</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                        
+                          <a class="tag" href="/tags/#Mysql" title="Mysql">Mysql</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank">阮一峰</a></li>
+                    
+                        <li><a href="http://www.ityouknow.com" target="_blank">纯洁的微笑</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "www-lucienchen-xyz";
+    var disqus_identifier = "http://www.lucienchen.xyz/2020/08/01/MySQL%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/";
+    var disqus_url = "http://www.lucienchen.xyz/2020/08/01/MySQL%20%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'L'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/LucienChenXi92">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/lucien-chen-219ab6175">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Lucien Chen 2021
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://www.lucienChen.xyz/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-155184201-1';
+    var _gaDomain = 'www.lucienchen.xyz';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://www.lucienChen.xyz/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
