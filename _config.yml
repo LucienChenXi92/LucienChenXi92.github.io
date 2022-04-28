@@ -165,9 +165,9 @@ sitemap:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  - type: git
-    repository: https://github.com/LucienChenXi92/LucienChenXi92.github.io.git
-    branch: master
+  # - type: git
+  #   repository: https://github.com/LucienChenXi92/LucienChenXi92.github.io.git
+  #   branch: master
 
   - type: rsync
     host: 120.24.243.146
